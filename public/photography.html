@@ -2,9 +2,10 @@
 
 <html>
   <head>
-    <title></title>
-    <script src="/src/photography.js"></script>
+    <title>Photography</title>
 
+    <script src="/src/photography.js"></script>
+    <script src="/src/mobile.js"></script>
     <link rel="stylesheet" href="/css/photography.css">
   </head>
 
@@ -28,7 +29,7 @@
     <script>
       document.getElementById("imageContainer").innerHTML = output;
 
-      if (window.innerWidth < window.innerHeight) {
+      if (mobile) {
         document.getElementById("info").innerText = "This website not optimized for mobile. This is going to be an archive of my favorite photos I've taken."
       }
     </script>
