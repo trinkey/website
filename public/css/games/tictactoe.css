@@ -1,0 +1,10 @@
+@import url("/css/base.css");
+
+.board {
+  font-size: 5vh;
+  user-select: none;
+}
+
+#win {
+  font-size: 2.5vh;
+}

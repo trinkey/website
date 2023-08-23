@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Tic Tac Toe!</title>
+
+    <link rel="stylesheet" href="/css/games/tictactoe.css">
+  </head>
+
+  <body>
+    <a href="/" class="return">Back to main page</a>
+
+    <pre class="board center"><span id="a1">   </span>|<span id="a2">   </span>|<span id="a3">   </span>
+---+---+---
+<span id="b1">   </span>|<span id="b2">   </span>|<span id="b3">   </span>
+---+---+---
+<span id="c1">   </span>|<span id="c2">   </span>|<span id="c3">   </span></pre>
+
+    <div id="win" class="center"></div>
+
+    <script>
+      function dom(id) { return document.getElementById(id); }
+
+      function checkForWin() {
+        let wins = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+          [0, 4, 8],
+          [2, 4, 6]
+        ];
+
+        for (let i = 0; i < 8; i++) {
+          if (
+               board[wins[i][0]] == board[wins[i][1]]
+            && board[wins[i][1]] == board[wins[i][2]]
+            && board[wins[i][0]] != 0
+          ) {
+            dom("win").innerHTML = `${tiles[turn]} wins!`
+
+            for (let i = 0; i < 9; i++) {
+              document.getElementsByTagName("span")[i].removeEventListener("click", clickHandler)
+            }
+          }
+        }
+
+        let tie = true;
+
+        for (let i = 0; i < 3; i++) {
+          for (let o = 0; o < 3; o++) {
+            if (!board[i * 3 + o]) {
+              tie = false;
+            }
+          }
+        }
+
+        if (tie) {
+          dom("win").innerHTML = "Tie! No winners!";
+          return;
+        }
+      }
+
+      function clickHandler() {
+        this.removeEventListener("click", clickHandler)
+        this.innerHTML = tiles[turn];
+
+        board[({"a": -1, "b": 2, "c": 5})[this.id[0]] + Number(this.id[1])] = turn + 1;
+        checkForWin();
+
+        turn += 1;
+        turn %= 2;
+      }
+
+      let turn = 0,
+          tiles = [" X ", " O "],
+          board = [
+            0, 0, 0,
+            0, 0, 0,
+            0, 0, 0
+          ];
+
+      for (let i = 0; i < 9; i++) {
+        document.getElementsByTagName("span")[i].addEventListener("click", clickHandler)
+      }
+    </script>
+  </body>
+</html>
