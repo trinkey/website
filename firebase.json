@@ -7,8 +7,39 @@
     "public": "public",
     "ignore": [
       "firebase.json",
+      "deploy.bat",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/changelog",
+        "destination": "/patch.html"
+      },
+      {
+        "source": "/photography",
+        "destination": "/photography.html"
+      },
+      {
+        "source": "/games/adjectives",
+        "destination": "/games/adjective.html"
+      },
+      {
+        "source": "/games/gender",
+        "destination": "/games/gender.html"
+      },
+      {
+        "source": "/games/hangman",
+        "destination": "/games/hangman.html"
+      },
+      {
+        "source": "/games/terms",
+        "destination": "/games/terms.html"
+      },
+      {
+        "source": "/games/tictictoe",
+        "destination": "/games/tictictoe.html"
+      }
     ]
   }
 }
