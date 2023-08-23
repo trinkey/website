@@ -54,3 +54,5 @@ p {margin: 0px; padding: 2px}
 
 .invis { opacity: 0%; }
 .mono  { font-family: Courier New; }
+
+.noUnderline a { text-decoration: none; }

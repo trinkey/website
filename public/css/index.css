@@ -109,6 +109,18 @@ p {margin: 0px; padding: 2px}
   top: 44vh;
 }
 
+.aboutContainer { /* Used for the "About Me" section */
+  height: auto;
+  min-height: 20vh;
+  vertical-align: middle;
+  display: table;
+}
+
+.aboutText { /* Used for the "About Me" section */
+  display: table-cell;
+  vertical-align: middle;
+}
+
 #wrapper {
   margin-left: 20vw;
   margin-right: 20vw;
@@ -148,3 +160,9 @@ p {margin: 0px; padding: 2px}
 .bird3 { background-image: url(/img/index/bird3.jpg) }
 .bird4 { background-image: url(/img/index/bird4.jpg) }
 .bird5 { background-image: url(/img/index/bird5.jpg) }
+
+footer {
+  color: #999;
+  font-size: 8px;
+  text-align: center;
+}

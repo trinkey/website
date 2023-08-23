@@ -39,6 +39,10 @@
       {
         "source": "/games/tictictoe",
         "destination": "/games/tictictoe.html"
+      },
+      {
+        "source": "/games",
+        "destination": "/games/index.html"
       }
     ]
   }

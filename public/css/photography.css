@@ -13,6 +13,14 @@ table  { width: 90vw; }
 tr     { height: 25vw; }
 footer { font-size: 2vh; }
 
+.spacer { padding-top: 20vh }
+
+.caption {
+  width: 30vw;
+  position: relative;
+  top: 1vw;
+}
+
 .title {
   z-index: 2;
   font-size: 8vh;
