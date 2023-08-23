@@ -1,0 +1,56 @@
+@import url('return.css');
+
+/* Custom font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Styling for all elements */
+:root {
+  font-family: Poppins;
+  background-color: #060508;
+  color: #bfbbcb;
+}
+
+/* Selection colors */
+::selection {
+  background-color: #770088;
+  color: #ffffff;
+}
+
+/* Button styles */
+button {
+  background-color: #44334b;
+  color: #ffffff;
+  border: none;
+  padding: 5px 7px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover  { background-color: #5e4269; }
+button:active { background-color: #3b2d40; }
+
+input {
+  background-color: #2f273e;
+  color: #ffffff;
+  border: 2px #6b5e79 solid;
+  border-radius: 2px;
+}
+
+input:hover {
+  border-color: #766686;
+  background-color: #3a3251;
+}
+
+/* Link colors */
+a:link    { color: #7788dd }
+a:visited { color: #aa88dd }
+
+/* Other */
+p {margin: 0px; padding: 2px}
+
+.left   { text-align: left;   }
+.center { text-align: center; }
+.right  { text-align: right;  }
+
+.invis { opacity: 0%; }
+.mono  { font-family: Courier New; }

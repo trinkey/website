@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Hangman</title>
+
+    <link rel="stylesheet" href="../css/games/hangman.css">
+  </head>
+
+  <body>
+    <h1>Hangman</h1>
+
+    <div id="setup">
+      <input id="words" placeholder="Enter the word(s)...">
+      <button id="start">Start</button>
+    </div>
+
+    <div id="game" hidden>
+      <pre class="mono" id="hang"></pre>
+      <pre id="word"></pre>
+      <h1 id="status"></h1>
+      <strong>Unused:</strong>
+      <div id="remaining"></div>
+      <strong>Wrong:</strong>
+      <div id="wrong"></div>
+      <strong>Correct:</strong>
+      <div id="correct"></div>
+    </div>
+
+    <script>
+      let hangStates = [
+            "    _________\n    |/      |\n" + "    |\n".repeat(7) + "____|____",
+            "    _________\n    |/      |\n    |       O\n" + "    |\n".repeat(6) + "____|____",
+            "    _________\n    |/      |\n    |       O\n" + "    |       |\n".repeat(2) + "    |\n".repeat(4) + "____|____",
+            "    _________\n    |/      |\n    |       O\n    |      /|\n    |       |\n" + "    |\n".repeat(4) + "____|____",
+            "    _________\n    |/      |\n    |       O\n    |      /|\\\n    |       |\n" + "    |\n".repeat(4) + "____|____",
+            "    _________\n    |/      |\n    |       O\n    |      /|\\\n    |       |\n    |      /\n" + "    |\n".repeat(2) + "____|____",
+            "    _________\n    |/      |\n    |       O\n    |      /|\\\n    |       |\n    |      / \\\n" + "    |\n".repeat(2) + "____|____"
+          ], wrong = "", good = "", remaining = "abcdefghijklmnopqrstuvwxyz", started = false, word = "";
+
+      function dom(id) { return document.getElementById(id); }
+
+      function update() {
+        dom("hang").innerHTML = hangStates[wrong.length];
+
+        let obfuWord = word;
+        for (let i = 0; i < remaining.length; i++) {
+          obfuWord = obfuWord.replaceAll(remaining[i], "_");
+        }
+
+        if (obfuWord.split("_").length == 1) { win(); }
+
+        dom("word").innerHTML = obfuWord.toUpperCase().split("").join(" ");
+
+        dom("wrong").innerHTML = wrong.toUpperCase().split("").sort().join(" ") || "<i>None</i>";
+        dom("remaining").innerHTML = remaining.toUpperCase().split("").sort().join(" ") || "<i>None</i>";
+        dom("correct").innerHTML = good.toUpperCase().split("").sort().join(" ") || "<i>None</i>";
+      }
+
+      function lose() {
+        document.onkeypress = function(e) {};
+        dom("status").innerHTML = "You lost :(";
+        dom("word").innerHTML = word.toUpperCase().split("").join(" ");
+      }
+
+      function win() {
+        document.onkeypress = function(e) {};
+        dom("status").innerHTML = "You win!";
+      }
+
+      dom("start").addEventListener("click", function() {
+        dom("setup").setAttribute("hidden", "");
+        dom("game").removeAttribute("hidden");
+
+        word = dom("words").value.toLowerCase();
+        started = true;
+
+        update();
+      });
+
+      document.onkeypress = function(e) {
+        if (started && remaining.split(e.key.toLowerCase()).length == 2) {
+          remaining = remaining.replaceAll(e.key.toLowerCase(), "");
+
+          if (word.split(e.key.toLowerCase()).length == 1) {
+            wrong += e.key.toLowerCase();
+          } else {
+            good += e.key.toLowerCase();
+          }
+
+          update();
+
+          if (wrong.length == hangStates.length - 1) {
+            lose();
+          }
+        }
+      };
+    </script>
+  </body>
+</html>

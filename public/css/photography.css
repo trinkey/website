@@ -1,0 +1,73 @@
+@import url('/css/base.css');
+
+body {
+  font-weight: 400;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  width: 90vw;
+  height: 100%;
+  font-size: 3vh;
+}
+
+table  { width: 90vw; }
+tr     { height: 25vw; }
+footer { font-size: 2vh; }
+
+.title {
+  z-index: 2;
+  font-size: 8vh;
+  font-weight: 600;
+  text-align: justify;
+}
+
+.gradient {
+  text-decoration: underline #ff75a9;
+  background: linear-gradient(130deg, #7c0989, #ff75a9);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-weight: 700;
+  transition: 0.5s;
+  padding: 1vw;
+  border-radius: 1vw;
+  position: relative;
+  left: -1vw;
+}
+
+.gradient:hover {
+  text-decoration: underline #7c0989;
+  -webkit-text-fill-color: initial;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  font-weight: 700;
+}
+
+/* All the styles for the images and image table cells and stuff like that */
+.imageIcon {
+  width: 30vw;
+  padding: 0px;
+}
+
+.imageIcon img {
+  margin-left: 2.5vw;
+  width: 25vw;
+  padding: 0.5vw;
+  background-color: #7c0989;
+  border-radius: 1vw;
+  transition: 0.5s;
+}
+
+.imageIcon img:hover {
+  border-radius: 0.5vw;
+  background: linear-gradient(130deg, #7c0989, #ff75a9);
+  padding-bottom: calc(0.5vw + 3px);
+  translate: 0px -3px;
+}
+
+.imageIcon div {
+  margin-left: 2.5vw;
+  width: 25vw;
+  font-size: 2vh;
+}
+
+.imageIcon td { padding-bottom: 3vh; }

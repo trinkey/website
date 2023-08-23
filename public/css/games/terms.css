@@ -1,0 +1,155 @@
+@import url('/css/base.css');
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  filter: blur(5px);
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  pointer-events: none;
+  overflow: hidden
+}
+
+.return {
+  position: fixed;
+  top: 5px;
+  left: 10px;
+  z-index: 99999;
+}
+
+.space {
+  font-size: 0;
+  display: block;
+  height: 40px;
+}
+
+.lose {
+  z-index: 101;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #540404;
+  color: #fff;
+  font-size: 64px;
+  text-align: center
+}
+
+.win {
+  z-index: 101;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #155115;
+  color: #fff;
+  font-size: 64px;
+  text-align: center
+}
+
+.container {
+  user-select: none;
+  transition: .25s;
+  text-align: center;
+  height: 400px;
+  width: 400px;
+  font-size: 20px;
+  background-color: #333;
+  border: #444 1px solid;
+  border-top: #29519a 4px solid;
+  position: absolute;
+  top: 0;
+  left: 0
+}
+
+.blue, .white {
+  font-size: 16px;
+  font-family: Arial;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin: 0px 3px;
+  line-height: 26px;
+  cursor: pointer;
+  border: #000 1px solid;
+  display: inline-block;
+  max-width: 350px
+}
+
+.blue {
+  background-color: #6495ed;
+  color: #fff
+}
+
+.white {
+  background-color: #fff;
+  color: #000
+}
+
+.white:hover { background-color: #dadada }
+.blue:hover  { background-color: #4b7ad1 }
+
+#e1 {
+  z-index: 100;
+  transform: translate(calc(50vw - 200px), calc(50vh - 200px))
+}
+
+#e2 {
+  z-index: 99;
+  transform: translate(calc(49.5vw - 200px), calc(49.5vh - 200px))
+}
+
+#e3 {
+  z-index: 98;
+  transform: translate(calc(49vw - 200px), calc(49vh - 200px))
+}
+
+#e4 {
+  z-index: 97;
+  transform: translate(calc(48.5vw - 200px), calc(48.5vh - 200px))
+}
+
+#e5 {
+  z-index: 96;
+  transform: translate(calc(48vw - 200px), calc(48vh - 200px))
+}
+
+#e6 {
+  z-index: 95;
+  transform: translate(calc(47.5vw - 200px), calc(47.5vh - 200px))
+}
+
+#e7 {
+  z-index: 94;
+  transform: translate(calc(47vw - 200px), calc(47vh - 200px))
+}
+
+#e8 {
+  z-index: 93;
+  transform: translate(calc(46.5vw - 200px), calc(46.5vh - 200px))
+}
+
+#e9 {
+  z-index: 92;
+  transform: translate(calc(46vw - 200px), calc(46vh - 200px))
+}
+
+#e10 {
+  z-index: 91;
+  transform: translate(calc(45.5vw - 200px), calc(45.5vh - 200px))
+}
+
+#e11 {
+  z-index: 90;
+  transform: translate(calc(45vw - 200px), calc(45vh - 200px))
+}
+
+#e12 {
+  z-index: 89;
+  transform: translate(calc(44.5vw - 200px), calc(44.5vh - 200px))
+}

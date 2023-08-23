@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Gender selection</title>
+
+    <link rel="stylesheet" href="/css/base.css">
+  </head>
+
+  <body>
+    <a href="/" class="return">Back to main page</a>
+
+    <table>
+      <tr>
+        <td class="right">Male -</td>
+        <td><input value="25" id="male" type="range"></td>
+        <td><span id="maleLabel">25%</span></td>
+      </tr>
+      <tr>
+        <td class="right">Female -</td>
+        <td><input value="25" id="female" type="range"></td>
+        <td><span id="femaleLabel">25%</span></td>
+      </tr>
+      <tr>
+        <td class="right">Non-Binary -</td>
+        <td><input value="25" id="nb" type="range"></td>
+        <td><span id="nbLabel">25%</span></td>
+      </tr>
+      <tr>
+        <td class="right">None -</td>
+        <td><input value="25" id="none" type="range"></td>
+        <td><span id="noneLabel">25%</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="right">Total -</td>
+        <td id="tot">100%</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="right"><button>Submit</button></td>
+        <td>(this does nothing)</td>
+      </tr>
+    </table>
+
+    <script>
+      let values = {
+        "male": 25,
+        "female": 25,
+        "nb": 25,
+        "none": 25
+      };
+
+      document.getElementById("male").addEventListener('input', updatePercentageLabel);
+      document.getElementById("female").addEventListener('input', updatePercentageLabel);
+      document.getElementById("nb").addEventListener('input', updatePercentageLabel);
+      document.getElementById("none").addEventListener('input', updatePercentageLabel);
+
+      function updatePercentageLabel() {
+        values[this.id] = Number(this.value);
+        document.getElementById(`${this.id}Label`).innerText = `${this.value}%`;
+        document.getElementById("tot").innerText = `${Object.values(values).reduce((a, b) => a + b)}%`;
+      }
+    </script>
+  </body>
+</html>

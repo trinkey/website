@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title></title>
+    <script src="/src/photography.js"></script>
+
+    <link rel="stylesheet" href="/css/photography.css">
+  </head>
+
+  <body>
+    <a href="/" class="return">Back to main page</a>
+
+    <div style="padding-top: 20vh"></div>
+
+    <div class="title">Trinkey's<br><span class="gradient">Photography</span></div>
+    <div id="info" style="width: 30vw; position: relative; top: 1vw;">This website is going to be an archive of my favorite photos I've taken.</div>
+
+    <div style="padding-top: 20vh"></div>
+
+    <div id="imageContainer"></div>
+
+    <footer>
+      More to come (probably)!<br>
+      You can use all of these for whatever, however please give credit if used commercially. Don't repost these claiming them to be your own.
+    </footer>
+
+    <script>
+      document.getElementById("imageContainer").innerHTML = output;
+
+      if (window.innerWidth < window.innerHeight) {
+        document.getElementById("info").innerText = "This website not optimized for mobile. This is going to be an archive of my favorite photos I've taken."
+      }
+    </script>
+  </body>
+</html>
