@@ -21,6 +21,10 @@
         "destination": "/photography.html"
       },
       {
+        "source": "/games",
+        "destination": "/games/index.html"
+      },
+      {
         "source": "/games/adjectives",
         "destination": "/games/adjective.html"
       },
@@ -41,8 +45,8 @@
         "destination": "/games/tictictoe.html"
       },
       {
-        "source": "/games",
-        "destination": "/games/index.html"
+        "source": "/games/2048",
+        "destination": "/games/2048.html"
       }
     ]
   }
