@@ -41,8 +41,8 @@
         "destination": "/games/terms.html"
       },
       {
-        "source": "/games/tictictoe",
-        "destination": "/games/tictictoe.html"
+        "source": "/games/tictactoe",
+        "destination": "/games/tictactoe.html"
       },
       {
         "source": "/games/2048",
