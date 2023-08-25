@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>2048</title>
+
+    <script src="/src/mobile.js"></script>
+    <link rel="stylesheet" href="/css/games/2048.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <a href="/games" class="return">Back to games list</a>
+
+    <h1 id="title">2048!</h1>
+
+    <table class="container">
+      <tr>
+        <td class="num" id="0"></td>
+        <td class="num" id="1"></td>
+        <td class="num" id="2"></td>
+        <td class="num" id="3"></td>
+      </tr>
+      <tr>
+        <td class="num" id="4"></td>
+        <td class="num" id="5"></td>
+        <td class="num" id="6"></td>
+        <td class="num" id="7"></td>
+      </tr>
+      <tr>
+        <td class="num" id="8"></td>
+        <td class="num" id="9"></td>
+        <td class="num" id="10"></td>
+        <td class="num" id="11"></td>
+      </tr>
+      <tr>
+        <td class="num" id="12"></td>
+        <td class="num" id="13"></td>
+        <td class="num" id="14"></td>
+        <td class="num" id="15"></td>
+      </tr>
+    </table>
+
+    <div hidden id="mobileButtons">
+      <button class="invis mobileButton">.</button>
+      <button onclick="keystrokeHandler({'keyCode': 38})" class="mobileButton" id="up">↑</button><br>
+
+      <button onclick="keystrokeHandler({'keyCode': 37})" class="mobileButton" id="left">←</button>
+      <button onclick="keystrokeHandler({'keyCode': 40})" class="mobileButton" id="down">↓</button>
+      <button onclick="keystrokeHandler({'keyCode': 39})" class="mobileButton" id="right">→</button>
+    </div>
+
+    <script>
+      function dom(id) { return document.getElementById(id); }
+
+      function randint(min, max) { return Math.floor(Math.random() * max) + min; }
+
+      function spawnNewTile() {
+        let available = [], value;
+
+        if (!randint(0, 9)) { value = 4; }
+        else { value = 2; }
+
+        for (let i = 1; i < 17; i++) { if (!board[i]) { available.push(i) } }
+
+        if (available.length) {
+          board[available[randint(0, available.length - 1)]] = value;
+        }
+      }
+
+      function checkForLoss() {
+        let lose = true;
+
+        for (let i = 1; i < 17 && lose; i++) { lose = !!board[i]; }
+        for (let i = 0; i < 4 && lose; i++) {for (let j = 0; j < 3 && lose; j++) {
+          lose = !((board[i * 4 + j + 1] == board[i * 4 + j + 2]) || (board[j * 4 + i + 1] == board[j * 4 + i + 5]));
+        }}
+
+        dom("title").innerText = lose ? "You lost! Press \"r\" to restart!" : "2048!"
+      }
+
+      function updateDisplay() {
+        for (let i = 0; i < 16; i++) {
+          let element = dom(i);
+
+          while (element.classList.length > 0) {
+            element.classList.remove(element.classList.item(0));
+          }
+
+          element.classList.add("num");
+          if (board[i + 1]) { element.classList.add(`num${board[i + 1]}`); }
+        }
+      }
+
+      function keystrokeHandler(e) {
+        if (e.keyCode in keyMap) {
+          let key = keyMap[e.keyCode], changed;
+
+          if (key == "up") {
+            for (let _ = 0; _ < 2; _++) {for (let i = 1; i < 5; i++) {for (let j = 0; j < 3; j++) {
+              if (board[j * 4 + i] == 0 && board[j * 4 + i + 4]) { board[j * 4 + i] = board[j * 4 + i + 4]; board[j * 4 + i + 4] = 0; changed = true; }
+            }}}
+            for (let i = 1; i < 5; i++) {for (let j = 0; j < 3; j++) {
+              if (board[j * 4 + i] == board[j * 4 + i + 4] && board[j * 4 + i]) { board[j * 4 + i] += board[j * 4 + i + 4]; board[j * 4 + i + 4] = 0; changed = true; }
+            }}
+            for (let i = 1; i < 5; i++) {for (let j = 0; j < 3; j++) {
+              if (board[j * 4 + i] == 0 && board[j * 4 + i + 4]) { board[j * 4 + i] = board[j * 4 + i + 4]; board[j * 4 + i + 4] = 0; changed = true; }
+            }}
+          }
+          else if (key == "down") {
+            for (let _ = 0; _ < 2; _++) {for (let i = 4; i > 0; i--) {for (let j = 2; j > -1; j--) {
+              if (board[j * 4 + i + 4] == 0 && board[j * 4 + i]) { board[j * 4 + i + 4] = board[j * 4 + i]; board[j * 4 + i] = 0; changed = true; }
+            }}}
+            for (let i = 4; i > 0; i--) {for (let j = 2; j > -1; j--) {
+              if (board[j * 4 + i] == board[j * 4 + i + 4] && board[j * 4 + i + 4]) { board[j * 4 + i + 4] += board[j * 4 + i]; board[j * 4 + i] = 0; changed = true; }
+            }}
+            for (let i = 4; i > 0; i--) {for (let j = 2; j > -1; j--) {
+              if (board[j * 4 + i + 4] == 0 && board[j * 4 + i]) { board[j * 4 + i + 4] = board[j * 4 + i]; board[j * 4 + i] = 0; changed = true; }
+            }}
+          }
+          else if (key == "left") {
+            for (let _ = 0; _ < 2; _++) {for (let i = 0; i < 4; i++) {for (let j = 1; j < 4; j++) {
+              if (board[i * 4 + j] == 0 && board[i * 4 + j + 1]) { board[i * 4 + j] = board[i * 4 + j + 1]; board[i * 4 + j + 1] = 0; changed = true; }
+            }}}
+            for (let i = 0; i < 4; i++) {for (let j = 1; j < 4; j++) {
+              if (board[i * 4 + j] == board[i * 4 + j + 1] && board[i * 4 + j]) { board[i * 4 + j] += board[i * 4 + j + 1]; board[i * 4 + j + 1] = 0; changed = true; }
+            }}
+            for (let i = 0; i < 4; i++) {for (let j = 1; j < 4; j++) {
+              if (board[i * 4 + j] == 0 && board[i * 4 + j + 1]) { board[i * 4 + j] = board[i * 4 + j + 1]; board[i * 4 + j + 1] = 0; changed = true; }
+            }}
+          }
+          else if (key == "right") {
+            for (let _ = 0; _ < 2; _++) {for (let i = 3; i > -1; i--) {for (let j = 3; j > 0; j--) {
+              if (board[i * 4 + j + 1] == 0 && board[i * 4 + j]) { board[i * 4 + j + 1] = board[i * 4 + j]; board[i * 4 + j] = 0; changed = true; }
+            }}}
+            for (let i = 3; i > -1; i--) {for (let j = 3; j > 0; j--) {
+              if (board[i * 4 + j] == board[i * 4 + j + 1] && board[i * 4 + j + 1]) { board[i * 4 + j + 1] += board[i * 4 + j]; board[i * 4 + j] = 0; changed = true; }
+            }}
+            for (let i = 3; i > -1; i--) {for (let j = 3; j > 0; j--) {
+              if (board[i * 4 + j + 1] == 0 && board[i * 4 + j]) { board[i * 4 + j + 1] = board[i * 4 + j]; board[i * 4 + j] = 0; changed = true; }
+            }}
+          }
+          else if (key == "reset") {
+            board = [null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            spawnNewTile(); spawnNewTile();
+          }
+          else { console.log("Bad key???", key); }
+
+          if (changed) { spawnNewTile(); }
+
+          localStorage.setItem("2048-board", JSON.stringify(board));
+
+          checkForLoss();
+          updateDisplay();
+        }
+      }
+
+      let board = localStorage.getItem("2048-board") ? JSON.parse(localStorage.getItem("2048-board")) : [
+  null, 0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0
+      ];
+
+      let keyMap = {
+        // Arrow keys
+        "38": "up",
+        "40": "down",
+        "37": "left",
+        "39": "right",
+        // WASD
+        "87": "up",
+        "83": "down",
+        "65": "left",
+        "68": "right",
+        // Reset
+        "82": "reset"
+      };
+
+      if (!localStorage.getItem("2048-board")) {
+        spawnNewTile(); spawnNewTile();
+      } else { checkForLoss(); }
+      updateDisplay();
+
+      document.onkeydown = keystrokeHandler;
+
+      if (mobile) { dom("mobileButtons").removeAttribute("hidden"); }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+@import url("/css/base.css");
+
+:root {
+  padding: 0px;
+  margin: 0px;
+  user-select: none;
+}
+
+.return {
+  position: absolute;
+  top: 1vh;
+  left: 1vh;
+  max-width: 20vw;
+}
+
+#mobileButtons {
+  position: absolute;
+  left: calc(50vw + 13vh);
+  top: 1vh;
+}
+
+.mobileButton {
+  font-size: 3vh;
+  width: 5vh;
+  height: 5vh;
+  text-align: center;
+  margin: 2px 0px;;
+}
+
+.container {
+  border-collapse: collapse;
+  padding: 0px;
+  margin: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 8vh;
+  margin: 0px;
+  margin-top: 1vh;
+  margin-bottom: 3vh;
+  padding: 0px;
+}
+
+.num {
+  padding: 0px;
+  margin: 0px;
+  width: 20vw;
+  max-width: 23vw;
+  height: 20vh;
+  font-size: 10vh;
+  border: 0.5vh white solid;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.num2      { background-color: #eee4da; color: #000000AA; }
+.num4      { background-color: #ede0c8; color: #000000AA; }
+.num8      { background-color: #f2b179; color: #ffffff; }
+.num16     { background-color: #f59563; color: #ffffff; }
+.num32     { background-color: #f67c5f; color: #ffffff; }
+.num64     { background-color: #f65e3b; color: #ffffff; }
+.num128    { background-color: #edcf72; color: #ffffff; }
+.num256    { background-color: #edcc61; color: #ffffff; }
+.num512    { background-color: #edc651; color: #ffffff; }
+.num1024   { background-color: #ecc63e; color: #ffffff; }
+.num2048   { background-color: #e3b927; color: #ffffff; }
+.num4096   { background-color: #5dcd8d; color: #ffffff; }
+.num8192   { background-color: #5dcd9c; color: #ffffff; }
+.num16384  { background-color: #5dcdc6; color: #ffffff; }
+.num32768  { background-color: #5db0cd; color: #ffffff; }
+.num65536  { background-color: #4c84c5; color: #ffffff; }
+.num131072 { background-color: #0c5cb9; color: #ffffff; }
+
+.num2::before      { content: "2" }
+.num4::before      { content: "4" }
+.num8::before      { content: "8" }
+.num16::before     { content: "16" }
+.num32::before     { content: "32" }
+.num64::before     { content: "64" }
+.num128::before    { content: "128" }
+.num256::before    { content: "256" }
+.num512::before    { content: "512" }
+.num1024::before   { content: "1024" }
+.num2048::before   { content: "2048" }
+.num4096::before   { content: "4096" }
+.num8192::before   { content: "8192" }
+.num16384::before  { content: "16384" }
+.num32768::before  { content: "32768" }
+.num65536::before  { content: "65536" }
+.num131072::before { content: "131072" }
