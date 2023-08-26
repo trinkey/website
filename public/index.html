@@ -9,7 +9,7 @@
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   </head>
 
-  <body id="banana">
+  <body>
     <section id="mobileWarning" hidden>
       <h4>It seems you are using a mobile device! This website is not designed with mobile users in mind. To continue anyways, click the button below:</h4>
       <button onclick="main()">Button</button>
@@ -35,25 +35,12 @@
       <section>
         <h2>Table of contents</h2>
         <div class="headingUnderline" id="h1"></div>
-        <p class="center"><a href="#about">About Me</a></p>
+        <p class="center"><a href="/about-me">About Me</a></p>
         <p class="center"><a href="#links">Links</a></p>
         <p class="center"><a href="#projects">Coding Projects</a></p>
         <p class="center"><a href="/photography">Photography</a></p>
         <p class="center"><a href="/changelog">Website Patch Notes</a></p>
         <p class="center"><a href="/games">On-site games</a></p>
-      </section>
-
-      <hr id="about">
-
-      <section>
-        <h2>About Me</h2>
-        <div class="headingUnderline" id="h2"></div>
-        <img src="/img/index/cat.jpg" class="tile" alt="Picture of trinkey's cat">
-        <div class="aboutContainer">
-          <div class="aboutText">
-            Hi! I'm trinkey! I'm a person who's entire internet persona is my cat. I live in the USA, and I am in the EST/EDT time zone (UTC-5/UTC-4 respectively). I like to code and stuff, play some Minecraft and Geometry Dash, and  probably other things I'm not thinking of right now. I am a trans female and prefer she/they pronouns.
-          </div>
-        </div>
       </section>
 
       <hr id="links">
@@ -151,7 +138,7 @@
                 pct = 0.15;
 
           document
-            .getElementById("banana")
+            .getElementsByTagName("body")[0]
             .addEventListener("mousemove", function(e) {
               cursor = [e.clientX, e.clientY]
             });

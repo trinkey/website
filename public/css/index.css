@@ -61,16 +61,6 @@ p {margin: 0px; padding: 2px}
 
 .background:hover { filter: blur(1vh); }
 
-.tile { /* Used for the cat picture */
-  width: 20vh;
-  height: 20vh;
-  object-fit: cover;
-  border-radius: 1vh;
-  float: left;
-  margin-right: 0.5rem;
-  user-select: none;
-}
-
 .icon { /* Used in the icons for socials */
   width: 1rem;
   height: 1rem;
@@ -109,18 +99,6 @@ p {margin: 0px; padding: 2px}
   top: 44vh;
 }
 
-.aboutContainer { /* Used for the "About Me" section */
-  height: auto;
-  min-height: 20vh;
-  vertical-align: middle;
-  display: table;
-}
-
-.aboutText { /* Used for the "About Me" section */
-  display: table-cell;
-  vertical-align: middle;
-}
-
 #wrapper {
   margin-left: 20vw;
   margin-right: 20vw;
@@ -144,7 +122,6 @@ p {margin: 0px; padding: 2px}
 
 /* Heading underlines */
 #h1 { left: calc(50% - 6em);   width: 12em; }
-#h2 { left: calc(50% - 3em);   width: 6em;  }
 #h3 { left: calc(50% - 1.5em); width: 3em;  }
 #h4 { left: calc(50% - 6em);   width: 12em; }
 

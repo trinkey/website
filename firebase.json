@@ -9,7 +9,9 @@
       "firebase.json",
       "deploy.bat",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "public/template.html",
+      ".gitignore"
     ],
     "rewrites": [
       {
@@ -19,6 +21,10 @@
       {
         "source": "/photography",
         "destination": "/photography.html"
+      },
+      {
+        "source": "/about-me",
+        "destination": "/about.html"
       },
       {
         "source": "/games",
