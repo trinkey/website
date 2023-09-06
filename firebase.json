@@ -35,6 +35,10 @@
         "destination": "/games/adjective.html"
       },
       {
+        "source": "/games/connect4",
+        "destination": "/games/connect4.html"
+      },
+      {
         "source": "/games/gender",
         "destination": "/games/gender.html"
       },

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Connect 4</title>
+
+    <link rel="stylesheet" href="/css/games/connect4.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <table id="board">
+      <tr id="r6">
+        <td class="first"><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td class="final"><div></div></td>
+      </tr>
+      <tr id="r5">
+        <td class="first"><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td class="final"><div></div></td>
+      </tr>
+      <tr id="r4">
+        <td class="first"><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td class="final"><div></div></td>
+      </tr>
+      <tr id="r3">
+        <td class="first"><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td class="final"><div></div></td>
+      </tr>
+      <tr id="r2">
+        <td class="first"><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td class="final"><div></div></td>
+      </tr>
+      <tr id="r1">
+        <td class="first"><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+        <td class="final"><div></div></td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+      </tr>
+    </table>
+
+    <div id="console" class="center"></div>
+
+    <script>
+      function dom(id) { return document.getElementById(id); }
+      function log(msg) { dom("console").innerHTML = msg; return msg; }
+
+      function keystrokeHandler(e) {
+        key = --e.key;
+        if ("0123456".includes(key) && !win) {
+          for (let i = 5; i >= 0; --i) {
+            if (!board[key + i * 7]) {
+              board[key + i * 7] = turn;
+              doms[key + i * 7].classList.add(`p${turn}`);
+
+              i = 0;
+              turn %= 2;
+              turn++;
+            }
+          }
+        }
+
+        else if ("rR".includes(e.key)) {
+          doms.forEach(function(value, index) {
+            value.classList.remove("p1");
+            value.classList.remove("p2");
+          });
+
+          board = [
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0
+          ];
+
+          turn = 1; win = false;
+        }
+
+        let w = checkForWin();
+
+        if (!w) { log(`<span class="p${turn}"></span>'s turn!`); }
+        else if (w == 1) { log(`<span class="p${turn % 2 + 1}"></span> wins!`); win = true; }
+        else { log("Tie!"); }
+      }
+
+      function checkForWin() {
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 6; j++) {
+            if (board[j * 7 + i]     == board[j * 7 + i + 1]
+             && board[j * 7 + i + 1] == board[j * 7 + i + 2]
+             && board[j * 7 + i + 2] == board[j * 7 + i + 3]
+             && board[j * 7 + i]) { return 1; }
+          }
+        }
+
+        for (let i = 0; i < 7; i++) {
+          for (let j = 0; j < 3; j++) {
+            if (board[j * 7 + i]      == board[j * 7 + i + 7]
+             && board[j * 7 + i + 7]  == board[j * 7 + i + 14]
+             && board[j * 7 + i + 14] == board[j * 7 + i + 21]
+             && board[j * 7 + i]) { return 1; }
+          }
+        }
+
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 3; j++) {
+            if (board[j * 7 + i]      == board[j * 7 + i + 8]
+             && board[j * 7 + i + 8]  == board[j * 7 + i + 16]
+             && board[j * 7 + i + 16] == board[j * 7 + i + 24]
+             && board[j * 7 + i]) { return 1; }
+
+            if (board[j * 7 + i + 3]  == board[j * 7 + i + 9]
+             && board[j * 7 + i + 9]  == board[j * 7 + i + 15]
+             && board[j * 7 + i + 15] == board[j * 7 + i + 21]
+             && board[j * 7 + i + 3]) { return 1; }
+          }
+        }
+
+        let tie = true;
+        for (let i = 0; tie && i < board.length; i++) { tie = board[i]; }
+
+        return tie ? 2 : 0
+      }
+
+      let doms = [
+            ...dom("r6").getElementsByTagName("td"),
+            ...dom("r5").getElementsByTagName("td"),
+            ...dom("r4").getElementsByTagName("td"),
+            ...dom("r3").getElementsByTagName("td"),
+            ...dom("r2").getElementsByTagName("td"),
+            ...dom("r1").getElementsByTagName("td")
+          ], board = [
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0
+          ], turn = 1, win = false; // turn 1: white; turn 2: black;
+
+      doms.forEach(function(value, index) {
+        doms[index] = value.getElementsByTagName("div")[0];
+      });
+
+      document.onkeypress = keystrokeHandler;
+      keystrokeHandler({key: "no"});
+    </script>
+  </body>
+</html>
