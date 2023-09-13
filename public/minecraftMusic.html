@@ -19,9 +19,9 @@
     <select id="selection"><option selected value="-1">Select a specific song...</option></select> <button id="playSel">Play selected</button>
 
     <script>
-      function parseTime(sec) { return Math.round(sec / 60) + ":" + String(Math.round(sec % 60)).padStart(2, "0"); }
+      function parseTime(sec) { return Math.floor(sec / 60) + ":" + String(Math.round(sec % 60)).padStart(2, "0"); }
       function playSong(override) {
-        let randomIndex = typeof override == "string" ? Math.floor(Math.random() * songs.length) : override;
+        let randomIndex = "number string".includes(typeof override) ? override : Math.floor(Math.random() * songs.length);
         console.log(randomIndex);
         audioPlayer.src = "/img/minecraft/" + songs[randomIndex];
         audioPlayer.play();
