@@ -21,7 +21,7 @@
     <script>
       function parseTime(sec) { return Math.round(sec / 60) + ":" + String(Math.round(sec % 60)).padStart(2, "0"); }
       function playSong(override) {
-        let randomIndex = override === undefined ? Math.floor(Math.random() * songs.length) : override;
+        let randomIndex = typeof override == "string" ? Math.floor(Math.random() * songs.length) : override;
         console.log(randomIndex);
         audioPlayer.src = "/img/minecraft/" + songs[randomIndex];
         audioPlayer.play();
