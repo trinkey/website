@@ -1,7 +1,6 @@
-@import url('/css/return.css');
-
-/* Custom font */
+/* Custom fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&display=swap');
 
 /* Styling for all elements */
 :root {
@@ -16,7 +15,7 @@
   color: #ffffff;
 }
 
-/* Button styles */
+/* Input styles */
 button {
   background-color: #44334b;
   color: #ffffff;
@@ -29,16 +28,18 @@ button {
 button:hover  { background-color: #5e4269; }
 button:active { background-color: #3b2d40; }
 
-input {
+input, select, option {
   background-color: #2f273e;
   color: #ffffff;
   border: 2px #6b5e79 solid;
   border-radius: 2px;
 }
 
-input:hover {
+input:hover,
+select:hover
+option:hover {
   border-color: #766686;
-  background-color: #3a3251;
+  background-color: #3a3251 !important;
 }
 
 /* Link colors */
@@ -46,7 +47,10 @@ a:link    { color: #7788dd }
 a:visited { color: #aa88dd }
 
 /* Other */
-p {margin: 0px; padding: 2px}
+p {
+  margin: 0px;
+  padding: 2px;
+}
 
 .left   { text-align: left;   }
 .center { text-align: center; }
@@ -56,6 +60,27 @@ p {margin: 0px; padding: 2px}
 .fright { float: right;}
 
 .invis { opacity: 0%; }
-.mono  { font-family: Courier New; }
+.mono  { font-family: Cousine; }
 
 .noUnderline a { text-decoration: none; }
+
+.return {
+  user-select: none;
+  pointer-events: all;
+  text-align: center !important;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: Arial;
+  margin: 0px;
+  margin-bottom: 8px;
+  padding: 5px 7px;
+  background-color: #44334b;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.return:hover   { background-color: #5e4269; }
+.return:active  { background-color: #3b2d40; }
+.return:visited { color: #ffffff; }

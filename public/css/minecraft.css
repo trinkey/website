@@ -1,0 +1,7 @@
+@import url('/css/base.css');
+
+#vol {
+  position: absolute;
+  margin: 0px;
+  margin-left: 5px;
+}

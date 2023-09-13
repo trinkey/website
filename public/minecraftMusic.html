@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Minecraft Music</title>
+
+    <link rel="stylesheet" href="/css/minecraft.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <a href="/" class="return">Back to main page</a>
+
+    <h1>Minecraft Music</h1>
+    Volume: <input id="vol" type="range" value="40"><br><br>
+    <button id="playPauseButton">Play</button> <button onclick="playSong();">Skip</button><br>
+    <audio id="audioPlayer" autoplay>Your browser does not support the audio element.</audio><br>
+    <div id="songInfo"></div><div id="time" class="mono"></div><br><br>
+    <select id="selection"><option selected value="-1">Select a specific song...</option></select> <button id="playSel">Play selected</button>
+
+    <script>
+      function parseTime(sec) { return Math.round(sec / 60) + ":" + String(Math.round(sec % 60)).padStart(2, "0"); }
+      function playSong(override) {
+        let randomIndex = override === undefined ? Math.floor(Math.random() * songs.length) : override;
+        audioPlayer.src = "/img/minecraft/" + songs[randomIndex];
+        audioPlayer.play();
+        document.getElementById("songInfo").innerText = "Now playing: " + songs[randomIndex].split(".")[0]
+      }
+
+      let songs = ["C418 - Aria Math.mp3", "C418 - Ballad of the Cats.mp3", "C418 - Beginning 2.mp3", "C418 - Beginning.mp3", "C418 - Biome Fest.mp3", "C418 - Blind Spots.mp3", "C418 - Cat.mp3", "C418 - Chirp.mp3", "C418 - Chris.mp3", "C418 - Clark.mp3", "C418 - Danny.mp3", "C418 - Dead Voxel.mp3", "C418 - Dog.mp3", "C418 - Door.mp3", "C418 - Dreiton.mp3", "C418 - Droopy Likes Ricochet.mp3", "C418 - Droopy Likes Your Face.mp3", "C418 - Dry Hands.mp3", "C418 - Eleven.mp3", "C418 - Excuse.mp3", "C418 - Far.mp3", "C418 - Flake.mp3", "C418 - Floating Trees.mp3", "C418 - Haggstrom.mp3", "C418 - Haunt Muskie.mp3", "C418 - Intro.mp3", "C418 - Key.mp3", "C418 - Ki.mp3", "C418 - Kyoto.mp3", "C418 - Living Mice.mp3", "C418 - Mall.mp3", "C418 - Mellohi.mp3", "C418 - Mice On Venus.mp3", "C418 - Minecraft.mp3", "C418 - Moog City 2.mp3", "C418 - Moog City.mp3", "C418 - Mutation.mp3", "C418 - Oxygène.mp3", "C418 - Stal.mp3", "C418 - Strad.mp3", "C418 - Subwoofer Lullaby.mp3", "C418 - Sweden.mp3", "C418 - Taswell.mp3", "C418 - Wait.mp3", "C418 - Warmth.mp3", "C418 - Wet Hands.mp3", "C418 - Équinoxe.mp3", "Kumi Tanioka - An Ordinary Day.mp3", "Kumi Tanioka - Comforting Memories.mp3", "Kumi Tanioka - Floating Dream.mp3", "Lena Raine - Aerie.mp3", "Lena Raine - Ancestry.mp3", "Lena Raine - Chrysopoeia.mp3", "Lena Raine - Firebugs.mp3", "Lena Raine - Infinite Amethyst.mp3", "Lena Raine - Labyrinthine.mp3", "Lena Raine - Left to Bloom.mp3", "Lena Raine - One More Day.mp3", "Lena Raine - Otherside.mp3", "Lena Raine - Pigstep.mp3", "Lena Raine - Rubedo.mp3", "Lena Raine - So Below.mp3", "Lena Raine - Stand Tall.mp3", "Lena Raine - Wending.mp3", "Samuel Åberg - Five.mp3"],
+          playPauseButton = document.getElementById("playPauseButton"),
+          audioPlayer = document.getElementById("audioPlayer"),
+          selection = document.getElementById("selection"),
+          isPlaying = false;
+
+      playPauseButton.addEventListener("click", () => {
+        if (isPlaying) {
+          audioPlayer.pause();
+          playPauseButton.textContent = "Play";
+        } else {
+          audioPlayer.play();
+          playPauseButton.textContent = "Pause";
+        }
+        isPlaying = !isPlaying;
+      });
+
+      playSong();
+
+      audioPlayer.volume = document.getElementById("vol").value / 100;
+      audioPlayer.addEventListener("ended", playSong);
+      document.getElementById("vol").addEventListener("input", function() { audioPlayer.volume = this.value / 100 });
+      document.getElementById("playSel").addEventListener("click", function() { if (selection.value != -1) { playSong(Number(selection.value)) }});
+
+      if (!audioPlayer.paused) {
+        isPlaying = true;
+        playPauseButton.textContent = "Pause";
+      }
+
+      songs.forEach(function(value, index) {
+        selection.innerHTML += `<option value=${index}>${value.split(".")[0]}</option>`;
+      });
+
+      window.setInterval(function() {
+        document.getElementById("time").innerText = parseTime(audioPlayer.currentTime) + "/" + parseTime(audioPlayer.duration);
+      }, 100);
+    </script>
+  </body>
+</html>

@@ -27,6 +27,10 @@
         "destination": "/about.html"
       },
       {
+        "source": "/minecraft",
+        "destination": "/minecraftMusic.html"
+      },
+      {
         "source": "/games",
         "destination": "/games/index.html"
       },
