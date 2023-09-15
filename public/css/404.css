@@ -1,8 +1,5 @@
 @import url('/css/base.css');
 
-/* Import font */
-@import url('https://fonts.googleapis.com/css2?family=Cousine&display=swap');
-
 /* Set text sizes */
 h1 { font-size: 10vh; font-family: Cousine; }
 h2 { font-size: 6vh; font-weight: 600; }
