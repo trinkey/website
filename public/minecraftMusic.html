@@ -12,11 +12,13 @@
     <a href="/" class="return">Back to main page</a>
 
     <h1>Minecraft Music</h1>
-    Volume: <input id="vol" type="range" value="40"><br><br>
+    Volume: <input id="vol" type="range" value="40"> <span id="disclaimer">Doesn't work on iOS, idk about android</span><br><br>
     <button id="playPauseButton">Play</button> <button onclick="playSong();">Skip</button><br>
     <audio id="audioPlayer" autoplay>Your browser does not support the audio element.</audio><br>
     <div id="songInfo"></div><div id="time" class="mono"></div><br><br>
     <select id="selection"><option selected value="-1">Select a specific song...</option></select> <button id="playSel">Play selected</button>
+
+    <div id="past">Past songs:</div>
 
     <script>
       function parseTime(sec) { return Math.floor(sec / 60) + ":" + String(Math.round(sec % 60)).padStart(2, "0"); }
@@ -25,7 +27,9 @@
         console.log(randomIndex);
         audioPlayer.src = "/img/minecraft/" + songs[randomIndex];
         audioPlayer.play();
-        document.getElementById("songInfo").innerText = "Now playing: " + songs[randomIndex].split(".")[0]
+        document.getElementById("songInfo").innerText = "Now playing: " + songs[randomIndex].split(".")[0];
+        document.getElementById("past").innerHTML += "<br>";
+        document.getElementById("past").innerText += songs[randomIndex].split(".")[0];
       }
 
       let songs = ["Aaron Cherof - A Familiar Room.mp3", "Aaron Cherof - Bromeliad.mp3", "Aaron Cherof - Crescent Dunes.mp3", "Aaron Cherof - Echo in the Wind.mp3", "Aaron Cherof - Relic.mp3", "C418 - Alpha.mp3", "C418 - Aria Math.mp3", "C418 - Axolotl.mp3", "C418 - Ballad of the Cats.mp3", "C418 - Beginning 2.mp3", "C418 - Beginning.mp3", "C418 - Biome Fest.mp3", "C418 - Blind Spots.mp3", "C418 - Blocks.mp3", "C418 - Cat.mp3", "C418 - Chirp.mp3", "C418 - Chris.mp3", "C418 - Clark.mp3", "C418 - Concrete Halls.mp3", "C418 - Danny.mp3", "C418 - Dead Voxel.mp3", "C418 - Death.mp3", "C418 - Dog.mp3", "C418 - Door.mp3", "C418 - Dragon Fish.mp3", "C418 - Dreiton.mp3", "C418 - Droopy Likes Ricochet.mp3", "C418 - Droopy Likes Your Face.mp3", "C418 - Dry Hands.mp3", "C418 - Eleven.mp3", "C418 - Excuse.mp3", "C418 - Far.mp3", "C418 - Flake.mp3", "C418 - Floating Trees.mp3", "C418 - Haggstrom.mp3", "C418 - Haunt Muskie.mp3", "C418 - Intro.mp3", "C418 - Key.mp3", "C418 - Ki.mp3", "C418 - Kyoto.mp3", "C418 - Living Mice.mp3", "C418 - Mall.mp3", "C418 - Mellohi.mp3", "C418 - Mice On Venus.mp3", "C418 - Minecraft.mp3", "C418 - Moog City 2.mp3", "C418 - Moog City.mp3", "C418 - Mutation.mp3", "C418 - Oxygène.mp3", "C418 - Shuniji.mp3", "C418 - Stal.mp3", "C418 - Strad.mp3", "C418 - Subwoofer Lullaby.mp3", "C418 - Sweden.mp3", "C418 - Taswell.mp3", "C418 - The End.mp3", "C418 - Thirteen.mp3", "C418 - Wait.mp3", "C418 - Ward.mp3", "C418 - Warmth.mp3", "C418 - Wet Hands.mp3", "C418 - Équinoxe.mp3", "Kumi Tanioka - An Ordinary Day.mp3", "Kumi Tanioka - Comforting Memories.mp3", "Kumi Tanioka - Floating Dream.mp3", "Lena Raine - Aerie.mp3", "Lena Raine - Ancestry.mp3", "Lena Raine - Chrysopoeia.mp3", "Lena Raine - Firebugs.mp3", "Lena Raine - Infinite Amethyst.mp3", "Lena Raine - Labyrinthine.mp3", "Lena Raine - Left to Bloom.mp3", "Lena Raine - One More Day.mp3", "Lena Raine - Otherside.mp3", "Lena Raine - Pigstep.mp3", "Lena Raine - Rubedo.mp3", "Lena Raine - So Below.mp3", "Lena Raine - Stand Tall.mp3", "Lena Raine - Wending.mp3", "Samuel Åberg - Five.mp3"],
