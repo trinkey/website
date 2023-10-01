@@ -4,6 +4,7 @@
     "indexes": "indexes.json"
   },
   "hosting": {
+    "site": "trinkey",
     "public": "public",
     "ignore": [
       "firebase.json",
