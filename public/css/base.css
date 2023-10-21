@@ -47,6 +47,8 @@ a:link    { color: #7788dd }
 a:visited { color: #aa88dd }
 
 /* Other */
+i { opacity: 80%; }
+
 p {
   margin: 0px;
   padding: 2px;
