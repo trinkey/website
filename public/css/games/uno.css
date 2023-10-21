@@ -1,0 +1,175 @@
+@import url("/css/base.css");
+
+body {
+  user-select: none;
+}
+
+.red, .yellow, .green, .blue, .any, .back {
+  height: 100px;
+  width: 70px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  transition: scale 0.5s;
+  pointer-events: all;
+  z-index: 11;
+}
+.red:hover, .yellow:hover, .green:hover,
+.blue:hover, .any:hover, .back:hover {
+  scale: 150%;
+  z-index: 12;
+  transition: scale 0.3s;
+}
+
+.red    { background-color: #B50F27; color: #B50F27; }
+.yellow { background-color: #DFCB48; color: #DFCB48; }
+.green  { background-color: #559E48; color: #559E48; }
+.blue   { background-color: #16459F; color: #16459F; }
+.any    { background-color: #130E15; color: #130E15; }
+.back   { background-color: #141319; color: #D9CE56; }
+.red::before, .yellow::before, .green::before,
+.blue::before, .any::before, .back::before {
+  background-color: #ffffff;
+  width: 50px;
+  height: 50px;
+  display: block;
+  content: "";
+  border-radius: 35px;
+  scale: 175% 100%;
+  rotate: -60deg;
+  position: relative;
+  top: 23px;
+  left: 10px;
+  z-index: 0;
+}
+.back::before { background-color: #B71C26; }
+
+.zero::before,    .one::before,      .two::before,
+.three::before,   .four::before,     .five::before,
+.six::before,     .seven::before,    .eight::before,
+.nine::before,    .reverse::before,  .skip::before,
+.drawtwo::before, .drawfour::before, .wild::before,
+.back::after {
+  display: block;
+  width: 40px;
+  position: relative;
+  z-index: 1;
+  top: -20px;
+  left: 15px;
+  text-align: center;
+  font-size: 32px;
+  text-shadow: 2px 2px #000000;
+}
+.any::before { text-shadow: 2px 2px #666666; }
+
+.skip::before {
+  content: "O";
+  text-decoration: line-through;
+  rotate: -45deg;
+}
+.back::after {
+  content: "UNO!";
+  rotate: -60deg;
+  top: -4px;
+  left: 6px;
+}
+.zero::before     { content: "0";  }
+.one::before      { content: "1";  }
+.two::before      { content: "2";  }
+.three::before    { content: "3";  }
+.four::before     { content: "4";  }
+.five::before     { content: "5";  }
+.six::before      { content: "6"; text-decoration: underline;  }
+.seven::before    { content: "7";  }
+.eight::before    { content: "8";  }
+.nine::before     { content: "9";  text-decoration: underline;  }
+.reverse::before  { content: "R";  }
+.drawtwo::before  { content: "+2"; }
+.drawfour::before { content: "+4"; }
+.wild::before     { content: "?";  }
+
+.zero::after,    .one::after,      .two::after,
+.three::after,   .four::after,     .five::after,
+.six::after,     .seven::after,    .eight::after,
+.nine::after,    .reverse::after,  .skip::after,
+.drawtwo::after, .drawfour::after, .wild::after {
+  position: relative;
+  color: #ffffff;
+  text-shadow: 1px 1px black;
+  top: -85px;
+  left: 3px;
+}
+
+.zero, .one, .two, .three, .four, .five,
+.six, .seven, .eight, .nine, .wild, .reverse,
+.drawtwo, .drawfour, .skip {
+  pointer-events: none;
+}
+
+.skip::after {
+  content: "O";
+  text-decoration: line-through;
+  display: inline-block;
+  rotate: -45deg;
+}
+.zero::after     { content: "0"; }
+.one::after      { content: "1"; }
+.two::after      { content: "2"; }
+.three::after    { content: "3"; }
+.four::after     { content: "4"; }
+.five::after     { content: "5"; }
+.six::after      { content: "6"; text-decoration: underline;  }
+.seven::after    { content: "7"; }
+.eight::after    { content: "8"; }
+.nine::after     { content: "9"; text-decoration: underline;  }
+.wild::after     { content: "?"; }
+.reverse::after  { content: "R"; left: 4px; }
+.drawtwo::after  { content: "+2"; left: 0px; }
+.drawfour::after { content: "+4"; left: 0px; }
+
+#computerCards, #playerCards {
+  position: absolute;
+  left: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: flex-start;
+  width: 94vw;
+  padding: 0px 3vw;
+  gap: 10px;
+  pointer-events: none;
+}
+#computerCards { flex-wrap: wrap; top: 100px; }
+#playerCards { flex-wrap: wrap-reverse; height: 100vh; top: -100px; }
+
+#deck, #color {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  translate: -50% -50%;
+}
+#deckC { display: inline-block; }
+
+#pastPlays {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: monospace;
+  white-space: pre;
+  height: 110px;
+  font-size: 12px;
+  overflow: hidden;
+  z-index: 0;
+}
+#pastPlays::after {
+  position: absolute;
+  top: 10px;
+  z-index: 1;
+  left: 0px;
+  width: calc(100vw - 10px);
+  height: 100px;
+  content: " ";
+  background: linear-gradient(transparent 30%, #333333 85%);
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Pronoun Tracker</title>
+
+    <style>
+    </style>
+
+    <link rel="stylesheet" href="/css/pronoun.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <h1>Pronoun tracker</h1>
+    By me
+    <p><i>Note: this is saved in localStorage, so therefore it will only save locally on your device</i></p>
+    <table id="table"><tr><th>Name</th><th>Pronouns</th><th>Other</th></tr></table>
+    <p></p>
+    <input placeholder="Name..." id="name">
+    <input placeholder="Pronouns..." id="pronouns">
+    <input placeholder="Other..." id="other"><br><br>
+    <div id="buttonContainer">
+      <button id="add">Add</button>
+      <div id="output"></div>
+    </div>
+
+    <script>
+      let pronouns = JSON.parse(localStorage.getItem("trinkey-pronouns") || '[["trinkey", "she/they", "Creator of this website"]]') || [["trinkey", "she/they", "Creator of this website"]];
+      const table = document.getElementsByTagName("tbody")[0] || document.getElementById("table");
+      let i = 0;
+      let output = document.getElementById("output");
+
+      function log(str) {output.innerText = str;}
+
+      function updateDisplay() {
+        table.innerHTML = "<tr><th>Name</th><th>Pronouns</th><th>Other</th></tr>"
+        i = 0
+
+        for (; i < pronouns.length; i++) {
+          table.innerHTML += `<tr id="p${i}"><td class="name">${pronouns[i][0]}</td><td class="pronouns">${pronouns[i][1]}</td><td class="other">${pronouns[i][2]}</td></tr>`;
+        }
+
+        [...document.getElementsByTagName("tr")].forEach(function(value, index) {
+          value.addEventListener("click", removeItem);
+        });
+
+        localStorage.setItem("trinkey-pronouns", JSON.stringify(pronouns));
+      }
+
+      function addItem() {
+        let name = document.getElementById("name").value;
+        let prn = document.getElementById("pronouns").value;
+        let other = document.getElementById("other").value;
+
+        if (name && prn) {
+          pronouns.push([name, prn, other]);
+
+          output.innerText = "";
+
+          document.getElementById("name").value = "";
+          document.getElementById("pronouns").value = "";
+          document.getElementById("other").value = "";
+
+          updateDisplay();
+        } else if (!name && !prn) {
+          output.innerText = "You need to put a name and pronouns!";
+        } else if (!name) {
+          output.innerText = "You need to put a name!";
+        } else if (!prn) {
+          output.innerText = "You need to put pronouns!";
+        } else {
+          output.innerText = "Something went wrong...";
+        }
+      }
+
+      function removeItem() {
+        if ((prompt("Are you sure you want to delete this? (type 'yes' to confirm)") || "").toLowerCase() == "yes") {
+          pronouns.splice(this.id[1], 1);
+          updateDisplay();
+        }
+      }
+
+      document.getElementById("add").addEventListener("click", addItem);
+      updateDisplay();
+    </script>
+  </body>
+</html>

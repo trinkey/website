@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Sentence Randomizer</title>
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+  <body>
+    <a href="/other" class="return">Back to misc list</a>
+
+    Enter the sentence here:<br>
+    <input id="sentence" placeholder="Put sentence here..." style="width: 250px;"><br>
+    <button id="button">Randomize!</button><br>
+    <out id="output"></out><br><br>
+    <script>
+      document.getElementById("button").addEventListener("click", function () {
+        document.getElementById("output").innerHTML = document.getElementById("sentence").value.split(" ").sort(() => Math.random() - 0.5).join(" ")
+      })
+    </script>
+  </body>
+</html>

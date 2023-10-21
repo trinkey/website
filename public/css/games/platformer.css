@@ -1,0 +1,106 @@
+@import url("/css/base.css");
+
+:root {
+  --background-color : #662255;
+  --platform-color   : #000000;
+  --alt-color        : #222222;
+  --win-color        : #dd4488;
+  --death-color      : #ff0000;
+  --bouncy-color     : #0000aa;
+  --mask-color       : #000000;
+  --player-color     : #00aa00;
+
+  background-color: var(--background-color);
+  color: #ffffff;
+  font-family: Arial;
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+}
+
+body, table, td, tbody, tr {
+  margin: 0px;
+  padding: 0px;
+}
+
+#console {
+  position: absolute;
+  z-index: 100;
+  color: white;
+  top: 15px;
+  left: 10px;
+  white-space: pre;
+  font-family: monospace;
+}
+
+h2 {
+  text-align: center;
+  font-size: 24px;
+  position: relative;
+  z-index: 11;
+  margin: 8px;
+  padding: 0px;
+}
+
+.board {
+  border-spacing: 0px;
+  margin: 0px auto;
+}
+
+.mask {
+  background-color: var(--mask-color);
+  z-index: 10;
+  position: absolute;
+}
+
+.mask.left, .mask.right {
+  top: 0px;
+  height: 100vh;
+  width: calc(50vw - 125px);
+}
+.mask.right { right: 0px; }
+.mask.left  { left:  0px; }
+
+.mask.top, .mask.bottom {
+  left: 0px;
+  width: 100vw;
+}
+.mask.top {
+  top: 0px;
+  height: 46px;
+}
+.mask.bottom {
+  top: 293px;
+  height: calc(100vh - 293px);
+}
+
+td {
+  position: relative;
+  z-index: 1;
+  min-width: 25px;
+  height: 25px;
+  background-color: var(--background-color);
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+}
+
+.tile1 { background-color: var(--platform-color); }
+.tile2 { background-color: var(--alt-color);      }
+.tile3 { background-color: var(--win-color);      }
+.tile5 { background-color: var(--death-color);    }
+.tile6 { background-color: var(--bouncy-color);   }
+
+.player {
+  position: absolute;
+  background-color: var(--player-color);
+  width: 15px;
+  height: 15px;
+  z-index: 2;
+  top: 39px;
+  left: calc(50vw - 120px);
+}

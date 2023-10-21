@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>UNO!</title>
+
+    <link rel="stylesheet" href="/css/games/uno.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <a href="/games" class="return">Back to games list</a>
+
+    <div id="computerCards"></div>
+    <div id="playerCards"></div>
+    <div id="deck"><div id="draw" class="back"></div> <div id="deckC"></div></div>
+    <div id="color" hidden>
+      <div class="red"></div>
+      <div class="yellow"></div>
+      <div class="green"></div>
+      <div class="blue"></div>
+    </div>
+    <div id="pastPlays"></div>
+    <div id="csv" hidden>PLAYER,COLOR,CARD,DRAW</div>
+
+    <script>
+      let dom = (id) => document.getElementById(id);
+      let currentCard, playerHand, computerHand, cheatMode = false,
+          computerDOM = dom("computerCards"), playerDOM = dom("playerCards"),
+          deckDOM = dom("deckC"), turn, currentCol, gameOver, cards, canPlay;
+
+      function customSort(a, b) {
+        let colors = { "any": 0, "red": 1, "yellow": 2, "green": 3, "blue": 4 },
+            numbers = { "drawfour": 1, "wild": 0, "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "reverse": 10, "skip": 11, "drawtwo": 12 };
+
+              if (colors[a[0]] > colors[b[0]]) { return 1; }
+        else if (colors[a[0]] < colors[b[0]]) { return -1; }
+        else if (numbers[a[1]] > numbers[b[1]]) { return 1; }
+        else if (numbers[a[1]] < numbers[b[1]]) { return -1; }
+        else { return 0; }
+      }
+
+      function log(str) { dom("pastPlays").innerHTML = str + dom("pastPlays").innerHTML; }
+      function randint(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+      function choice(list) { return randint(0, list.length - 1); }
+
+      function drawCard() { addCard(true, true); turn++; playCard(); }
+
+      function updateDraw(player=true, color, number, nodisp=false) {
+        if (nodisp) { dom("pastPlays").innerHTML = `${player ? "  PLAYER" : "COMPUTER"} - draw\n${dom("pastPlays").innerHTML}`; }
+        dom("csv").innerHTML += `\n${player ? "PLAYER" : "COMPUTER"},${color},${number},true`;
+      }
+
+      function updatePlay() {
+        dom("pastPlays").innerHTML = `${turn == 0 ? "  PLAYER" : "COMPUTER"} - ${currentCol} ${currentCard[1]}\n${dom("pastPlays").innerHTML}`.replace(" any ", " ").replace("drawtwo", "draw two").replace("drawfour", "draw four");
+        dom("csv").innerHTML += `\n${turn == 0 ? "PLAYER" : "COMPUTER"},${currentCol},${currentCard[1]},false`.replace(" any ", " ");
+      }
+
+      function updateDisplay() {
+        updateComputerDisplay();
+        updatePlayerDisplay();
+        updateDeckDisplay();
+      }
+
+      function updateComputerDisplay() {
+        computerDOM.innerHTML = "";
+        for (let i = 0; i < computerHand.length; i++) {
+          if (gameOver || cheatMode) {
+            computerHand = computerHand.sort(customSort);
+            computerDOM.innerHTML += ` <div class="${computerHand[i][0]}"><div class="${computerHand[i][1]}"></div></div>`;
+          } else {
+            computerDOM.innerHTML += ` <div class="back"></div>`;
+          }
+        }
+      }
+
+      function updatePlayerDisplay() {
+        playerDOM.innerHTML = "";
+        for (let i = 0; i < playerHand.length; i++) {
+          playerDOM.innerHTML += ` <div data-index="${i}" class="${playerHand[i][0]}"><div class="${playerHand[i][1]}"></div></div>`;
+        }
+
+        if (!gameOver) {
+          [...dom("playerCards").getElementsByTagName("div")].forEach(function(val) {
+            val.addEventListener("click", playCard);
+          });
+        }
+      }
+
+      function updateDeckDisplay() {
+        deckDOM.innerHTML = `<div class="${currentCol}"><div class="${currentCard[1]}"></div></div>`;
+      }
+
+      function validPlay(color, number) {
+        return (color != "any" || currentCol != "any") && (color == currentCol || number == currentCard[1] || color == "any");
+      }
+
+      function calcTurn(color, number) {
+        if (number == "drawfour") { return [0, 4]; }
+        if (number == "drawtwo")  { return [0, 2]; }
+        if (number == "skip")     { return [0, 0]; }
+        return [1, 0];
+      }
+
+      function download(data, filename, type) {
+        var file = new Blob([data], {type: type});
+        if (window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(file, filename);
+        } else {
+          var a = document.createElement("a"),
+          url = URL.createObjectURL(file);
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+          }, 0);
+        }
+      }
+
+      function addCard(player=true, updateDisp=false, forceNoText=false) {
+        let num = choice(cards);
+        let color = cards[num][0];
+        let number = cards[num][1];
+
+        if (player) {
+          playerHand.push([color, number]);
+          playerHand = playerHand.sort(customSort)
+        }
+        else {
+          computerHand.push([color, number]);
+          computerHand = computerHand.sort(customSort)
+        }
+        if (color != "any") { updateDraw(player, color, number, !forceNoText); }
+        updateDisp && updatePlayerDisplay();
+        cards.splice(num, 1);
+
+        return [color, num];
+      }
+
+      function startGame() {
+        dom("draw").addEventListener("click", drawCard);
+        dom("draw").removeEventListener("click", startGame);
+
+        cards = [
+          ["red", "zero"], ["red", "one"], ["red", "one"], ["red", "two"], ["red", "two"], ["red", "three"],
+          ["red", "three"], ["red", "four"], ["red", "four"], ["red", "five"], ["red", "five"], ["red", "six"],
+          ["red", "six"], ["red", "seven"], ["red", "seven"], ["red", "eight"], ["red", "eight"], ["red", "nine"],
+          ["red", "nine"], ["red", "skip"], ["red", "skip"], ["red", "reverse"], ["red", "reverse"], ["red", "drawtwo"],
+          ["red", "drawtwo"], ["yellow", "zero"], ["yellow", "one"], ["yellow", "one"], ["yellow", "two"], ["yellow", "two"],
+          ["yellow", "three"], ["yellow", "three"], ["yellow", "four"], ["yellow", "four"], ["yellow", "five"],
+          ["yellow", "five"], ["yellow", "six"], ["yellow", "six"], ["yellow", "seven"], ["yellow", "seven"],
+          ["yellow", "eight"], ["yellow", "eight"], ["yellow", "nine"], ["yellow", "nine"], ["yellow", "skip"],
+          ["yellow", "skip"], ["yellow", "reverse"], ["yellow", "reverse"], ["yellow", "drawtwo"], ["yellow", "drawtwo"],
+          ["green", "zero"], ["green", "one"], ["green", "one"], ["green", "two"], ["green", "two"], ["green", "three"],
+          ["green", "three"], ["green", "four"], ["green", "four"], ["green", "five"], ["green", "five"], ["green", "six"],
+          ["green", "six"], ["green", "seven"], ["green", "seven"], ["green", "eight"], ["green", "eight"], ["green", "nine"],
+          ["green", "nine"], ["green", "skip"], ["green", "skip"], ["green", "reverse"], ["green", "reverse"],
+          ["green", "drawtwo"], ["green", "drawtwo"], ["blue", "zero"], ["blue", "one"], ["blue", "one"], ["blue", "two"],
+          ["blue", "two"], ["blue", "three"], ["blue", "three"], ["blue", "four"], ["blue", "four"], ["blue", "five"],
+          ["blue", "five"], ["blue", "six"], ["blue", "six"], ["blue", "seven"], ["blue", "seven"], ["blue", "eight"],
+          ["blue", "eight"], ["blue", "nine"], ["blue", "nine"], ["blue", "skip"], ["blue", "skip"], ["blue", "reverse"],
+          ["blue", "reverse"], ["blue", "drawtwo"], ["blue", "drawtwo"], ["any", "drawfour"], ["any", "drawfour"],
+          ["any", "drawfour"], ["any", "drawfour"], ["any", "wild"], ["any", "wild"], ["any", "wild"], ["any", "wild"]
+        ];
+
+        let num = choice(cards);
+        canPlay = true;
+        currentCard = cards[num];
+        cols = ["red", "yellow", "green", "blue"];
+        currentCol = currentCard[0] == "any" ? cols[choice(cols)] : currentCard[0];
+        cards.splice(num, 1);
+
+        dom("pastPlays").innerHTML = `   START - ${currentCol} ${currentCard[1]}`.replace("drawtwo", "draw two").replace("drawfour", "draw four");
+        dom("csv").innerHTML += `\nSTART,${currentCol},${currentCard[1]},false`;
+
+        turn = 0;
+        gameOver = false;
+
+        playerHand = [];
+        computerHand = [];
+        for (let i = 0; i < 7; i++) {
+          addCard(true, false, true);
+          addCard(false, false, true);
+        }
+
+        updateDisplay()
+      }
+
+      function setColor() {
+        dom("deck").removeAttribute("hidden");
+        dom("color").setAttribute("hidden", "");
+        currentCol = this.classList[0];
+        canPlay = true;
+        updatePlay();
+        if (currentCard[1] == "wild") {
+          turn = 1;
+          playCard();
+        }
+        updateDeckDisplay();
+      }
+
+      function askColor() {
+        dom("color").removeAttribute("hidden");
+        dom("deck").setAttribute("hidden", "");
+        canPlay = false;
+        updateDisplay();
+      }
+
+      function playCard() {
+        if (turn == 0) {
+          let color = this.classList[0];
+          let number = this.getElementsByTagName("div")[0].classList[0];
+
+          if (!validPlay(color, number)) { return; }
+
+          cards.push(currentCard);
+          currentCard = [color, number];
+          currentCol = color;
+          playerHand.splice(this.dataset.index, 1);
+
+          for (let i = 0; i < calcTurn(color, number)[1]; i++) { addCard(false, false, true); }
+
+          if (playerHand.length == 0) {
+            gameOver = true;
+            updatePlay();
+            updateDisplay();
+            dom("draw").removeEventListener("click", drawCard);
+            dom("draw").addEventListener("click", startGame);
+            return;
+          }
+          if (currentCol == "any") { askColor(); return; }
+
+          updatePlay();
+
+          turn += calcTurn(color, number)[0];
+          turn %= 2;
+        }
+
+        while (turn == 1 && computerHand.length) {
+          let available = [];
+
+          for (let i = 0; i < computerHand.length; i++) {
+            if (validPlay(...computerHand[i])) {
+              available.push(i);
+            }
+          }
+
+          if (available.length) {
+            let num = choice(available);
+
+            cards.push(currentCard);
+            currentCard = computerHand[available[num]];
+            currentCol = currentCard[0];
+            turn += calcTurn(...computerHand[available[num]])[0];
+            for (let i = 0; i < calcTurn(...computerHand[available[num]])[1]; i++) { addCard(true, false, true); }
+            computerHand.splice(available[num], 1);
+
+            if (computerHand.length == 0) {
+              gameOver = true;
+              updatePlay();
+              updateDisplay();
+              dom("draw").removeEventListener("click", drawCard);
+              dom("draw").addEventListener("click", startGame);
+              return;
+            }
+
+            if (currentCol == "any") {
+              let cols = [];
+              for (let i = 0; i < computerHand.length; i++) {
+                if (computerHand[i][0] != "any") {
+                  cols.push(computerHand[i][0]);
+                }
+              }
+              cols = cols.length ? cols : ["red", "yellow", "green", "blue"];
+              currentCol = cols[choice(cols)]
+            }
+            updatePlay();
+
+          } else {
+            addCard(false, false);
+            turn++;
+          }
+          turn %= 2;
+        }
+        updateDisplay();
+      }
+
+      startGame();
+
+      [...dom("color").getElementsByTagName("div")].forEach(function(val) {
+        val.addEventListener("click", setColor);
+      });
+
+      dom("pastPlays").addEventListener("click", function() {
+        download(dom("csv").innerHTML, "output", "text/csv");
+      })
+
+      document.onkeypress = function(e) {
+        if (e.key == "r") {
+          startGame();
+        } else if (e.key == " ") {
+          if (gameOver && canPlay) { startGame(); }
+          else if (canPlay) { drawCard(); }
+        } else if (e.key == "!") {
+          cheatMode = !cheatMode;
+          updateDisplay();
+        }
+      };
+    </script>
+  </body>
+</html>

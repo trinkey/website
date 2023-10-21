@@ -1,0 +1,104 @@
+@import url("/css/base.css");
+
+body {
+  --base-size: 0.14vw;
+  margin: 0px;
+  font-size: calc(16 * var(--base-size));
+  font-family: Arial;
+  background-color: #202124;
+  color: #f3e8fd;
+  white-space: nowrap;
+  cursor: default;
+}
+body::-webkit-scrollbar{ display: none; }
+
+#periodicTable { margin: 5vh auto; }
+
+#periodicTable td {
+  display: inline-block;
+  padding: 0px;
+  width: calc(37 * var(--base-size));
+  height: calc(35 * var(--base-size));
+  transition: scale 0.5s;
+  z-index: 1;
+  position: relative;
+}
+#periodicTable td:hover {
+  z-index: 2;
+  scale: 150%;
+  transition: scale 0.3s;
+}
+
+#periodicTable td  > span {
+  display: table-cell;
+  border: calc(1.5 * var(--base-size)) white solid;
+  min-width: calc(32 * var(--base-size));
+  height: calc(32 * var(--base-size));
+  text-align: center;
+  border-radius: calc(3 * var(--base-size));
+  padding: 0px;
+  vertical-align: middle;
+}
+
+.empty {
+  opacity: 0%;
+  pointer-events: none;
+}
+
+.pt6cr { height: calc(45 * var(--base-size)) !important; }
+.pt2cc { width: calc(45 * var(--base-size))  !important;  }
+
+.atomic {
+  position: relative;
+  font-size: calc(6 * var(--base-size));
+  top: calc(-34 * var(--base-size));
+  left: calc(5 * var(--base-size));
+}
+
+.weight {
+  position: relative;
+  font-size: calc(6 * var(--base-size));
+  top: calc(-41 * var(--base-size));
+  left: calc(5 * var(--base-size));
+  width: calc(28 * var(--base-size));
+  text-align: right;
+}
+
+.name {
+  position: relative;
+  font-size: calc(5 * var(--base-size));
+  width: calc(31 * var(--base-size));
+  top: calc(-24.5 * var(--base-size));
+  left: calc(3 * var(--base-size));
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.copy, .key {
+  padding: 10px;
+  font-size: 0.6em;
+}
+
+.keyVal {
+  width: 1em;
+  height: 1em;
+  border-radius: 0.3em;
+}
+
+input {
+  width: 10em;
+  height: 1.2em;
+}
+select { height: 2em; }
+
+.nonmetal  { background-color: #2a4165; }
+.noble     { background-color: #623842; }
+.alkali    { background-color: #244d57; }
+.alkaline  { background-color: #622e39; }
+.metalloid { background-color: #523e1b; }
+.posttrans { background-color: #2f4d47; }
+.trans     { background-color: #433c65; }
+.lanth     { background-color: #004a77; }
+.actinide  { background-color: #613b28; }
+.unknown   { background-color: #46474c; }

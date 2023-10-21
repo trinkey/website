@@ -44,10 +44,6 @@
         "destination": "/games/connect4.html"
       },
       {
-        "source": "/games/gender",
-        "destination": "/games/gender.html"
-      },
-      {
         "source": "/games/hangman",
         "destination": "/games/hangman.html"
       },
@@ -62,6 +58,34 @@
       {
         "source": "/games/2048",
         "destination": "/games/2048.html"
+      },
+      {
+        "source": "/games/uno",
+        "destination": "/games/uno.html"
+      },
+      {
+        "source": "/games/platformer",
+        "destination": "/games/platformer.html"
+      },
+      {
+        "source": "/other/",
+        "destination": "/other/index.html"
+      },
+      {
+        "source": "/other/gender",
+        "destination": "/other/gender.html"
+      },
+      {
+        "source": "/other/periodic",
+        "destination": "/other/periodic.html"
+      },
+      {
+        "source": "/other/pronoun",
+        "destination": "/other/pronoun.html"
+      },
+      {
+        "source": "/other/randomizer",
+        "destination": "/other/sentenceRandomizer.html"
       }
     ]
   }

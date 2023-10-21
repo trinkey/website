@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Periodic Table of Elements</title>
+
+    <link rel="stylesheet" href="/css/other/periodic.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <a href="/other" class="return">Back to misc list</a>
+
+    <table id="periodicTable"></table>
+
+    <section class="key">
+      Key:
+      <table>
+        <tr><td><div class="keyVal nonmetal"></div></td><td>Nonmetals</td></tr>
+        <tr><td><div class="keyVal noble"></div></td><td>Noble Gases</td></tr>
+        <tr><td><div class="keyVal alkali"></div></td><td>Alkali Metals</td></tr>
+        <tr><td><div class="keyVal alkaline"></div></td><td>Alkaline Earth Metals</td></tr>
+        <tr><td><div class="keyVal metalloid"></div></td><td>Metalloids</td></tr>
+        <tr><td><div class="keyVal posttrans"></div></td><td>Post-transitional Metals</td></tr>
+        <tr><td><div class="keyVal trans"></div></td><td>Transition Metals</td></tr>
+        <tr><td><div class="keyVal lanth"></div></td><td>Lanthanides</td></tr>
+        <tr><td><div class="keyVal actinide"></div></td><td>Actinides</td></tr>
+        <tr><td><div class="keyVal unknown"></div></td><td>Unknown Properties</td></tr>
+      </table>
+    </section>
+
+    <section class="copy">
+      Copy type:
+      <select id="copy">
+        <option value="%e" selected>Element Name</option>
+        <option value="%s">Element Symbol</option>
+        <option value="%m">Atomic Mass</option>
+        <option value="%n">Atomic Number</option>
+        <option value="%c">Category</option>
+        <option value="custom">Custom...</option>
+      </select><br>
+      <div id="unhidden" hidden><input id="customCopy" value="%c - %e - %s - %m - %n"><br><i>(%c - Category // %e - Element Name // %s - Element Symbol // %m - Atomic Mass // %n - Atomic Number)</i></div>
+      Example for Lithium: <code style="white-space: pre;" id="copyTemplate"></code><br>
+      <i>You may need to allow copying permissions on Chrome or Chromium based browsers.</i>
+    </section>
+
+    <script>
+      function updateCopy() {
+        let self = dom("copy"), stuff;
+
+        if (self.value == "custom") {
+          stuff = dom("customCopy").value;
+          dom("unhidden").removeAttribute("hidden");
+        } else {
+          stuff = self.value;
+          dom("unhidden").setAttribute("hidden", "");
+        }
+
+        dom("copyTemplate").innerText = stuff.replaceAll("%c", "Alkali Metals").replaceAll("%s", "Li").replaceAll("%e", "Lithium").replaceAll("%m", "6.941").replaceAll("%n", "3");
+      }
+
+      function copy() {
+        let stuff;
+        let self = this || document.querySelector(".pt0cc.pt0cr");
+        let num = Number(self.getElementsByClassName("atomic")[0].innerHTML);
+        let info = periodic[num];
+
+        if (dom("copy").value == "custom") {
+          stuff = dom("customCopy").value;
+        } else {
+          stuff = dom("copy").value;
+        }
+
+        try { navigator.clipboard.writeText(stuff.replaceAll("%c", categoryMap[info.category][0]).replaceAll("%s", info.symbol).replaceAll("%e", info.name).replaceAll("%m", info.mass).replaceAll("%n", String(num))); }
+        catch (e) { dom("copyTemplate").innerHTML = "Unable to copy text: " + String(e); }
+      }
+
+      const dom = (id) => document.getElementById(id);
+      let rows = 9;
+      let cols = 18;
+      let atomicNumberTable = [
+        1,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   2,
+        3,   4,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   5,   6,   7,   8,   9,  10,
+       11,  12,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  13,  14,  15,  16,  17,  18,
+       19,  20,  21,  22,  23,  24,  25,  26,  27,  28,  29,  30,  31,  32,  33,  34,  35,  36,
+       37,  38,  39,  40,  41,  42,  43,  44,  45,  46,  47,  48,  49,  50,  51,  52,  53,  54,
+       55,  56,  57,  72,  73,  74,  75,  76,  77,  78,  79,  80,  81,  82,  83,  84,  85,  86,
+       87,  88,  89, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118,
+        0,   0,   0,  58,  59,  60,  61,  62,  63,  64,  65,  66,  67,  68,  69,  70,  71,   0,
+      119,   0,   0,  90,  91,  92,  93,  94,  95,  96,  97,  98,  99,  100, 101, 102, 103,  0
+      ];
+      let categoryMap = {
+        "diatomic nonmetal":     ["Reactive Nonmetals",       "nonmetal" ],
+        "noble gas":             ["Noble Gases",              "noble"    ],
+        "alkali metal":          ["Alkali Metals",            "alkali"   ],
+        "alkaline earth metal":  ["Alkaline Earth Metals",    "alkaline" ],
+        "metalloid":             ["Metalloids",               "metalloid"],
+        "polyatomic nonmetal":   ["Reactive Nonmetals",       "nonmetal" ],
+        "post-transition metal": ["Post-transitional Metals", "posttrans"],
+        "transition metal":      ["Transition Metals",        "trans"    ],
+        "lanthanide":            ["Lanthanides",              "lanth"    ],
+        "actinide":              ["Actinides",                "actinide" ],
+        "unknown":               ["Unknown Properties",       "unknown"  ]
+      };
+      let periodic = {
+        "1":   { "mass": 1.008,         "name": "Hydrogen",      "symbol": "H",    "category": "diatomic nonmetal" },
+        "2":   { "mass": 4.0026022,     "name": "Helium",        "symbol": "He",   "category": "noble gas" },
+        "3":   { "mass": 6.94,          "name": "Lithium",       "symbol": "Li",   "category": "alkali metal" },
+        "4":   { "mass": 9.01218315,    "name": "Beryllium",     "symbol": "Be",   "category": "alkaline earth metal" },
+        "5":   { "mass": 10.81,         "name": "Boron",         "symbol": "B",    "category": "metalloid" },
+        "6":   { "mass": 12.011,        "name": "Carbon",        "symbol": "C",    "category": "polyatomic nonmetal" },
+        "7":   { "mass": 14.007,        "name": "Nitrogen",      "symbol": "N",    "category": "diatomic nonmetal" },
+        "8":   { "mass": 15.999,        "name": "Oxygen",        "symbol": "O",    "category": "diatomic nonmetal" },
+        "9":   { "mass": 18.9984031636, "name": "Fluorine",      "symbol": "F",    "category": "diatomic nonmetal" },
+        "10":  { "mass": 20.17976,      "name": "Neon",          "symbol": "Ne",   "category": "noble gas" },
+        "11":  { "mass": 22.989769282,  "name": "Sodium",        "symbol": "Na",   "category": "alkali metal" },
+        "12":  { "mass": 24.305,        "name": "Magnesium",     "symbol": "Mg",   "category": "alkaline earth metal" },
+        "13":  { "mass": 26.98153857,   "name": "Aluminium",     "symbol": "Al",   "category": "post-transition metal" },
+        "14":  { "mass": 28.085,        "name": "Silicon",       "symbol": "Si",   "category": "metalloid" },
+        "15":  { "mass": 30.9737619985, "name": "Phosphorus",    "symbol": "P",    "category": "polyatomic nonmetal" },
+        "16":  { "mass": 32.06,         "name": "Sulfur",        "symbol": "S",    "category": "polyatomic nonmetal" },
+        "17":  { "mass": 35.45,         "name": "Chlorine",      "symbol": "Cl",   "category": "diatomic nonmetal" },
+        "18":  { "mass": 39.9481,       "name": "Argon",         "symbol": "Ar",   "category": "noble gas" },
+        "19":  { "mass": 39.09831,      "name": "Potassium",     "symbol": "K",    "category": "alkali metal" },
+        "20":  { "mass": 40.0784,       "name": "Calcium",       "symbol": "Ca",   "category": "alkaline earth metal" },
+        "21":  { "mass": 44.9559085,    "name": "Scandium",      "symbol": "Sc",   "category": "transition metal" },
+        "22":  { "mass": 47.8671,       "name": "Titanium",      "symbol": "Ti",   "category": "transition metal" },
+        "23":  { "mass": 50.94151,      "name": "Vanadium",      "symbol": "V",    "category": "transition metal" },
+        "24":  { "mass": 51.99616,      "name": "Chromium",      "symbol": "Cr",   "category": "transition metal" },
+        "25":  { "mass": 54.9380443,    "name": "Manganese",     "symbol": "Mn",   "category": "transition metal" },
+        "26":  { "mass": 55.8452,       "name": "Iron",          "symbol": "Fe",   "category": "transition metal" },
+        "27":  { "mass": 58.9331944,    "name": "Cobalt",        "symbol": "Co",   "category": "transition metal" },
+        "28":  { "mass": 58.69344,      "name": "Nickel",        "symbol": "Ni",   "category": "transition metal" },
+        "29":  { "mass": 63.5463,       "name": "Copper",        "symbol": "Cu",   "category": "transition metal" },
+        "30":  { "mass": 65.382,        "name": "Zinc",          "symbol": "Zn",   "category": "transition metal" },
+        "31":  { "mass": 69.7231,       "name": "Gallium",       "symbol": "Ga",   "category": "post-transition metal" },
+        "32":  { "mass": 72.6308,       "name": "Germanium",     "symbol": "Ge",   "category": "metalloid" },
+        "33":  { "mass": 74.9215956,    "name": "Arsenic",       "symbol": "As",   "category": "metalloid" },
+        "34":  { "mass": 78.9718,       "name": "Selenium",      "symbol": "Se",   "category": "polyatomic nonmetal" },
+        "35":  { "mass": 79.904,        "name": "Bromine",       "symbol": "Br",   "category": "diatomic nonmetal" },
+        "36":  { "mass": 83.7982,       "name": "Krypton",       "symbol": "Kr",   "category": "noble gas" },
+        "37":  { "mass": 85.46783,      "name": "Rubidium",      "symbol": "Rb",   "category": "alkali metal" },
+        "38":  { "mass": 87.621,        "name": "Strontium",     "symbol": "Sr",   "category": "alkaline earth metal" },
+        "39":  { "mass": 88.905842,     "name": "Yttrium",       "symbol": "Y",    "category": "transition metal" },
+        "40":  { "mass": 91.2242,       "name": "Zirconium",     "symbol": "Zr",   "category": "transition metal" },
+        "41":  { "mass": 92.906372,     "name": "Niobium",       "symbol": "Nb",   "category": "transition metal" },
+        "42":  { "mass": 95.951,        "name": "Molybdenum",    "symbol": "Mo",   "category": "transition metal" },
+        "43":  { "mass": 98,            "name": "Technetium",    "symbol": "Tc",   "category": "transition metal" },
+        "44":  { "mass": 101.072,       "name": "Ruthenium",     "symbol": "Ru",   "category": "transition metal" },
+        "45":  { "mass": 102.905502,    "name": "Rhodium",       "symbol": "Rh",   "category": "transition metal" },
+        "46":  { "mass": 106.421,       "name": "Palladium",     "symbol": "Pd",   "category": "transition metal" },
+        "47":  { "mass": 107.86822,     "name": "Silver",        "symbol": "Ag",   "category": "transition metal" },
+        "48":  { "mass": 112.4144,      "name": "Cadmium",       "symbol": "Cd",   "category": "transition metal" },
+        "49":  { "mass": 114.8181,      "name": "Indium",        "symbol": "In",   "category": "post-transition metal" },
+        "50":  { "mass": 118.7107,      "name": "Tin",           "symbol": "Sn",   "category": "post-transition metal" },
+        "51":  { "mass": 121.7601,      "name": "Antimony",      "symbol": "Sb",   "category": "metalloid" },
+        "52":  { "mass": 127.603,       "name": "Tellurium",     "symbol": "Te",   "category": "metalloid" },
+        "53":  { "mass": 126.904473,    "name": "Iodine",        "symbol": "I",    "category": "diatomic nonmetal" },
+        "54":  { "mass": 131.2936,      "name": "Xenon",         "symbol": "Xe",   "category": "noble gas" },
+        "55":  { "mass": 132.905451966, "name": "Cesium",        "symbol": "Cs",   "category": "alkali metal" },
+        "56":  { "mass": 137.3277,      "name": "Barium",        "symbol": "Ba",   "category": "alkaline earth metal" },
+        "57":  { "mass": 138.905477,    "name": "Lanthanum",     "symbol": "La",   "category": "lanthanide" },
+        "58":  { "mass": 140.1161,      "name": "Cerium",        "symbol": "Ce",   "category": "lanthanide" },
+        "59":  { "mass": 140.907662,    "name": "Praseodymium",  "symbol": "Pr",   "category": "lanthanide" },
+        "60":  { "mass": 144.2423,      "name": "Neodymium",     "symbol": "Nd",   "category": "lanthanide" },
+        "61":  { "mass": 145,           "name": "Promethium",    "symbol": "Pm",   "category": "lanthanide" },
+        "62":  { "mass": 150.362,       "name": "Samarium",      "symbol": "Sm",   "category": "lanthanide" },
+        "63":  { "mass": 151.9641,      "name": "Europium",      "symbol": "Eu",   "category": "lanthanide" },
+        "64":  { "mass": 157.253,       "name": "Gadolinium",    "symbol": "Gd",   "category": "lanthanide" },
+        "65":  { "mass": 158.925352,    "name": "Terbium",       "symbol": "Tb",   "category": "lanthanide" },
+        "66":  { "mass": 162.5001,      "name": "Dysprosium",    "symbol": "Dy",   "category": "lanthanide" },
+        "67":  { "mass": 164.930332,    "name": "Holmium",       "symbol": "Ho",   "category": "lanthanide" },
+        "68":  { "mass": 167.2593,      "name": "Erbium",        "symbol": "Er",   "category": "lanthanide" },
+        "69":  { "mass": 168.934222,    "name": "Thulium",       "symbol": "Tm",   "category": "lanthanide" },
+        "70":  { "mass": 173.0451,      "name": "Ytterbium",     "symbol": "Yb",   "category": "lanthanide" },
+        "71":  { "mass": 174.96681,     "name": "Lutetium",      "symbol": "Lu",   "category": "lanthanide" },
+        "72":  { "mass": 178.492,       "name": "Hafnium",       "symbol": "Hf",   "category": "transition metal" },
+        "73":  { "mass": 180.947882,    "name": "Tantalum",      "symbol": "Ta",   "category": "transition metal" },
+        "74":  { "mass": 183.841,       "name": "Tungsten",      "symbol": "W",    "category": "transition metal" },
+        "75":  { "mass": 186.2071,      "name": "Rhenium",       "symbol": "Re",   "category": "transition metal" },
+        "76":  { "mass": 190.233,       "name": "Osmium",        "symbol": "Os",   "category": "transition metal" },
+        "77":  { "mass": 192.2173,      "name": "Iridium",       "symbol": "Ir",   "category": "transition metal" },
+        "78":  { "mass": 195.0849,      "name": "Platinum",      "symbol": "Pt",   "category": "transition metal" },
+        "79":  { "mass": 196.9665695,   "name": "Gold",          "symbol": "Au",   "category": "transition metal" },
+        "80":  { "mass": 200.5923,      "name": "Mercury",       "symbol": "Hg",   "category": "transition metal" },
+        "81":  { "mass": 204.38,        "name": "Thallium",      "symbol": "Tl",   "category": "post-transition metal" },
+        "82":  { "mass": 207.21,        "name": "Lead",          "symbol": "Pb",   "category": "post-transition metal" },
+        "83":  { "mass": 208.980401,    "name": "Bismuth",       "symbol": "Bi",   "category": "post-transition metal" },
+        "84":  { "mass": 209,           "name": "Polonium",      "symbol": "Po",   "category": "post-transition metal" },
+        "85":  { "mass": 210,           "name": "Astatine",      "symbol": "At",   "category": "metalloid" },
+        "86":  { "mass": 222,           "name": "Radon",         "symbol": "Rn",   "category": "noble gas" },
+        "87":  { "mass": 223,           "name": "Francium",      "symbol": "Fr",   "category": "alkali metal" },
+        "88":  { "mass": 226,           "name": "Radium",        "symbol": "Ra",   "category": "alkaline earth metal" },
+        "89":  { "mass": 227,           "name": "Actinium",      "symbol": "Ac",   "category": "actinide" },
+        "90":  { "mass": 232.03774,     "name": "Thorium",       "symbol": "Th",   "category": "actinide" },
+        "91":  { "mass": 231.035882,    "name": "Protactinium",  "symbol": "Pa",   "category": "actinide" },
+        "92":  { "mass": 238.028913,    "name": "Uranium",       "symbol": "U",    "category": "actinide" },
+        "93":  { "mass": 237,           "name": "Neptunium",     "symbol": "Np",   "category": "actinide" },
+        "94":  { "mass": 244,           "name": "Plutonium",     "symbol": "Pu",   "category": "actinide" },
+        "95":  { "mass": 243,           "name": "Americium",     "symbol": "Am",   "category": "actinide" },
+        "96":  { "mass": 247,           "name": "Curium",        "symbol": "Cm",   "category": "actinide" },
+        "97":  { "mass": 247,           "name": "Berkelium",     "symbol": "Bk",   "category": "actinide" },
+        "98":  { "mass": 251,           "name": "Californium",   "symbol": "Cf",   "category": "actinide" },
+        "99":  { "mass": 252,           "name": "Einsteinium",   "symbol": "Es",   "category": "actinide" },
+        "100": { "mass": 257,           "name": "Fermium",       "symbol": "Fm",   "category": "actinide" },
+        "101": { "mass": 258,           "name": "Mendelevium",   "symbol": "Md",   "category": "actinide" },
+        "102": { "mass": 259,           "name": "Nobelium",      "symbol": "No",   "category": "actinide" },
+        "103": { "mass": 266,           "name": "Lawrencium",    "symbol": "Lr",   "category": "actinide" },
+        "104": { "mass": 267,           "name": "Rutherfordium", "symbol": "Rf",   "category": "transition metal" },
+        "105": { "mass": 268,           "name": "Dubnium",       "symbol": "Db",   "category": "transition metal" },
+        "106": { "mass": 269,           "name": "Seaborgium",    "symbol": "Sg",   "category": "transition metal" },
+        "107": { "mass": 270,           "name": "Bohrium",       "symbol": "Bh",   "category": "transition metal" },
+        "108": { "mass": 269,           "name": "Hassium",       "symbol": "Hs",   "category": "transition metal" },
+        "109": { "mass": 278,           "name": "Meitnerium",    "symbol": "Mt",   "category": "unknown" },
+        "110": { "mass": 281,           "name": "Darmstadtium",  "symbol": "Ds",   "category": "unknown" },
+        "111": { "mass": 282,           "name": "Roentgenium",   "symbol": "Rg",   "category": "unknown" },
+        "112": { "mass": 285,           "name": "Copernicium",   "symbol": "Cn",   "category": "transition metal" },
+        "113": { "mass": 286,           "name": "Nihonium",      "symbol": "Nh",   "category": "unknown" },
+        "114": { "mass": 289,           "name": "Flerovium",     "symbol": "Fl",   "category": "post-transition metal" },
+        "115": { "mass": 289,           "name": "Moscovium",     "symbol": "Mc",   "category": "unknown" },
+        "116": { "mass": 293,           "name": "Livermorium",   "symbol": "Lv",   "category": "unknown" },
+        "117": { "mass": 294,           "name": "Tennessine",    "symbol": "Ts",   "category": "unknown" },
+        "118": { "mass": 294,           "name": "Oganesson",     "symbol": "Og",   "category": "unknown" },
+        "119": { "mass": 315,           "name": "Ununennium",    "symbol": "Uue",  "category": "unknown" }
+      };
+
+      let c = 0;
+      for (let i = 0; i < rows; i++) {
+        let output = "";
+        for (let o = 0; o < cols; o++) {
+          if (atomicNumberTable[i * cols + o]) {
+            output += `<td class="pt${o}cc pt${i}cr notEmpty"><span class="${categoryMap[periodic[atomicNumberTable[i * cols + o]].category][1]} pt${o}dc pt${i}dr">${periodic[atomicNumberTable[i * cols + o]].symbol}</span><div class="atomic">${atomicNumberTable[i * cols + o]}</div><div class="weight">${Math.round(periodic[atomicNumberTable[i * cols + o]].mass * 100) / 100}</div><div class="name">${periodic[atomicNumberTable[i * cols + o]].name}</td>`;
+          } else {
+            output += `<td class="pt${o}cc pt${i}cr empty"></td>`;
+          }
+        }
+        dom("periodicTable").innerHTML += `<tr class="pt${i}r">${output}</tr>`;
+      }
+
+      dom("copy").addEventListener("change", updateCopy);
+      dom("customCopy").addEventListener("input", updateCopy);
+      updateCopy();
+
+      [...document.querySelectorAll("table td.notEmpty")].forEach(function(val) {
+        val.addEventListener("click", copy)
+      })
+    </script>
+  </body>
+</html>
