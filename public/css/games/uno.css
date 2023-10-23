@@ -2,6 +2,8 @@
 
 body {
   user-select: none;
+  background-color: #333333 !important;
+  font-family: Arial !important;
 }
 
 .red, .yellow, .green, .blue, .any, .back {
