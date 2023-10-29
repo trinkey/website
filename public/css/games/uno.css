@@ -1,15 +1,11 @@
-@import url("/css/base.css");
-
 body {
   user-select: none;
-  background-color: #333333 !important;
-  font-family: Arial !important;
 }
 
 .red, .yellow, .green, .blue, .any, .back {
   height: 100px;
   width: 70px;
-  border: 1px solid black;
+  border: 1px solid var(--text);
   border-radius: 5px;
   display: inline-block;
   overflow: hidden;
@@ -17,6 +13,7 @@ body {
   transition: scale 0.5s;
   pointer-events: all;
   z-index: 11;
+  font-family: Arial !important;
 }
 .red:hover, .yellow:hover, .green:hover,
 .blue:hover, .any:hover, .back:hover {
@@ -54,6 +51,7 @@ body {
 .nine::before,    .reverse::before,  .skip::before,
 .drawtwo::before, .drawfour::before, .wild::before,
 .back::after {
+  font-family: Arial !important;
   display: block;
   width: 40px;
   position: relative;
@@ -143,6 +141,7 @@ body {
   gap: 10px;
   pointer-events: none;
 }
+
 #computerCards { flex-wrap: wrap; top: 100px; }
 #playerCards { flex-wrap: wrap-reverse; height: 100vh; top: -100px; }
 
@@ -152,11 +151,12 @@ body {
   left: 50vw;
   translate: -50% -50%;
 }
+
 #deckC { display: inline-block; }
 
 #pastPlays {
   position: absolute;
-  top: 10px;
+  top: 72px;
   left: 10px;
   font-family: monospace;
   white-space: pre;
@@ -165,6 +165,7 @@ body {
   overflow: hidden;
   z-index: 0;
 }
+
 #pastPlays::after {
   position: absolute;
   top: 10px;
@@ -173,5 +174,5 @@ body {
   width: calc(100vw - 10px);
   height: 100px;
   content: " ";
-  background: linear-gradient(transparent 30%, #333333 85%);
+  background: linear-gradient(transparent 30%, var(--background) 85%);
 }

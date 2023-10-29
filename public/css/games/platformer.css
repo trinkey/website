@@ -1,5 +1,3 @@
-@import url("/css/base.css");
-
 :root {
   --background-color : #662255;
   --platform-color   : #000000;
@@ -7,11 +5,10 @@
   --win-color        : #dd4488;
   --death-color      : #ff0000;
   --bouncy-color     : #0000aa;
-  --mask-color       : #000000;
   --player-color     : #00aa00;
 
-  background-color: var(--background-color);
-  color: #ffffff;
+  background-color: var(--background);
+  color: var(--text);
   font-family: Arial;
   width: 100vw;
   height: 100vh;
@@ -22,19 +19,9 @@
   user-select: none;
 }
 
-body, table, td, tbody, tr {
+body, .board, .board td, .board tbody, .board tr {
   margin: 0px;
   padding: 0px;
-}
-
-#console {
-  position: absolute;
-  z-index: 100;
-  color: white;
-  top: 15px;
-  left: 10px;
-  white-space: pre;
-  font-family: monospace;
 }
 
 h2 {
@@ -52,7 +39,7 @@ h2 {
 }
 
 .mask {
-  background-color: var(--mask-color);
+  background-color: var(--background);
   z-index: 10;
   position: absolute;
 }
@@ -71,14 +58,14 @@ h2 {
 }
 .mask.top {
   top: 0px;
-  height: 46px;
+  height: 115px;
 }
 .mask.bottom {
-  top: 293px;
+  top: 364px;
   height: calc(100vh - 293px);
 }
 
-td {
+.board td {
   position: relative;
   z-index: 1;
   min-width: 25px;
@@ -89,11 +76,11 @@ td {
   border-width: 0px;
 }
 
-.tile1 { background-color: var(--platform-color); }
-.tile2 { background-color: var(--alt-color);      }
-.tile3 { background-color: var(--win-color);      }
-.tile5 { background-color: var(--death-color);    }
-.tile6 { background-color: var(--bouncy-color);   }
+.board .tile1 { background-color: var(--platform-color); }
+.board .tile2 { background-color: var(--alt-color);      }
+.board .tile3 { background-color: var(--win-color);      }
+.board .tile5 { background-color: var(--death-color);    }
+.board .tile6 { background-color: var(--bouncy-color);   }
 
 .player {
   position: absolute;
@@ -101,6 +88,6 @@ td {
   width: 15px;
   height: 15px;
   z-index: 2;
-  top: 39px;
+  top: 108px;
   left: calc(50vw - 120px);
 }

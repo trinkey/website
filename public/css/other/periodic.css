@@ -1,18 +1,14 @@
-@import url("/css/base.css");
-
-body {
+#c {
   --base-size: 0.14vw;
   margin: 0px;
   font-size: calc(16 * var(--base-size));
-  font-family: Arial;
-  background-color: #202124;
-  color: #f3e8fd;
-  white-space: nowrap;
-  cursor: default;
 }
+
 body::-webkit-scrollbar{ display: none; }
 
-#periodicTable { margin: 5vh auto; }
+#periodicTable {
+  margin: 5vh auto;
+}
 
 #periodicTable td {
   display: inline-block;
@@ -22,7 +18,9 @@ body::-webkit-scrollbar{ display: none; }
   transition: scale 0.5s;
   z-index: 1;
   position: relative;
+  cursor: default;
 }
+
 #periodicTable td:hover {
   z-index: 2;
   scale: 150%;
@@ -31,7 +29,7 @@ body::-webkit-scrollbar{ display: none; }
 
 #periodicTable td  > span {
   display: table-cell;
-  border: calc(1.5 * var(--base-size)) white solid;
+  border: calc(1.5 * var(--base-size)) var(--text) solid;
   min-width: calc(32 * var(--base-size));
   height: calc(32 * var(--base-size));
   text-align: center;
@@ -46,13 +44,14 @@ body::-webkit-scrollbar{ display: none; }
 }
 
 .pt6cr { height: calc(45 * var(--base-size)) !important; }
-.pt2cc { width: calc(45 * var(--base-size))  !important;  }
+.pt2cc { width: calc(45 * var(--base-size))  !important; }
 
 .atomic {
   position: relative;
   font-size: calc(6 * var(--base-size));
   top: calc(-34 * var(--base-size));
   left: calc(5 * var(--base-size));
+  font-family: Arial;
 }
 
 .weight {
@@ -62,6 +61,7 @@ body::-webkit-scrollbar{ display: none; }
   left: calc(5 * var(--base-size));
   width: calc(28 * var(--base-size));
   text-align: right;
+  font-family: Arial;
 }
 
 .name {
@@ -77,7 +77,7 @@ body::-webkit-scrollbar{ display: none; }
 
 .copy, .key {
   padding: 10px;
-  font-size: 0.6em;
+  font-size: 18px;
 }
 
 .keyVal {
@@ -87,18 +87,19 @@ body::-webkit-scrollbar{ display: none; }
 }
 
 input {
-  width: 10em;
-  height: 1.2em;
+  resize: horizontal;
+  width: 500px;
+  display: inline-block;
+  overflow: hidden;
 }
-select { height: 2em; }
 
-.nonmetal  { background-color: #2a4165; }
-.noble     { background-color: #623842; }
-.alkali    { background-color: #244d57; }
-.alkaline  { background-color: #622e39; }
-.metalloid { background-color: #523e1b; }
-.posttrans { background-color: #2f4d47; }
-.trans     { background-color: #433c65; }
-.lanth     { background-color: #004a77; }
-.actinide  { background-color: #613b28; }
-.unknown   { background-color: #46474c; }
+.nonmetal  { background-color: #4b73b499; }
+.noble     { background-color: #a25d6d99; }
+.alkali    { background-color: #4b9fb499; }
+.alkaline  { background-color: #ad526599; }
+.metalloid { background-color: #bf914099; }
+.posttrans { background-color: #619e9299; }
+.trans     { background-color: #6a609f99; }
+.lanth     { background-color: #019dfe99; }
+.actinide  { background-color: #b56e4a99; }
+.unknown   { background-color: #7a7c8599; }

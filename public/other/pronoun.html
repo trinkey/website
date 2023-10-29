@@ -4,47 +4,58 @@
   <head>
     <title>Pronoun Tracker</title>
 
-    <style>
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
 
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pronoun Tracker">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+    <meta property="og:image" content="https://trinkey.web.app/img/cat.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="Pronoun Tracker">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+    <meta name="twitter:image" content="https://trinkey.web.app/img/cat.png">
+
+    <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/other/pronoun.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   </head>
 
   <body>
-    <a href="/other" class="return">Back to misc list</a>
+    <script src="/src/base.js"></script>
 
-    <h1>Pronoun tracker</h1>
-    By me
-    <p><i>Note: this is saved in localStorage, so therefore it will only save locally on your device</i></p>
-    <table id="table"><tr><th>Name</th><th>Pronouns</th><th>Other</th></tr></table>
-    <p></p>
-    <input placeholder="Name..." id="name">
-    <input placeholder="Pronouns..." id="pronouns">
-    <input placeholder="Other..." id="other"><br><br>
-    <div id="buttonContainer">
-      <button id="add">Add</button>
-      <div id="output"></div>
+    <div id="container2">
+      <h1>Pronoun tracker</h1>
+      <p><i>Note: this is saved in localStorage, so therefore it will only save locally on your device</i></p>
+      <table id="table"><tr><th>Name</th><th>Pronouns</th><th>Other</th></tr></table>
+      <p></p>
+      <input placeholder="Name..." id="name">
+      <input placeholder="Pronouns..." id="pronouns">
+      <button id="add">Add</button><br>
+      <input placeholder="Other..." id="other"><br>
     </div>
 
     <script>
       let pronouns = JSON.parse(localStorage.getItem("trinkey-pronouns") || '[["trinkey", "she/they", "Creator of this website"]]') || [["trinkey", "she/they", "Creator of this website"]];
-      const table = document.getElementsByTagName("tbody")[0] || document.getElementById("table");
+      const table = document.getElementById("table");
       let i = 0;
-      let output = document.getElementById("output");
-
-      function log(str) {output.innerText = str;}
 
       function updateDisplay() {
-        table.innerHTML = "<tr><th>Name</th><th>Pronouns</th><th>Other</th></tr>"
-        i = 0
+        table.innerHTML = "<tr><th>Name</th><th>Pronouns</th><th>Other</th></tr>";
+        i = 0;
 
         for (; i < pronouns.length; i++) {
           table.innerHTML += `<tr id="p${i}"><td class="name">${pronouns[i][0]}</td><td class="pronouns">${pronouns[i][1]}</td><td class="other">${pronouns[i][2]}</td></tr>`;
         }
 
         [...document.getElementsByTagName("tr")].forEach(function(value, index) {
-          value.addEventListener("click", removeItem);
+          index != 1 && index && (() => { value.addEventListener("click", removeItem) })();
         });
 
         localStorage.setItem("trinkey-pronouns", JSON.stringify(pronouns));
@@ -58,21 +69,11 @@
         if (name && prn) {
           pronouns.push([name, prn, other]);
 
-          output.innerText = "";
-
           document.getElementById("name").value = "";
           document.getElementById("pronouns").value = "";
           document.getElementById("other").value = "";
 
           updateDisplay();
-        } else if (!name && !prn) {
-          output.innerText = "You need to put a name and pronouns!";
-        } else if (!name) {
-          output.innerText = "You need to put a name!";
-        } else if (!prn) {
-          output.innerText = "You need to put pronouns!";
-        } else {
-          output.innerText = "Something went wrong...";
         }
       }
 

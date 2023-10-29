@@ -4,20 +4,41 @@
   <head>
     <title>Sentence Randomizer</title>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sentence Randomizer">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+    <meta property="og:image" content="https://trinkey.web.app/img/cat.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="Sentence Randomizer">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+    <meta name="twitter:image" content="https://trinkey.web.app/img/cat.png">
+
     <link rel="stylesheet" href="/css/base.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   </head>
-  <body>
-    <a href="/other" class="return">Back to misc list</a>
 
-    <br><br>Enter the sentence here:<br>
-    <input id="sentence" placeholder="Put sentence here..." style="width: 250px;"><br>
-    <button id="button">Randomize!</button><br>
-    <out id="output"></out><br><br>
-    <script>
-      document.getElementById("button").addEventListener("click", function () {
-        document.getElementById("output").innerHTML = document.getElementById("sentence").value.split(" ").sort(() => Math.random() - 0.5).join(" ")
-      })
-    </script>
+  <body>
+    <script src="/src/base.js"></script>
+
+    <div id="container2">
+      <br><br>Enter the sentence here:<br>
+      <input id="sentence" placeholder="Put sentence here..." style="width: 250px;"><br>
+      <button id="button">Randomize!</button><br>
+      <out id="output"></out><br><br>
+      <script>
+        document.getElementById("button").addEventListener("click", function () {
+          document.getElementById("output").innerHTML = document.getElementById("sentence").value.split(" ").sort(() => Math.random() - 0.5).join(" ")
+        })
+      </script>
+    </div>
   </body>
 </html>

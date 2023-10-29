@@ -1,8 +1,6 @@
-@import url('/css/base.css');
-
 :root { user-select: none; }
 
 #click {
-  color: #7788dd;
+  color: var(--accent);
   text-decoration: underline;
 }

@@ -1,7 +1,4 @@
-@import url("/css/base.css");
-
-table { border-collapse: collapse; }
-td, th { border: 1px #ffffff solid; padding: 0px 4px; }
+#table { border-collapse: collapse; }
+#table td, #table th { border: 1px var(--primary) solid; padding: 0px 4px; }
 
 #other { width: 405px; }
-#buttonContainer { width: 405px; text-align: center; }

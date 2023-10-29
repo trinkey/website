@@ -1,9 +1,5 @@
-@import url("/css/base.css");
-
 :root {
-  margin-left: 15vw;
-  margin-right: 20vw;
-  font-size: 16px;
+  margin-left: 12vh;
   cursor: default;
 }
 
@@ -15,11 +11,18 @@
   font-size: 18px;
 }
 
+.thingContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
 .cat {
-  width: 200px;
-  height: 200px;
+  width: 10vh;
+  height: 10vh;
   border-radius: 5px;
-  margin-left: -10vw;
+  margin-left: -10vh;
   margin-right: 3vw;
 }
 
@@ -36,13 +39,18 @@
 }
 
 .love, .okay, .bad {
-  color: #ffffff;
+  color: var(--text);
   font-weight: 400;
 }
 
 .love {
-  color: #ff95bb;
+  color: var(--accent);
   font-weight: 600;
+}
+
+.love svg {
+  fill: var(--accent);
+  rotate: 180deg;
 }
 
 .bad {
@@ -50,31 +58,19 @@
   opacity: 50%;
 }
 
-.love::before,
-.okay::before,
- .bad::before {
-  padding-right: 4px;
-  content: "";
-  background-size: contain;
-  background-repeat: no-repeat;
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-}
-
-.love::before { background-image: url('/img/about/icon-love.png'); }
-.okay::before { background-image: url('/img/about/icon-okay.png'); }
- .bad::before {
-  background-image: url('/img/about/icon-bad.png');
-  width: 14px;
-  height: 14px;
-  opacity: 50%;
-  margin-right: 2px;
-}
-
 td { vertical-align: top; }
 h1 { font-size: 48px; }
 h3 {
   margin: 5px 0px;
   font-size: 24px;
+}
+
+svg {
+  stroke: none;
+  position: relative;
+  top: 3px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  fill: white;
 }

@@ -2,38 +2,59 @@
 
 <html>
   <head>
-    <title>Adjective game!</title>
+    <title>Adjective Game</title>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Adjective Game">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+    <meta property="og:image" content="https://trinkey.web.app/img/cat.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="Adjective Game">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+    <meta name="twitter:image" content="https://trinkey.web.app/img/cat.png">
+
+    <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/games/adjective.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   </head>
-  <body>
-    <a href="/games" class="return">Back to games list</a>
 
-    <h2>Adjective Game!</h2>
-    <div id="container">
-      <div id="setup">
-        <input placeholder="Enter other person's name!" id="other">
-        <input placeholder="Enter your name!" id="self"><br><br>
-        <button id="start">Start!</button>
-      </div>
-      <div id="main" hidden>
-        Would you describe <span class="other"></span> as <strong><span class="adj"></span></strong>?<br>
-        <button id="yes">Yes (y)</button>
-        <button id="no">No (n)</button>
-        <button id="maybe">Unsure (m)</button>
-        <br><br>
-        <button id="done">Finished?</button>
-      </div>
-      <div id="end" hidden>
-        <span id="click">Click to reveal the selections!</span><br>
-        <div id="reveal" hidden>
-          <span class="self"></span> thinks you are...
-          <div id="yesList"></div><br>
-          They think that you aren't...
-          <div id="noList"></div><br>
-          They are unsure about...
-          <div id="maybeList"></div><br>
+  <body>
+    <script src="/src/base.js"></script>
+    <div id="container2">
+      <h2>Adjective Game!</h2>
+      <div>
+        <div id="setup">
+          <input placeholder="Enter other person's name!" id="other">
+          <input placeholder="Enter your name!" id="self"><br><br>
+          <button id="start">Start!</button>
+        </div>
+        <div id="main" hidden>
+          Would you describe <span class="other"></span> as <strong><span class="adj"></span></strong>?<br>
+          <button id="yes">Yes (y)</button>
+          <button id="no">No (n)</button>
+          <button id="maybe">Unsure (m)</button>
+          <br><br>
+          <button id="done">Finished?</button>
+        </div>
+        <div id="end" hidden>
+          <span id="click">Click to reveal the selections!</span><br>
+          <div id="reveal" hidden>
+            <span class="self"></span> thinks you are...
+            <div id="yesList"></div><br>
+            They think that you aren't...
+            <div id="noList"></div><br>
+            They are unsure about...
+            <div id="maybeList"></div><br>
+          </div>
         </div>
       </div>
     </div>

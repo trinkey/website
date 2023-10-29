@@ -1,20 +1,14 @@
-@import url("/css/base.css");
-
-:root {
-  font-size: 4vh;
-}
-
 #r6 td, #r5 td,
 #r4 td, #r3 td,
 #r2 td, #r1 td {
   min-width: 5vh;
   height: 5vh;
-  border: 1px dimgray solid;
+  border: 1px var(--secondary) solid;
 }
 
-#r1 td { border-bottom-color: white; }
-.first { border-left-color:  white !important; }
-.final { border-right-color: white !important; }
+#r1 td { border-bottom-color: var(--text); }
+.first { border-left-color:  var(--text) !important; }
+.final { border-right-color: var(--text) !important; }
 
 #board {
   border-collapse: collapse;
@@ -23,16 +17,18 @@
   margin-right: auto;
   margin-top: 50px;
   user-select: none;
+  font-size: 4vh;
 }
+
+#console { font-size: 4vh; }
 
 .p1, .p2 {
   width: 4vh;
   height: 4vh;
-  border: 2px white solid;
   border-radius: 3vh;
   vertical-align: middle;
 }
 span.p1, span.p2 { display: inline-block; }
 
-.p1 { background-color: white; }
-.p2 { background-color: black; }
+.p1 { background-color: var(--text);   }
+.p2 { background-color: var(--accent); }

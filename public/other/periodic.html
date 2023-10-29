@@ -1,48 +1,69 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
-    <title>Periodic Table of Elements</title>
+    <title>Periodic Table</title>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Periodic Table">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+    <meta property="og:image" content="https://trinkey.web.app/img/cat.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="Periodic Table">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+    <meta name="twitter:image" content="https://trinkey.web.app/img/cat.png">
+
+    <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/other/periodic.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   </head>
 
   <body>
-    <a href="/other" class="return">Back to misc list</a>
+    <script src="/src/base.js"></script>
 
-    <table id="periodicTable"></table>
+    <div id="c">
+      <table id="periodicTable"></table>
 
-    <section class="key">
-      Key:
-      <table>
-        <tr><td><div class="keyVal nonmetal"></div></td><td>Nonmetals</td></tr>
-        <tr><td><div class="keyVal noble"></div></td><td>Noble Gases</td></tr>
-        <tr><td><div class="keyVal alkali"></div></td><td>Alkali Metals</td></tr>
-        <tr><td><div class="keyVal alkaline"></div></td><td>Alkaline Earth Metals</td></tr>
-        <tr><td><div class="keyVal metalloid"></div></td><td>Metalloids</td></tr>
-        <tr><td><div class="keyVal posttrans"></div></td><td>Post-transitional Metals</td></tr>
-        <tr><td><div class="keyVal trans"></div></td><td>Transition Metals</td></tr>
-        <tr><td><div class="keyVal lanth"></div></td><td>Lanthanides</td></tr>
-        <tr><td><div class="keyVal actinide"></div></td><td>Actinides</td></tr>
-        <tr><td><div class="keyVal unknown"></div></td><td>Unknown Properties</td></tr>
-      </table>
-    </section>
+      <section class="key">
+        Key:
+        <table>
+          <tr><td><div class="keyVal nonmetal"></div></td><td>Nonmetals</td></tr>
+          <tr><td><div class="keyVal noble"></div></td><td>Noble Gases</td></tr>
+          <tr><td><div class="keyVal alkali"></div></td><td>Alkali Metals</td></tr>
+          <tr><td><div class="keyVal alkaline"></div></td><td>Alkaline Earth Metals</td></tr>
+          <tr><td><div class="keyVal metalloid"></div></td><td>Metalloids</td></tr>
+          <tr><td><div class="keyVal posttrans"></div></td><td>Post-transitional Metals</td></tr>
+          <tr><td><div class="keyVal trans"></div></td><td>Transition Metals</td></tr>
+          <tr><td><div class="keyVal lanth"></div></td><td>Lanthanides</td></tr>
+          <tr><td><div class="keyVal actinide"></div></td><td>Actinides</td></tr>
+          <tr><td><div class="keyVal unknown"></div></td><td>Unknown Properties</td></tr>
+        </table>
+      </section>
 
-    <section class="copy">
-      Copy type:
-      <select id="copy">
-        <option value="%e" selected>Element Name</option>
-        <option value="%s">Element Symbol</option>
-        <option value="%m">Atomic Mass</option>
-        <option value="%n">Atomic Number</option>
-        <option value="%c">Category</option>
-        <option value="custom">Custom...</option>
-      </select><br>
-      <div id="unhidden" hidden><input id="customCopy" value="%c - %e - %s - %m - %n"><br><i>(%c - Category // %e - Element Name // %s - Element Symbol // %m - Atomic Mass // %n - Atomic Number)</i></div>
-      Example for Lithium: <code style="white-space: pre;" id="copyTemplate"></code><br>
-      <i>You may need to allow copying permissions on Chrome or Chromium based browsers.</i>
-    </section>
+      <section class="copy">
+        Copy type:
+        <select id="copy">
+          <option value="%e" selected>Element Name</option>
+          <option value="%s">Element Symbol</option>
+          <option value="%m">Atomic Mass</option>
+          <option value="%n">Atomic Number</option>
+          <option value="%c">Category</option>
+          <option value="custom">Custom...</option>
+        </select><br>
+        <div id="unhidden" hidden><input id="customCopy" value="%c - %e - %s - %m - %n"><br><i>(%c - Category // %e - Element Name // %s - Element Symbol // %m - Atomic Mass // %n - Atomic Number)</i></div>
+        Example for Lithium: <code style="white-space: pre;" id="copyTemplate"></code><br>
+        <i>You may need to allow copying permissions on Chrome or Chromium based browsers.</i>
+      </section>
+    </div>
 
     <script>
       function updateCopy() {

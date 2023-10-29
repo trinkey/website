@@ -4,12 +4,31 @@
   <head>
     <title>Platformer</title>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Platformer">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+    <meta property="og:image" content="https://trinkey.web.app/img/cat.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="Platformer">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+    <meta name="twitter:image" content="https://trinkey.web.app/img/cat.png">
+
+    <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/games/platformer.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   </head>
 
   <body>
-    <a href="/games" class="return"></a>
+    <script src="/src/base.js"></script>
 
     <h2>&nbsp;<span id="title"></span>&nbsp;</h2>
     <table class="board">
@@ -39,8 +58,6 @@
     <div class="mask right"></div>
     <div class="mask top"></div>
     <div class="mask bottom"></div>
-
-    <div id="console"></div>
 
     <script>
       const maps = {
@@ -87,7 +104,7 @@
         "You win!"
       ];
 
-      let doms = [...document.getElementsByTagName("td")],
+      let doms = [...document.querySelectorAll(".board td")],
           player = [...document.getElementsByClassName("player")],
           level = 1, playerX = 0, playerY = 0, xVel = 0, yVel = 0, ground = false, ceil = false, wall = false, Is = [],
           keys = [false, false, false, false];
@@ -214,13 +231,11 @@
         return false;
       }
 
-      function log(str) { document.getElementById("console").innerHTML += "<br>" + str; }
-      function clearLog() { document.getElementById("console").innerHTML = ""; }
       function title(str) { document.getElementById("title").innerHTML = str; }
 
       loadLevel();
 
-      setInterval(function() {try {
+      setInterval(function() {
         if (collision(3)) {
           level++;
           loadLevel();
@@ -283,8 +298,6 @@
         player[6].style = `transform: translate(${playerX - 250}px, ${playerY - 250}px);`;
         player[7].style = `transform: translate(${playerX      }px, ${playerY - 250}px);`;
         player[8].style = `transform: translate(${playerX + 250}px, ${playerY - 250}px);`;
-
-        } catch(e) { clearLog(); log(e); }
       }, 1);
 
       document.onkeydown = function(e) {

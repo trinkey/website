@@ -4,158 +4,74 @@
   <head>
     <title>Trinkey's Website!</title>
 
-    <script src="/src/mobile.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Trinkey's Website!">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+    <meta property="og:image" content="https://trinkey.web.app/img/cat.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="Trinkey's Website!">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+    <meta name="twitter:image" content="https://trinkey.web.app/img/cat.png">
+
+    <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   </head>
 
   <body>
-    <section id="mobileWarning" hidden>
-      <h4>It seems you are using a mobile device! This website is not designed with mobile users in mind. To continue anyways, click the button below:</h4>
-      <button onclick="main()">Button</button>
-    </section>
+    <script src="/src/base.js"></script>
 
-    <div id="wrapper">
-      <div id="cursor"></div>
-
-      <hr id="titleContainer" hidden>
-
-      <section>
-        <div onmouseover='document.getElementById("info").classList.add("invis")' class="background" id="title"></div>
-        <span class="title">Trinkey's Website</span>
-        <div class="titleCircle" id="c1"></div>
-        <div class="titleCircle" id="c2"></div>
-        <div class="titleCircle" id="c3"></div>
-        <div class="titleCircle" id="c4"></div>
-        <span class="title mini" id="info">hover</span>
-      </section>
-
-      <hr id="contents">
-
-      <section>
-        <h2>Table of contents</h2>
-        <div class="headingUnderline" id="h1"></div>
-        <p class="center"><a href="/about-me">About Me</a></p>
-        <p class="center"><a href="#links">Links</a></p>
-        <p class="center"><a href="#projects">Coding Projects</a></p>
-        <p class="center"><a href="/photography">Photography</a></p>
-        <p class="center"><a href="/changelog">Website Patch Notes</a></p>
-        <p class="center"><a href="https://trinkey-music.web.app">Minecraft Music</a></p>
-        <p class="center"><a href="/games">On-site games</a></p>
-        <p class="center"><a href="/other">Random things</a></p>
-      </section>
-
-      <hr id="links">
-
-      <section>
-        <h2>Links</h2>
-        <div class="headingUnderline" id="h3"></div>
-        <div class="center" title="https://youtube.com/@trinkey">
-          <a target="_blank" class="noUnderline" href="https://youtube.com/@trinkey">
-            <img src="/img/index/youtube.png" class="icon" alt="Youtube logo">
-            <u>YouTube</u>
-          </a>
-        </div>
-
-        <div class="center" title="https://github.com/trinkey">
-          <a target="_blank" class="noUnderline" href="https://github.com/trinkey?tab=repositories">
-            <img src="/img/index/github.png" class="icon" alt="Github logo">
-            <u>Github</u>
-          </a>
-        </div>
-
-        <div class="center" title="https://linktr.ee/trinkey_">
-          <a target="_blank" class="noUnderline" href="https://linktr.ee/trinkey_">
-            <img src="/img/index/linktree.png" class="icon" alt="Linktr.ee logo">
-            <u>Linktr.ee</u>
-          </a>
-        </div>
-
-        <div class="center" title="https://en.pronouns.page/@trinkey_">
-          <a target="_blank" class="noUnderline" href="https://en.pronouns.page/@trinkey_">
-            <img src="/img/index/pronounspage.png" class="icon" alt="Pronouns.page logo">
-            <u>Pronouns.page</u>
-          </a>
-        </div>
-
-        <div class="center" title="https://discord.gg/nhUKv33bY5">
-          <a target="_blank" class="noUnderline" href="https://discord.gg/nhUJv33bY5">
-            <img src="/img/index/discord.png" class="icon" alt="Discord logo">
-            <u>Discord server</u>
-          </a>
-        </div>
-      </section>
-
-      <hr id="projects">
-
-      <section>
-        <h2>Coding Projects</h2>
-        <div class="headingUnderline" id="h4"></div>
-        I've made quite a few coding creations. Here are a list of a few of my favorites:
-        <ol>
-          <li>
-            Minesweeper (<a target="_blank" href="https://github.com/trinkey/python-minesweeper">Code</a>, <a target="_blank" href="https://trinkey.trinket.io/sites/minesweep">Playable</a>)
-          </li>
-          <li>
-            Custom code compiler (<a target="_blank" href="https://github.com/trinkey/trinkey-compiler">Code</a>)
-          </li>
-          <li>
-            2048 (<u title="I refactored the code recently as the old version was broken af">Hopefully bug-free</u>) (<a target="_blank" href="https://github.com/trinkey/2048">Code</a>, <a target="_blank" href="https://trinkey.trinket.io/sites/2048">Playable</a>)
-          </li>
-          <li>
-            Trin-git - A git-like program for the website <a target="_blank" href="https://trinket.io">trinket.io</a> (<a target="_blank" href="https://github.com/trinkey/tringit">Code</a>)
-          </li>
-        </ol>
-      </section>
-
-      <hr id="bottom">
-
-      <footer>
-        This website is hosted by <a href="https://firebase.google.com/">Google Firebase</a>.<br>
-        This website is also very work in progress. If you have feedback, either x me (@trinkey_2) or DM me on discord (@trinkey_)
-      </footer>
-
-      <script>
-          if (mobile) {
-            document.getElementById("mobileWarning").removeAttribute("hidden");
-            document.getElementById("wrapper").setAttribute("hidden", "1");
-          } else {main()};
-
-          function main() {
-            document.getElementById("mobileWarning").setAttribute("hidden", "1");
-            document.getElementById("wrapper").removeAttribute("hidden");
-
-            document
-              .getElementById("title")
-              .classList
-              .add(`bird${Math.floor(Math.random() * 5 + 1)}`);
-
-            document
-              .getElementById("info")
-              .classList
-              .remove("invis")
-
-            let cursor = [window.innerWidth / 2, -30],
-                pos = [window.innerWidth / 2, -30],
-                pct = 0.15;
-
-          document
-            .getElementsByTagName("body")[0]
-            .addEventListener("mousemove", function(e) {
-              cursor = [e.clientX, e.clientY]
-            });
-
-          setInterval(function() {
-            pos[0] = cursor[0] * pct + pos[0] * (1 - pct)
-            pos[1] = cursor[1] * pct + pos[1] * (1 - pct)
-
-            document
-              .getElementById("cursor")
-              .style
-              .transform = `translate(calc(${pos[0] - 10}px - 4vh), calc(${pos[1] - 10}px - 4vh))`;
-          }, 10)
-        }
-        </script>
+    <div class="background">
+      <div class="titleSpacing"></div>
+      <div class="title">Trinkey's Website</div>
+      <div class="note">idk what else to put here lol</div>
     </div>
+
+    <section class="center">
+      <h2>Links</h2>
+      <div title="https://youtube.com/@trinkey">
+        <a target="_blank" class="noUnderline" href="https://youtube.com/@trinkey">
+          <img src="/img/index/youtube.png" class="icon" alt="Youtube logo">
+          <u>YouTube</u>
+        </a>
+      </div>
+
+      <div title="https://github.com/trinkey">
+        <a target="_blank" class="noUnderline" href="https://github.com/trinkey?tab=repositories">
+          <img src="/img/index/github.png" class="icon" alt="Github logo">
+          <u>Github</u>
+        </a>
+      </div>
+
+      <div title="https://linktr.ee/trinkey_">
+        <a target="_blank" class="noUnderline" href="https://linktr.ee/trinkey_">
+          <img src="/img/index/linktree.png" class="icon" alt="Linktr.ee logo">
+          <u>Linktr.ee</u>
+        </a>
+      </div>
+
+      <div title="https://en.pronouns.page/@trinkey_">
+        <a target="_blank" class="noUnderline" href="https://en.pronouns.page/@trinkey_">
+          <img src="/img/index/pronounspage.png" class="icon" alt="Pronouns.page logo">
+          <u>Pronouns.page</u>
+        </a>
+      </div>
+
+      <div title="https://discord.gg/nhUKv33bY5">
+        <a target="_blank" class="noUnderline" href="https://discord.gg/nhUJv33bY5">
+          <img src="/img/index/discord.png" class="icon" alt="Discord logo">
+          <u>Discord server</u>
+        </a>
+      </div>
+    </section>
   </body>
 </html>

@@ -1,145 +1,41 @@
-@import url('/css/base.css');
-
-hr {
-  margin-left: -19vw;
-  margin-right: -19vw;
-  border-color: #A8D;
-}
-
-body {
-  font-family: Poppins;
-  font-weight: 300;
-  font-size: 2vh;
-}
-
-h2 {
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-  padding-top: 0px;
-  margin-top: 0px;
-  text-align: center;
-  font-size: 3vh;
-}
-
-p {margin: 0px; padding: 2px}
-.invis { transition: 0.5s }
-
-.headingUnderline {
-  z-index: -1;
-  opacity: 80%;
-  height: 0.5em;
-  background-color: #770099;
-  position: relative;
-  top: -10px;
-}
-
-.titleCircle {
-  width: 8vh;
-  height: 8vh;
-  border-radius: 4vh;
-  background-color: #000;
-  -webkit-filter: invert(100%);
-  filter: invert(100%);
-  mix-blend-mode: difference;
-  position: absolute;
-  pointer-events: none;
-}
-
 .background { /* Used for the bird picture. Bird sold separately. */
   border-radius: 10px;
-  background-position: center;
-  background-size: cover;
-  margin: 0px;
-  margin-left: -19vw;
-  margin-right: -19vw;
-  padding: 0px;
   display: block;
-  height: 80vh;
-  opacity: 100%;
-  transition: 1s ease-in-out;
+  height: 40vh;
+  width: 98vw;
+  margin: 1vh 1vw;
+  border-radius: 10px;
+  background-image: linear-gradient(60deg, var(--primary), var(--accent));
 }
-
-.background:hover { filter: blur(1vh); }
 
 .icon { /* Used in the icons for socials */
-  width: 1rem;
-  height: 1rem;
+  width: 1em;
+  height: 1em;
   object-fit: cover;
   display: inline;
-  margin-right: 0.1rem;
-  user-select: none;
+  margin-right: 0.1em;
 }
 
-.title { /* Used for the main title text */
-  white-space: nowrap;
+.noUnderline {
+  text-decoration: none;
+}
+
+.title {
+  transform: translateY(-50%);
+  text-align: center;
   font-weight: 500;
-  pointer-events: none;
-  user-select: none;
-  color: #000;
-  position: absolute;
+  color: var(--text);
   font-size: 9vh;
-  left: 0px;
-  right: 0px;
-  top: 35vh;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  -webkit-filter: invert(100%);
-  filter: invert(100%);
-  mix-blend-mode: difference;
+  width: 100vw;
 }
 
-.mini { /* Used for the "hover" text */
-  pointer-events: none;
-  font-size: 2.5vh;
-  font-style: italic;
+.note {
+  text-align: center;
+  opacity: 50%;
   position: absolute;
+  top: calc(2vh + 62px);
   left: 0px;
-  right: 0px;
-  top: 44vh;
+  width: 100vw;
 }
 
-#wrapper {
-  margin-left: 20vw;
-  margin-right: 20vw;
-}
-
-#cursor {
-  pointer-events: none;
-  width: 8vh;
-  height: 8vh;
-  border-radius: 4vh;
-  background: #000;
-  position: fixed;
-  z-index: 1000;
-  margin: 0px !important;
-  margin-left: -20vw !important;
-  padding: 0px !important;
-  -webkit-filter: invert(100%);
-  filter: invert(100%);
-  mix-blend-mode: difference;
-}
-
-/* Heading underlines */
-#h1 { left: calc(50% - 6em);   width: 12em; }
-#h3 { left: calc(50% - 1.5em); width: 3em;  }
-#h4 { left: calc(50% - 6em);   width: 12em; }
-
-/* Title circles */
-#c1 { left: calc(50vw - 38.5vh); top: 36vh;   }
-#c2 { left: calc(50vw - 16vh);   top: 39vh;   }
-#c3 { left: calc(50vw + 2.7vh);  top: 37.5vh; }
-#c4 { left: calc(50vw + 22vh);   top: 36vh;   }
-
-/* The birds */
-.bird1 { background-image: url(/img/index/bird1.jpg) }
-.bird2 { background-image: url(/img/index/bird2.jpg) }
-.bird3 { background-image: url(/img/index/bird3.jpg) }
-.bird4 { background-image: url(/img/index/bird4.jpg) }
-.bird5 { background-image: url(/img/index/bird5.jpg) }
-
-footer {
-  color: #999;
-  font-size: 8px;
-  text-align: center;
-}
+.titleSpacing { height: 20vh; }

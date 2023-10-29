@@ -1,52 +1,52 @@
-/* Custom fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&display=swap');
 
-/* Styling for all elements */
-:root {
+@import url("/css/themes/halloween.css");
+
+body {
   font-family: Poppins;
-  background-color: #060508;
-  color: #bfbbcb;
+  background-color: var(--background);
+  color: var(--text);
+  margin: 0px;
+  overflow-x: hidden;
 }
 
-/* Selection colors */
 ::selection {
-  background-color: #770088;
-  color: #ffffff;
+  background-color: var(--accent);
+  color: var(--text);
 }
 
-/* Input styles */
 button {
-  background-color: #44334b;
-  color: #ffffff;
+  background-color: var(--secondary);
+  color: var(--text);
   border: none;
   padding: 5px 7px;
   border-radius: 10px;
   cursor: pointer;
+  transition: 0.25s
 }
 
-button:hover  { background-color: #5e4269; }
-button:active { background-color: #3b2d40; }
+button:hover  { background-color: var(--primary); color: var(--background); }
+button:active { background-color: var(--accent); color: var(--background); scale: 90%; }
 
 input, select, option {
-  background-color: #2f273e;
-  color: #ffffff;
-  border: 2px #6b5e79 solid;
+  background-color: var(--secondary);
+  color: var(--text);
+  border: 2px var(--accent) solid;
   border-radius: 2px;
+  transition: 0.25s
 }
 
 input:hover,
-select:hover
+select:hover,
 option:hover {
-  border-color: #766686;
-  background-color: #3a3251 !important;
+  background-color: var(--primary);
+  color: var(--background);
 }
 
-/* Link colors */
-a:link    { color: #7788dd }
-a:visited { color: #aa88dd }
+a:link    { color: var(--primary) }
+a:visited { color: var(--primary) }
 
-/* Other */
 i { opacity: 80%; }
 
 p {
@@ -61,28 +61,92 @@ p {
 .fleft  { float: left; }
 .fright { float: right;}
 
-.invis { opacity: 0%; }
-.mono  { font-family: Cousine; }
+.invis  { opacity: 0%; }
+.hidden { display: none; }
+.mono   { font-family: Cousine; }
+.noListIcon { list-style: none; }
 
-.noUnderline a { text-decoration: none; }
-
-.return {
+body[data-theme="light"] * .light-toggle { display: none; }
+body[data-theme="dark"] * .dark-toggle { display: none; }
+.dark-toggle, .light-toggle {
+  cursor: pointer;
   user-select: none;
-  pointer-events: all;
-  text-align: center !important;
-  color: #ffffff !important;
-  text-decoration: none;
-  font-size: 16px;
-  font-family: Arial;
+}
+
+header {
+  display: block;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: var(--secondary);
+  width: calc(100vw - 40px);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  user-select: none;
+}
+
+.long { width: 100vw; }
+.logo { font-size: 24px; }
+
+.menu {
   margin: 0px;
-  margin-bottom: 8px;
-  padding: 5px 7px;
-  background-color: #44334b;
-  border: none;
-  border-radius: 10px;
+  padding: 0px;
+  white-space: nowrap;
+  height: 27px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--text);
+  margin: 0px 10px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
   cursor: pointer;
 }
 
-.return:hover   { background-color: #5e4269; }
-.return:active  { background-color: #3b2d40; }
-.return:visited { color: #ffffff; }
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text);
+  margin: 3px 0px;
+}
+
+.bar:first-child { margin-top: 0px; }
+.bar:last-child { margin-bottom: 0px; }
+
+@media screen and (max-width: 900px) {
+  .only-large { display: none; }
+  .hamburger { display: flex; }
+}
+
+@media screen and (min-width: 901px) {
+  .only-small { display: none; }
+}
+
+#hamburgerDisplay {
+  margin: 0px;
+  margin-top: 5px;
+  text-align: right;
+}
+
+#hamburgerDisplay li {
+  padding: 3px;
+}
+
+#hamburgerDisplay a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+#container {
+  height: calc(100vh - 62px);
+  position: absolute;
+  top: 62px;
+  left: 0px;
+}
+#container2 { padding: 10px 10vw; }
