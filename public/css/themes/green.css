@@ -1,0 +1,17 @@
+/* dark mode */
+body {
+  --text: #eeffcc;
+  --background: #0b160e;
+  --primary: #9ee08a;
+  --secondary: #0f3319;
+  --accent: #3acb60;
+}
+
+/* light mode */
+body[data-theme="light"] {
+  --text: #223300;
+  --background: #ebf5ed;
+  --primary: #33751f;
+  --secondary: #ccf0d6;
+  --accent: #34c55b;
+}
