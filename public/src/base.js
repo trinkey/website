@@ -3,7 +3,7 @@ let updateTheme = () => { document.getElementsByTagName("body")[0].setAttribute(
 updateTheme();
 
 enableBar = localStorage.getItem("trinkey-titlebar");
-if (enableBar === "1" || enableBar === undefined) { enableBar = true; }
+if (enableBar === "1" || enableBar === null) { enableBar = true; }
 else { enableBar = false; }
 
 // Inject title bar
