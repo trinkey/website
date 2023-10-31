@@ -46,7 +46,7 @@
     </section>
 
     <script>
-      if (enableBar) { document.getElementById("main").setAttribute("hidden", ""); }
+      if (!enableBar) { document.getElementById("main").setAttribute("hidden", ""); }
 
       document.getElementById("imageContainer").innerHTML = output;
 
