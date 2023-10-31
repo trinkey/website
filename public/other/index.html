@@ -34,9 +34,12 @@
       <ul>
         <li><a href="/other/periodic">Periodic Table</a></li>
         <li><a href="/other/pronoun">Pronoun Tracker</a></li>
-        <li><a href="/other/randomizer">Sentence Randomizer</a> (for Captain Sparklez)</li>
+        <li><a href="/other/randomizer">Sentence Randomizer</a><span id="hide"> (for Captain Sparklez)</span></li>
       </ul>
       More to come!
+      <script>
+        if (!enableBar) { document.getElementById("hide").setAttribute("hidden", ""); }
+      </script>
     </div>
   </body>
 </html>

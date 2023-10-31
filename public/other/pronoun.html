@@ -42,7 +42,7 @@
     </div>
 
     <script>
-      let pronouns = JSON.parse(localStorage.getItem("trinkey-pronouns") || '[["trinkey", "she/they", "Creator of this website"]]') || [["trinkey", "she/they", "Creator of this website"]];
+      let pronouns = JSON.parse(localStorage.getItem("trinkey-pronouns") || `[${enableBar ? ["trinkey", "she/they", "Creator of this website"] : ""}]`) || enableBar ? [["trinkey", "she/they", "Creator of this website"]] : [];
       const table = document.getElementById("table");
       let i = 0;
 
