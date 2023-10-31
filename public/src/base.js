@@ -2,9 +2,7 @@
 let updateTheme = () => { document.getElementsByTagName("body")[0].setAttribute("data-theme", localStorage.getItem("trinkey-theme") || "dark"); };
 updateTheme();
 
-enableBar = localStorage.getItem("trinkey-titlebar");
-if (enableBar === "1" || enableBar === null) { enableBar = true; }
-else { enableBar = false; }
+enableBar = localStorage.getItem("trinkey-titlebar") === "0" ? false : true;
 
 // Inject title bar
 titleBar = `<nav style="position: relative; z-index: 1000;">

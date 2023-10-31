@@ -32,18 +32,22 @@
     <script src="/src/photography.js"></script>
     <script src="/src/mobile.js"></script>
 
-    <div class="spacer"></div>
-    <div class="title">Trinkey's<br><span class="gradient">Photo&shy;graphy</span></div>
-    <div id="info" class="caption">This is an archive of my favorite photos I've taken.</div>
-    <div class="spacer"></div>
-    <div id="imageContainer"></div>
+    <section id="main">
+      <div class="spacer"></div>
+      <div class="title">Trinkey's<br><span class="gradient">Photo&shy;graphy</span></div>
+      <div id="info" class="caption">This is an archive of my favorite photos I've taken.</div>
+      <div class="spacer"></div>
+      <div id="imageContainer"></div>
 
-    <footer>
-      More to come (probably)!<br>
-      You can use all of these for whatever, however please give credit if used commercially. Don't repost these claiming them to be your own.
-    </footer>
+      <footer>
+        More to come (probably)!<br>
+        You can use all of these for whatever, however please give credit if used commercially. Don't repost these claiming them to be your own.
+      </footer>
+    </section>
 
     <script>
+      if (enableBar) { document.getElementById("main").setAttribute("hidden", ""); }
+
       document.getElementById("imageContainer").innerHTML = output;
 
       if (mobile) {

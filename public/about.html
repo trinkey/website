@@ -32,7 +32,7 @@
 
     <h1>About Me</h1>
 
-    <table>
+    <table id="main">
       <tr>
         <td><img class="cat fleft" src="/img/about/cat.jpg"></td>
         <td>
@@ -111,4 +111,8 @@
       </td>
     </tr>
   </table>
+
+  <script>
+    if (enableBar) { document.getElementById("main").setAttribute("hidden", ""); }
+  </script>
 </html>
