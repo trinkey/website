@@ -1,0 +1,33 @@
+body { text-align: center; }
+h1 { font-size: 6vh; margin: 0px; padding-bottom: 1vh; }
+
+#wordle, .example {
+  border-collapse: collapse;
+  margin: 0px auto;
+}
+
+#wordle td {
+  border: 0.5vh var(--primary) solid;
+  min-width: 10vh;
+  height: 10vh;
+  text-align: center;
+  font-size: 6vh;
+}
+
+#output {
+  font-size: 3vh;
+  padding-bottom: 5vh;
+}
+
+.example td { font-size: 3vh; }
+.example td.yes, .example td.maybe, .example td.no {
+  border: 0.3vh var(--primary) solid;
+  min-width: 7vh;
+  height: 7vh;
+  text-align: center;
+  font-size: 4vh;
+}
+
+.yes { background-color: var(--accent) !important; }
+.maybe { background-color: var(--text); color: var(--background); }
+.no { background-color: var(--secondary); }

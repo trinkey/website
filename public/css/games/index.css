@@ -1,0 +1,6 @@
+svg {
+  height: .7em;
+  fill: var(--primary);
+  stroke: none;
+  transform: scaleY(-100%);
+}

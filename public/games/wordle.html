@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Wordle</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Wordle">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+    <meta property="og:image" content="https://trinkey.web.app/img/cat.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="Wordle">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+    <meta name="twitter:image" content="https://trinkey.web.app/img/cat.png">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/games/wordle.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <script src="/src/base.js"></script>
+    <script src="/src/games/words.js"></script>
+
+    <h1>Wordle</h1>
+    <table id="wordle"></table>
+    <div id="output">&nbsp;</div>
+    <table class="example">
+      <tr><td class="yes">a</td><td class="left" style="padding-left: 10px;"> - Correct</td></tr>
+      <tr><td class="maybe">a</td><td class="left" style="padding-left: 10px;"> - Wrong spot</td></tr>
+      <tr><td class="no">a</td><td class="left" style="padding-left: 10px;"> - Incorrect</td></tr>
+    </table>
+    <div style="height: 10vh;"></div>
+    <script>
+      const container = document.getElementById("wordle");
+      let word, guesses, next, currentStr, remaining, win;
+
+      function start() {
+        next = 0; guesses = 0; currentStr = ""; win = false;
+        word = list[Math.floor(Math.random() * list.length)];
+        container.innerHTML = `<tr>${"<td></td>".repeat(5)}</tr>`.repeat(6);
+      }
+
+      document.onkeydown = function(e) {
+        if ("abcdefghijklmnopqrstuvwxyz".includes(e.key.toLowerCase())) {
+          if (!win && next !== 5) {
+            currentStr += e.key;
+            container.getElementsByTagName("tr")[guesses].getElementsByTagName("td")[next].innerHTML = e.key.toLowerCase();
+            next++;
+          }
+        } else if ("BackspaceDelete".includes(e.key)) {
+          document.getElementById("output").innerHTML = "&nbsp;";
+          if (!win && next !== 0) {
+            --next;
+            currentStr = currentStr.slice(0, currentStr.length - 1);
+            container.getElementsByTagName("tr")[guesses].getElementsByTagName("td")[next].innerHTML = "&nbsp;";
+          }
+        } else if (e.key == "Enter") {
+          document.getElementById("output").innerHTML = "&nbsp;";
+          if (win || guesses == 6) { start(); }
+          else if (next == 5) {
+            if (valid.indexOf(currentStr) !== -1) {
+              remaining = {};
+
+              remaining[word[0]] = 0;
+              remaining[word[1]] = 0;
+              remaining[word[2]] = 0;
+              remaining[word[3]] = 0;
+              remaining[word[4]] = 0;
+
+              remaining[word[0]]++;
+              remaining[word[1]]++;
+              remaining[word[2]]++;
+              remaining[word[3]]++;
+              remaining[word[4]]++;
+
+
+              for (let i = 0; i < 5; i++) {
+                let dom = container.getElementsByTagName("tr")[guesses].getElementsByTagName("td")[i];
+
+                if (word[i] == currentStr[i]) {
+                  --remaining[currentStr[i]];
+                  dom.classList.add("yes");
+                }
+              }
+
+              for (let i = 0; i < 5; i++) {
+                let dom = container.getElementsByTagName("tr")[guesses].getElementsByTagName("td")[i];
+
+                if (remaining[currentStr[i]]) {
+                  if (dom.getAttribute("class") == null) { --remaining[currentStr[i]]; dom.classList.add("maybe"); }
+                } else {
+                  if (dom.getAttribute("class") == null) { dom.classList.add("no"); }
+                }
+              }
+
+              if (currentStr == word) { win = true; }
+              else if (guesses == 5) { document.getElementById("output").innerHTML = word; }
+
+              guesses++;
+              next = 0;
+              currentStr = "";
+            } else {
+              document.getElementById("output").innerHTML = "Invalid guess!";
+            }
+          } else {
+            document.getElementById("output").innerHTML = "Too few letters!";
+          }
+        }
+      }
+      start();
+    </script>
+  </body>
+</html>
