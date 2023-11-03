@@ -45,13 +45,11 @@
       </footer>
 
     <script>
-      if (!enableBar) { document.getElementById("main").setAttribute("hidden", ""); }
+      if (!enableBar) { dom("main").setAttribute("hidden", ""); }
 
-      document.getElementById("imageContainer").innerHTML = output;
+      dom("imageContainer").innerHTML = output;
 
-      if (mobile) {
-        document.getElementById("info").innerText = "This website not optimized for mobile. This is going to be an archive of my favorite photos I've taken."
-      }
+      if (mobile) { dom("info").innerText = "This website not optimized for mobile. This is going to be an archive of my favorite photos I've taken." }
     </script>
   </body>
 </html>

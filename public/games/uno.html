@@ -43,7 +43,6 @@
     <div id="csv" hidden>PLAYER,COLOR,CARD,DRAW</div>
 
     <script>
-      let dom = (id) => document.getElementById(id);
       let currentCard, playerHand, computerHand, cheatMode = false,
           computerDOM = dom("computerCards"), playerDOM = dom("playerCards"),
           deckDOM = dom("deckC"), turn, currentCol, gameOver, cards, canPlay;

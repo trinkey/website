@@ -146,12 +146,12 @@
 
         title(titles[level - 1]);
 
-        doms.forEach(function(dom, index) {
-          [...dom.classList].forEach(function(value) {
-            dom.classList.remove(value);
+        doms.forEach(function(elem, index) {
+          [...elem.classList].forEach(function(value) {
+            elem.classList.remove(value);
           });
 
-          if (map[index]) { dom.classList.add(`tile${map[index]}`); }
+          if (map[index]) { elem.classList.add(`tile${map[index]}`); }
           if (map[index] == 4) { playerX = 25 * (index % 10); playerY = 25 * Math.floor(index / 10) + 10; }
         });
       }
@@ -231,7 +231,7 @@
         return false;
       }
 
-      function title(str) { document.getElementById("title").innerHTML = str; }
+      function title(str) { dom("title").innerHTML = str; }
 
       loadLevel();
 

@@ -41,7 +41,7 @@
     </table>
     <div style="height: 10vh;"></div>
     <script>
-      const container = document.getElementById("wordle");
+      const container = dom("wordle");
       let word, guesses, next, currentStr, remaining, win;
 
       function start() {
@@ -58,14 +58,14 @@
             next++;
           }
         } else if ("BackspaceDelete".includes(e.key)) {
-          document.getElementById("output").innerHTML = "&nbsp;";
+          dom("output").innerHTML = "&nbsp;";
           if (!win && next !== 0) {
             --next;
             currentStr = currentStr.slice(0, currentStr.length - 1);
             container.getElementsByTagName("tr")[guesses].getElementsByTagName("td")[next].innerHTML = "&nbsp;";
           }
         } else if (e.key == "Enter") {
-          document.getElementById("output").innerHTML = "&nbsp;";
+          dom("output").innerHTML = "&nbsp;";
           if (win || guesses == 6) { start(); }
           else if (next == 5) {
             if (valid.indexOf(currentStr) !== -1) {
@@ -104,16 +104,16 @@
               }
 
               if (currentStr == word) { win = true; }
-              else if (guesses == 5) { document.getElementById("output").innerHTML = word; }
+              else if (guesses == 5) { dom("output").innerHTML = word; }
 
               guesses++;
               next = 0;
               currentStr = "";
             } else {
-              document.getElementById("output").innerHTML = "Invalid guess!";
+              dom("output").innerHTML = "Invalid guess!";
             }
           } else {
-            document.getElementById("output").innerHTML = "Too few letters!";
+            dom("output").innerHTML = "Too few letters!";
           }
         }
       }

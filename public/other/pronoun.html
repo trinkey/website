@@ -43,7 +43,7 @@
 
     <script>
       let pronouns = JSON.parse(localStorage.getItem("trinkey-pronouns") || `[${enableBar ? ["trinkey", "she/they", "Creator of this website"] : ""}]`) || enableBar ? [["trinkey", "she/they", "Creator of this website"]] : [];
-      const table = document.getElementById("table");
+      const table = dom("table");
       let i = 0;
 
       function updateDisplay() {
@@ -62,16 +62,16 @@
       }
 
       function addItem() {
-        let name = document.getElementById("name").value;
-        let prn = document.getElementById("pronouns").value;
-        let other = document.getElementById("other").value;
+        let name = dom("name").value;
+        let prn = dom("pronouns").value;
+        let other = dom("other").value;
 
         if (name && prn) {
           pronouns.push([name, prn, other]);
 
-          document.getElementById("name").value = "";
-          document.getElementById("pronouns").value = "";
-          document.getElementById("other").value = "";
+          dom("name").value = "";
+          dom("pronouns").value = "";
+          dom("other").value = "";
 
           updateDisplay();
         }
@@ -84,7 +84,7 @@
         }
       }
 
-      document.getElementById("add").addEventListener("click", addItem);
+      dom("add").addEventListener("click", addItem);
       updateDisplay();
     </script>
   </body>

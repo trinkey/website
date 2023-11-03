@@ -35,8 +35,8 @@
       <button id="button">Randomize!</button><br>
       <out id="output"></out><br><br>
       <script>
-        document.getElementById("button").addEventListener("click", function () {
-          document.getElementById("output").innerHTML = document.getElementById("sentence").value.split(" ").sort(() => Math.random() - 0.5).join(" ")
+        dom("button").addEventListener("click", function () {
+          dom("output").innerHTML = dom("sentence").value.split(" ").sort(() => Math.random() - 0.5).join(" ")
         })
       </script>
     </div>

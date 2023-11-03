@@ -1,5 +1,7 @@
 // Set theme
 let updateTheme = () => { document.getElementsByTagName("body")[0].setAttribute("data-theme", localStorage.getItem("trinkey-theme") || "dark"); };
+let dom = (id) => ( document.getElementById(id) );
+
 updateTheme();
 
 enableBar = localStorage.getItem("trinkey-titlebar") === "0" ? false : true;

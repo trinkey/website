@@ -48,21 +48,37 @@
         <div id="wrong"></div>
         <strong>Correct:</strong>
         <div id="correct"></div>
+        <button id="reset" hidden>Reset</button>
       </div>
     </div>
 
     <script>
-      let hangStates = [
-            "    _________\n    |/      |\n" + "    |\n".repeat(7) + "____|____",
-            "    _________\n    |/      |\n    |       O\n" + "    |\n".repeat(6) + "____|____",
-            "    _________\n    |/      |\n    |       O\n" + "    |       |\n".repeat(2) + "    |\n".repeat(4) + "____|____",
-            "    _________\n    |/      |\n    |       O\n    |      /|\n    |       |\n" + "    |\n".repeat(4) + "____|____",
-            "    _________\n    |/      |\n    |       O\n    |      /|\\\n    |       |\n" + "    |\n".repeat(4) + "____|____",
-            "    _________\n    |/      |\n    |       O\n    |      /|\\\n    |       |\n    |      /\n" + "    |\n".repeat(2) + "____|____",
-            "    _________\n    |/      |\n    |       O\n    |      /|\\\n    |       |\n    |      / \\\n" + "    |\n".repeat(2) + "____|____"
-          ], wrong = "", good = "", remaining = "abcdefghijklmnopqrstuvwxyz", started = false, word = "";
+      const hangStates = [
+        "    _________\n    |/      |\n" + "    |\n".repeat(7) + "____|____",
+        "    _________\n    |/      |\n    |       O\n" + "    |\n".repeat(6) + "____|____",
+        "    _________\n    |/      |\n    |       O\n" + "    |       |\n".repeat(2) + "    |\n".repeat(4) + "____|____",
+        "    _________\n    |/      |\n    |       O\n    |      /|\n    |       |\n" + "    |\n".repeat(4) + "____|____",
+        "    _________\n    |/      |\n    |       O\n    |      /|\\\n    |       |\n" + "    |\n".repeat(4) + "____|____",
+        "    _________\n    |/      |\n    |       O\n    |      /|\\\n    |       |\n    |      /\n" + "    |\n".repeat(3) + "____|____",
+        "    _________\n    |/      |\n    |       O\n    |      /|\\\n    |       |\n    |      / \\\n" + "    |\n".repeat(3) + "____|____"
+      ];
+      let wrong, good, remaining, started, word, pauseKeystrokes;
+      start();
 
-      function dom(id) { return document.getElementById(id); }
+      function start() {
+        wrong = "";
+        good = "";
+        remaining = "abcdefghijklmnopqrstuvwxyz";
+        started = false;
+        word = "";
+        pauseKeystrokes = false;
+
+        dom("words").value = "";
+        dom("status").innerHTML = "";
+        dom("game").setAttribute("hidden", "");
+        dom("reset").setAttribute("hidden", "");
+        dom("setup").removeAttribute("hidden");
+      }
 
       function update() {
         dom("hang").innerHTML = hangStates[wrong.length];
@@ -82,15 +98,19 @@
       }
 
       function lose() {
-        document.onkeypress = function(e) {};
+        pauseKeystrokes = true;
         dom("status").innerHTML = "You lost :(";
+        dom("reset").removeAttribute("hidden");
         dom("word").innerHTML = word.toUpperCase().split("").join(" ");
       }
 
       function win() {
-        document.onkeypress = function(e) {};
+        pauseKeystrokes = true;
         dom("status").innerHTML = "You win!";
+        dom("reset").removeAttribute("hidden");
       }
+
+      dom("reset").addEventListener("click", start)
 
       dom("start").addEventListener("click", function() {
         dom("setup").setAttribute("hidden", "");
@@ -103,7 +123,7 @@
       });
 
       document.onkeypress = function(e) {
-        if (started && remaining.split(e.key.toLowerCase()).length == 2) {
+        if (!pauseKeystrokes && started && remaining.split(e.key.toLowerCase()).length == 2) {
           remaining = remaining.replaceAll(e.key.toLowerCase(), "");
 
           if (word.split(e.key.toLowerCase()).length == 1) {

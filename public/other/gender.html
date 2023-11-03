@@ -70,15 +70,15 @@
         "none": 25
       };
 
-      document.getElementById("male").addEventListener('input', updatePercentageLabel);
-      document.getElementById("female").addEventListener('input', updatePercentageLabel);
-      document.getElementById("nb").addEventListener('input', updatePercentageLabel);
-      document.getElementById("none").addEventListener('input', updatePercentageLabel);
+      dom("male").addEventListener('input', updatePercentageLabel);
+      dom("female").addEventListener('input', updatePercentageLabel);
+      dom("nb").addEventListener('input', updatePercentageLabel);
+      dom("none").addEventListener('input', updatePercentageLabel);
 
       function updatePercentageLabel() {
         values[this.id] = Number(this.value);
-        document.getElementById(`${this.id}Label`).innerText = `${this.value}%`;
-        document.getElementById("tot").innerText = `${Object.values(values).reduce((a, b) => a + b)}%`;
+        dom(`${this.id}Label`).innerText = `${this.value}%`;
+        dom("tot").innerText = `${Object.values(values).reduce((a, b) => a + b)}%`;
       }
     </script>
   </body>

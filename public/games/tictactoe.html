@@ -39,7 +39,7 @@
     <div id="win" class="center"></div>
 
     <script>
-      function dom(id) { return document.getElementById(id); }
+      let turn, tiles, board;
 
       function checkForWin() {
         let wins = [
@@ -96,17 +96,33 @@
         turn %= 2;
       }
 
-      let turn = 0,
-          tiles = [" X ", " O "],
-          board = [
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0
-          ];
+      function start() {
+        document.getElementById("a1").innerHTML = "   ";
+        document.getElementById("a2").innerHTML = "   ";
+        document.getElementById("a3").innerHTML = "   ";
+        document.getElementById("b1").innerHTML = "   ";
+        document.getElementById("b2").innerHTML = "   ";
+        document.getElementById("b3").innerHTML = "   ";
+        document.getElementById("c1").innerHTML = "   ";
+        document.getElementById("c2").innerHTML = "   ";
+        document.getElementById("c3").innerHTML = "   ";
+        document.getElementById("win").innerHTML = "   ";
 
-      for (let i = 0; i < 9; i++) {
-        document.getElementsByTagName("span")[i].addEventListener("click", clickHandler)
+        turn = 0,
+        tiles = [" X ", " O "],
+        board = [
+          0, 0, 0,
+          0, 0, 0,
+          0, 0, 0
+        ];
+
+        for (let i = 0; i < 9; i++) {
+          document.getElementsByTagName("span")[i].addEventListener("click", clickHandler)
+        }
       }
+      start();
+
+      document.onkeydown = function(e) { if (e.key == "r") { start(); }}
     </script>
   </body>
 </html>
