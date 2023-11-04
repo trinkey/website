@@ -27,6 +27,7 @@
   height: 4vh;
   border-radius: 3vh;
   vertical-align: middle;
+  margin: 0.5vh;
 }
 span.p1, span.p2 { display: inline-block; }
 
