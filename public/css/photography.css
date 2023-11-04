@@ -6,21 +6,29 @@ body {
   height: 100%;
 }
 
-#imageContainer table  { width: 90vw; }
-#imageContainer tr     { height: 25vw; }
-footer { font-size: 2vh; }
+footer { font-size: 16px; }
 
-.spacer { padding-top: 20vh }
+.spacer { padding-top: 15vh }
 
 .caption {
-  width: 30vw;
-  position: relative;
-  top: 1vw;
+  width: 150px;
+}
+
+.titleContainer {
+  margin: 0px 5vw;
+}
+
+#imageContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .title {
   z-index: 2;
-  font-size: 8vh;
+  font-size: 72px;
   font-weight: 600;
   text-align: justify;
 }
@@ -33,10 +41,10 @@ footer { font-size: 2vh; }
   background-clip: text;
   font-weight: 700;
   transition: 0.5s;
-  padding: 1vw;
-  border-radius: 1vw;
+  padding: 10px;
+  border-radius: 10px;
   position: relative;
-  left: -1vw;
+  left: -10px;
 }
 
 .gradient:hover {
@@ -47,32 +55,26 @@ footer { font-size: 2vh; }
   font-weight: 700;
 }
 
-/* All the styles for the images and image table cells and stuff like that */
-.imageIcon {
-  width: 30vw;
+.image {
+  width: 300px;
   padding: 0px;
 }
 
-.imageIcon img {
-  margin-left: 2.5vw;
-  width: 25vw;
-  padding: 0.5vw;
+.image img {
+  width: 300px;
+  padding: 5px;
+  border-radius: 10px;
   background-color: var(--accent);
-  border-radius: 1vw;
   transition: 0.5s;
 }
 
-.imageIcon img:hover {
-  border-radius: 0.5vw;
+.image img:hover {
   background: linear-gradient(130deg, var(--accent), var(--accent));
-  padding-bottom: calc(0.5vw + 3px);
+  padding-bottom: 13px;
   translate: 0px -3px;
 }
 
-.imageIcon div {
-  margin-left: 2.5vw;
-  width: 25vw;
-  font-size: 2vh;
+.image div {
+  font-size: 16px;
+  padding: 10px;
 }
-
-td.imageIcon { padding-bottom: 3vh; vertical-align: top; }

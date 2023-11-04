@@ -34,8 +34,10 @@
 
       <div class="spacer"></div>
     <section id="main">
-      <div class="title">Trinkey's<br><span class="gradient">Photo&shy;graphy</span></div>
-      <div id="info" class="caption">This is an archive of my favorite photos I've taken.</div>
+      <div class="titleContainer">
+        <div class="title">Trinkey's<br><span class="gradient">Photo&shy;graphy</span></div>
+        <div id="info" class="caption">This is an archive of my favorite photos I've taken.</div>
+      </div>
       <div class="spacer"></div>
     </section>
       <div id="imageContainer"></div>
@@ -45,10 +47,9 @@
       </footer>
 
     <script>
-      if (!enableBar) { dom("main").setAttribute("hidden", ""); }
-
       dom("imageContainer").innerHTML = output;
 
+      if (!enableBar) { dom("main").setAttribute("hidden", ""); }
       if (mobile) { dom("info").innerText = "This website not optimized for mobile. This is going to be an archive of my favorite photos I've taken." }
     </script>
   </body>
