@@ -32,22 +32,25 @@
     <script src="/src/photography.js"></script>
     <script src="/src/mobile.js"></script>
 
-      <div class="spacer"></div>
+    <div class="spacer"></div>
+
     <section id="main">
       <div class="titleContainer">
         <div class="title">Trinkey's<br><span class="gradient">Photo&shy;graphy</span></div>
-        <div id="info" class="caption">This is an archive of my favorite photos I've taken.</div>
       </div>
       <div class="spacer"></div>
     </section>
-      <div id="imageContainer"></div>
 
-      <footer>
-        You can use all of these for anything, however please give credit and link this website. Don't claim you own these photos.
-      </footer>
+    <div id="imageContainer"></div>
+
+    <footer>
+      You can use all of these for anything, however please give credit and link this website. Don't claim you own these photos.
+    </footer>
 
     <script>
-      dom("imageContainer").innerHTML = output;
+      for (let i = 0; i < 39; i++) {
+        dom("imageContainer").innerHTML += `<div class="image"><a target="_blank" href="/img/photography/img${String(i + 1).padStart(2, "0")}.png"><img src="/img/photography/small/img${String(i + 1).padStart(2, "0")}.png"></a></div>`;
+      }
 
       if (!enableBar) { dom("main").setAttribute("hidden", ""); }
       if (mobile) { dom("info").innerText = "This website not optimized for mobile. This is going to be an archive of my favorite photos I've taken." }

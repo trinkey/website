@@ -1,5 +1,4 @@
 body {
-  font-weight: 400;
   margin-left: 5vw;
   margin-right: 5vw;
   width: 90vw;
@@ -7,16 +6,8 @@ body {
 }
 
 footer { font-size: 16px; }
-
 .spacer { padding-top: 15vh }
-
-.caption {
-  width: 150px;
-}
-
-.titleContainer {
-  margin: 0px 5vw;
-}
+.titleContainer { margin: 0px 5vw; }
 
 #imageContainer {
   display: flex;
@@ -69,12 +60,7 @@ footer { font-size: 16px; }
 }
 
 .image img:hover {
-  background: linear-gradient(130deg, var(--accent), var(--accent));
+  background: linear-gradient(130deg, var(--accent), var(--primary));
   padding-bottom: 13px;
   translate: 0px -3px;
-}
-
-.image div {
-  font-size: 16px;
-  padding: 10px;
 }
