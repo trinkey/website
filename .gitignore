@@ -27,6 +27,4 @@ node_modules/
 
 deploy.bat
 proxy/
-
-# I don't want to do this however I have some private things in it
 firebase.json
