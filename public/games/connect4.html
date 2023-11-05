@@ -198,7 +198,7 @@
 
       doms.forEach(function(value, index) {
         value.addEventListener("click", () => { keystrokeHandler({ key: index % 7 + 1 }); });
-        value = value.getElementsByTagName("div")[0];
+        doms[index] = value.getElementsByTagName("div")[0];
       });
 
       [...document.querySelectorAll("#numbers td")].forEach(function(val, index) {
