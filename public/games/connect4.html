@@ -85,7 +85,7 @@
         <td><div></div></td>
         <td class="final"><div></div></td>
       </tr>
-      <tr>
+      <tr id="numbers">
         <td>1</td>
         <td>2</td>
         <td>3</td>
@@ -197,11 +197,16 @@
           ], turn = 1, win = false; // turn 1: white; turn 2: black;
 
       doms.forEach(function(value, index) {
-        doms[index] = value.getElementsByTagName("div")[0];
+        value.addEventListener("click", () => { keystrokeHandler({ key: index % 7 + 1 }); });
+        value = value.getElementsByTagName("div")[0];
+      });
+
+      [...document.querySelectorAll("#numbers td")].forEach(function(val, index) {
+        val.addEventListener("click", () => { keystrokeHandler({ key: index + 1 }); });
       });
 
       document.onkeypress = keystrokeHandler;
-      keystrokeHandler({key: "no"});
+      keystrokeHandler({ key: "no" });
     </script>
   </body>
 </html>
