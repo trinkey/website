@@ -35,7 +35,8 @@
 
       <div id="setup">
         <input id="words" placeholder="Enter the word(s)...">
-        <button id="start">Start</button>
+        <button id="start">Start</button> <button id="challenge">Challenge a friend</button>
+        <div id="challengeLink"></div>
       </div>
 
       <div id="game" hidden>
@@ -75,6 +76,7 @@
 
         dom("words").value = "";
         dom("status").innerHTML = "";
+        dom("challengeLink").innerHTML = "";
         dom("game").setAttribute("hidden", "");
         dom("reset").setAttribute("hidden", "");
         dom("setup").removeAttribute("hidden");
@@ -110,8 +112,12 @@
         dom("reset").removeAttribute("hidden");
       }
 
-      dom("reset").addEventListener("click", start)
-
+      dom("reset").addEventListener("click", start);
+      dom("challenge").addEventListener("click", function() {
+        dom("challengeLink").innerHTML = `Share this link with your "friends": <span onclick="navigator.clipboard.writeText(this.innerText)">https://trinkey.web.app/games/hangman?word=${btoa(dom("words").value)}</span>`;
+        // let dec = ;
+        // console.log(atob(enc));
+      })
       dom("start").addEventListener("click", function() {
         dom("setup").setAttribute("hidden", "");
         dom("game").removeAttribute("hidden");
@@ -139,6 +145,20 @@
           }
         }
       };
+
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("word")) {
+        try {
+          word = atob(urlParams.get("word"));
+          started = true;
+
+          dom("setup").setAttribute("hidden", "");
+          dom("game").removeAttribute("hidden");
+
+          update();
+        }
+        catch { console.log("Invalid word preplaced in url"); }
+      }
     </script>
   </body>
 </html>

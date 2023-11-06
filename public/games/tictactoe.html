@@ -96,7 +96,7 @@
 
       function clickHandler(e) {
         if (e !== "fake") {
-          this.removeEventListener("click", clickHandler);
+          this.removeEventListener("click", clickHandler);Consolas, 'Courier New', monospace
           this.innerHTML = tiles[turn];
 
           board[({"a": -1, "b": 2, "c": 5})[this.id[0]] + Number(this.id[1])] = turn + 1;
