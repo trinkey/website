@@ -114,7 +114,7 @@
 
       dom("reset").addEventListener("click", start);
       dom("challenge").addEventListener("click", function() {
-        dom("challengeLink").innerHTML = `Share this link with your "friends": <span onclick="navigator.clipboard.writeText(this.innerText)">https://trinkey.web.app/games/hangman?word=${btoa(dom("words").value)}</span>`;
+        dom("challengeLink").innerHTML = `Share this link with your "friends": <span style="cursor: pointer;" onclick="navigator.clipboard.writeText(this.innerText)">https://trinkey.web.app/games/hangman?word=${btoa(dom("words").value)}</span>`;
         // let dec = ;
         // console.log(atob(enc));
       })
