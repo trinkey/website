@@ -30,7 +30,12 @@
   <body>
     <script src="/src/base.js"></script>
 
-    <pre class="board center"><span id="a1">   </span>|<span id="a2">   </span>|<span id="a3">   </span>
+    <div id="selectType" class="center">
+      <h2>How many players?</h2>
+      <button id="p1">One</button> <button id="p2">Two</button>
+    </div>
+
+    <pre hidden class="board center"><span id="a1">   </span>|<span id="a2">   </span>|<span id="a3">   </span>
 ---+---+---
 <span id="b1">   </span>|<span id="b2">   </span>|<span id="b3">   </span>
 ---+---+---
@@ -39,7 +44,11 @@
     <div id="win" class="center"></div>
 
     <script>
-      let turn, tiles, board;
+      let turn, tiles = [" X ", " O "], board, players, elems = [
+        dom("a1"), dom("a2"), dom("a3"),
+        dom("b1"), dom("b2"), dom("b3"),
+        dom("c1"), dom("c2"), dom("c3")
+      ], lastStart = 0;
 
       function checkForWin() {
         let wins = [
@@ -59,13 +68,12 @@
             && board[wins[i][1]] == board[wins[i][2]]
             && board[wins[i][0]] != 0
           ) {
-            dom("win").innerHTML = `${tiles[turn]} wins!`
+            dom("win").innerHTML = `${tiles[turn]} wins!`;
 
             for (let i = 0; i < 9; i++) {
-              document.getElementsByTagName("span")[i].removeEventListener("click", clickHandler)
+              document.getElementsByTagName("span")[i].removeEventListener("click", clickHandler);
             }
-
-            return;
+            return true;
           }
         }
 
@@ -83,45 +91,92 @@
           dom("win").innerHTML = "Tie! No winners!";
           return;
         }
+        dom("win").innerHTML = `${tiles[(turn + 1) % 2][1]}'s turn!`
       }
 
-      function clickHandler() {
-        this.removeEventListener("click", clickHandler)
-        this.innerHTML = tiles[turn];
+      function clickHandler(e) {
+        if (e !== "fake") {
+          this.removeEventListener("click", clickHandler);
+          this.innerHTML = tiles[turn];
 
-        board[({"a": -1, "b": 2, "c": 5})[this.id[0]] + Number(this.id[1])] = turn + 1;
-        checkForWin();
+          board[({"a": -1, "b": 2, "c": 5})[this.id[0]] + Number(this.id[1])] = turn + 1;
+          if (checkForWin()) { return; }
 
-        turn += 1;
-        turn %= 2;
+          turn++;
+          turn %= 2;
+        }
+
+        if (players == 1) {
+          let wins = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+          ], stop = 0;
+
+          for (let player = 2; player > 0 && !stop; player--) {
+            for (let i = 0; i < wins.length && !stop; i++) {
+              if (board[wins[i][0]] == player && board[wins[i][1]] == player && board[wins[i][2]] == 0) { stop = wins[i][2] + 1; }
+              if (board[wins[i][0]] == player && board[wins[i][2]] == player && board[wins[i][1]] == 0) { stop = wins[i][1] + 1; }
+              if (board[wins[i][1]] == player && board[wins[i][2]] == player && board[wins[i][0]] == 0) { stop = wins[i][0] + 1; }
+            }
+          }
+
+          let available = [];
+          for (let i = 0; i < 9; i++) { if (board[i] == 0) { available.push(i); }}
+
+          if (!stop && !available.length) { return; }
+
+          let selection = stop ? stop - 1 : available[Math.floor(Math.random() * available.length)];
+          elems[selection].innerHTML = tiles[turn];
+          elems[selection].removeEventListener("click", clickHandler);
+          board[selection] = turn + 1;
+          checkForWin();
+
+          turn++;
+          turn %= 2;
+        }
       }
 
       function start() {
-        document.getElementById("a1").innerHTML = "   ";
-        document.getElementById("a2").innerHTML = "   ";
-        document.getElementById("a3").innerHTML = "   ";
-        document.getElementById("b1").innerHTML = "   ";
-        document.getElementById("b2").innerHTML = "   ";
-        document.getElementById("b3").innerHTML = "   ";
-        document.getElementById("c1").innerHTML = "   ";
-        document.getElementById("c2").innerHTML = "   ";
-        document.getElementById("c3").innerHTML = "   ";
-        document.getElementById("win").innerHTML = "   ";
+        dom("selectType").setAttribute("hidden", "");
+        document.querySelector(".board.center").removeAttribute("hidden");
+        dom("a1").innerHTML  = "   ";
+        dom("a2").innerHTML  = "   ";
+        dom("a3").innerHTML  = "   ";
+        dom("b1").innerHTML  = "   ";
+        dom("b2").innerHTML  = "   ";
+        dom("b3").innerHTML  = "   ";
+        dom("c1").innerHTML  = "   ";
+        dom("c2").innerHTML  = "   ";
+        dom("c3").innerHTML  = "   ";
 
-        turn = 0,
-        tiles = [" X ", " O "],
+        turn = lastStart;
+        turn++;
+        turn %= 2;
         board = [
           0, 0, 0,
           0, 0, 0,
           0, 0, 0
         ];
+        checkForWin();
+        turn++;
+        turn %= 2;
+        lastStart++;
+        lastStart %= 2;
+        if (turn == 1) { clickHandler("fake"); }
 
         for (let i = 0; i < 9; i++) {
           document.getElementsByTagName("span")[i].addEventListener("click", clickHandler)
         }
       }
-      start();
 
+      dom("p1").addEventListener("click", () => { players = 1; start(); })
+      dom("p2").addEventListener("click", () => { players = 2; start(); })
       document.onkeydown = function(e) { if (e.key == "r") { start(); }}
     </script>
   </body>
