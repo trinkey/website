@@ -59,16 +59,6 @@
       function cls(cl) { return document.getElementsByClassName(cl) }
       function lose() { dom("lose").removeAttribute("hidden") }
 
-      function next() {
-        for (let i = 0; i < cls("container").length; i += 1) {
-          let x = window.getComputedStyle(cls("container")[i]).getPropertyValue("transform").match(/matrix.*\((.+)\)/)[1].split(',').map(parseFloat);
-          x[4] += window.innerWidth * 0.005;
-          x[5] += window.innerHeight * 0.005;
-
-          cls("container")[i].style.transform = `matrix(${x.join(', ')})`
-        }
-      }
-
       dom("e12").addEventListener("click", function() { dom("win").removeAttribute("hidden") });
 
       function start() {
@@ -82,7 +72,6 @@
         for (let i = 0; i < cls("no").length; i++) {
           cls("no")[i].addEventListener("click", function() {
             dom("e" + String(i + 1)).setAttribute("hidden", "");
-            next()
           })
         }
 
