@@ -21,8 +21,8 @@ base = """
       <h1>Index of {{DISP_PATH}}</h1>
       <table>
         <tr>
-          <th>Name</th>
-          <th>Size</th>
+          <th class="file">Name</th>
+          <th class="size">Size</th>
         </tr>
   {{TABLE}}    </table>
     </div>
