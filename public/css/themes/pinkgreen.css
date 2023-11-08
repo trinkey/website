@@ -2,16 +2,16 @@
 body {
   --text: #f6f5e4;
   --background: #040401;
-  --primary: #e53ca1;
-  --secondary: #2f0f24;
-  --accent: #8fc549;
+  --primary: #8fc549;
+  --secondary: #4e0936;
+  --accent: #e53ca1;
 }
 
 /* light mode */
 body[data-theme="light"] {
   --text: #1b1a09;
   --background: #fefefb;
-  --primary: #c11a7e;
-  --secondary: #f0d0e5;
-  --accent: #80b63a;
+  --primary: #80b63a;
+  --secondary: #f0b9dd;
+  --accent: #c11a7e;
 }

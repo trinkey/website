@@ -1,17 +1,17 @@
 /* dark mode */
 body {
-  --text: #ffded6;
-  --background: #0e0300;
+  --text: #ffd6d6;
+  --background: #00000d;
   --primary: #fe8b8b;
-  --secondary: #290800;
-  --accent: #f43201;
+  --secondary: #450101;
+  --accent: #f40101;
 }
 
 /* light mode */
 body[data-theme="light"] {
-  --text: #290800;
-  --background: #fff3f0;
-  --primary: #740101;
-  --secondary: #ffded6;
-  --accent: #fe3c0b;
+  --text: #290000;
+  --background: #fff0f8;
+  --primary: #f06060;
+  --secondary: #ffc7c7;
+  --accent: #dc1010;
 }

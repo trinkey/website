@@ -3,7 +3,7 @@ body {
   --text: #f8e9fb;
   --background: #0f0311;
   --primary: #783e84;
-  --secondary: #36093e;
+  --secondary: #3d0c45;
   --accent: #9e52ad;
 }
 
@@ -11,7 +11,7 @@ body {
 body[data-theme="light"] {
   --text: #130416;
   --background: #faeefc;
-  --primary: #b57bc1;
+  --primary: #9e52ad;
   --secondary: #edc1f6;
-  --accent: #9e52ad;
+  --accent: #b57bc1;
 }

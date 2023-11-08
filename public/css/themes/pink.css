@@ -3,8 +3,8 @@ body {
   --text: #fbeaf2;
   --background: #11040a;
   --primary: #e274a9;
-  --secondary: #3f0d25;
-  --accent: #d7428a;
+  --secondary: #500e2e;
+  --accent: #e93a8e;
 }
 
 /* light mode */
@@ -12,6 +12,6 @@ body[data-theme="light"] {
   --text: #15040c;
   --background: #fbeef4;
   --primary: #8b1d52;
-  --secondary: #f2c0d8;
+  --secondary: #fab5d6;
   --accent: #bd2870;
 }

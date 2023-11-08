@@ -3,15 +3,15 @@ body {
   --text: #eeffcc;
   --background: #0b160e;
   --primary: #9ee08a;
-  --secondary: #0f3319;
-  --accent: #3acb60;
+  --secondary: #124b22;
+  --accent: #21c64d;
 }
 
 /* light mode */
 body[data-theme="light"] {
   --text: #223300;
   --background: #ebf5ed;
-  --primary: #33751f;
-  --secondary: #ccf0d6;
+  --primary: #3b8824;
+  --secondary: #a7e9ba;
   --accent: #34c55b;
 }
