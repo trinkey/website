@@ -40,7 +40,7 @@
     </div>
 
     <script>
-      let pronouns = JSON.parse(localStorage.getItem("trinkey-pronouns") || `[${enableBar ? `["trinkey", "she/they", "Creator of this website"]` : ""}]`) || enableBar ? [["trinkey", "she/they", "Creator of this website"]] : [];
+      let pronouns = JSON.parse(localStorage.getItem("trinkey-pronouns") || `[${enableBar ? `["trinkey", "she/they", "Creator of this website"]` : ""}]`) || (enableBar ? [["trinkey", "she/they", "Creator of this website"]] : []);
       const table = dom("table");
       let i = 0;
 
@@ -55,8 +55,6 @@
         [...document.getElementsByTagName("tr")].forEach(function(value, index) {
           index != 1 && index && (() => { value.addEventListener("click", removeItem) })();
         });
-
-        localStorage.setItem("trinkey-pronouns", JSON.stringify(pronouns));
       }
 
       function addItem() {
@@ -70,8 +68,9 @@
           dom("name").value = "";
           dom("pronouns").value = "";
           dom("other").value = "";
-
+console.log(JSON.stringify(pronouns))
           updateDisplay();
+          localStorage.setItem("trinkey-pronouns", JSON.stringify(pronouns));
         }
       }
 
