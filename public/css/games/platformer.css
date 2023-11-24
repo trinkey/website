@@ -16,7 +16,10 @@
   padding: 0px;
   overflow: hidden;
   white-space: nowrap;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 body, .board, .board td, .board tbody, .board tr {

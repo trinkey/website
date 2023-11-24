@@ -1,6 +1,9 @@
 .board {
   font-size: 5vh;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 #win {

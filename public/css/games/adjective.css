@@ -1,4 +1,4 @@
-:root { user-select: none; }
+:root { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 
 #click {
   color: var(--accent);

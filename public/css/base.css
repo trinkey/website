@@ -11,6 +11,11 @@ body {
   overflow-x: hidden;
 }
 
+::-moz-selection {
+  background-color: var(--accent);
+  color: var(--text);
+}
+
 ::selection {
   background-color: var(--accent);
   color: var(--text);
@@ -47,7 +52,8 @@ option:hover {
 a:link       { color: var(--primary); text-decoration: none; }
 a:visited    { color: var(--primary); text-decoration: none; }
 a:hover      { text-decoration: underline; }
-a::selection { text-decoration-color: var(--text); }
+a::-moz-selection { text-decoration-color: var(--text); }
+a::selection { -webkit-text-decoration-color: var(--text); text-decoration-color: var(--text); }
 
 i { opacity: 80%; }
 
@@ -72,7 +78,10 @@ body[data-theme="light"] * .light-toggle { display: none; }
 body[data-theme="dark"] * .dark-toggle { display: none; }
 .dark-toggle, .light-toggle {
   cursor: pointer;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 header {
@@ -86,7 +95,10 @@ header {
   top: 0px;
   left: 0px;
   z-index: 1000;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .long { width: 100vw; }

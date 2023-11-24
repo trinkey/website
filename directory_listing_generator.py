@@ -38,16 +38,16 @@ template = """
 """[1::]
 
 for i in [
-  ["public/css/", "/css/", "public/directory/css.html"],
-  ["public/css/themes/", "/css/themes/", "public/directory/css_themes.html"],
-  ["public/css/other/", "/css/other/", "public/directory/css_other.html"],
-  ["public/css/games/", "/css/games/", "public/directory/css_games.html"],
-  ["public/img/", "/img/", "public/directory/img.html"],
-  ["public/img/index/", "/img/index/", "public/directory/img_index.html"],
-  ["public/img/about/", "/img/about/", "public/directory/img_about.html"],
-  ["public/img/photography/", "/img/photography/", "public/directory/img_photography.html"],
+  ["public/css/",                   "/css/",                   "public/directory/css.html"],
+  ["public/css/themes/",            "/css/themes/",            "public/directory/css_themes.html"],
+  ["public/css/other/",             "/css/other/",             "public/directory/css_other.html"],
+  ["public/css/games/",             "/css/games/",             "public/directory/css_games.html"],
+  ["public/img/",                   "/img/",                   "public/directory/img.html"],
+  ["public/img/index/",             "/img/index/",             "public/directory/img_index.html"],
+  ["public/img/about/",             "/img/about/",             "public/directory/img_about.html"],
+  ["public/img/photography/",       "/img/photography/",       "public/directory/img_photography.html"],
   ["public/img/photography/small/", "/img/photography/small/", "public/directory/img_photography_small.html"],
-  ["public/src/", "/src/", "public/directory/src.html"],
+  ["public/src/",                   "/src/",                   "public/directory/src.html"],
 ]:
     path = i[0]
     dispPath = i[1]

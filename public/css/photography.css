@@ -25,7 +25,8 @@ footer { font-size: 16px; }
 }
 
 .gradient {
-  text-decoration: underline var(--accent);
+  -webkit-text-decoration: underline var(--accent);
+          text-decoration: underline var(--accent);
   background: linear-gradient(130deg, var(--primary), var(--accent));
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -39,7 +40,8 @@ footer { font-size: 16px; }
 }
 
 .gradient:hover {
-  text-decoration: underline var(--accent);
+  -webkit-text-decoration: underline var(--accent);
+          text-decoration: underline var(--accent);
   -webkit-text-fill-color: initial;
   -webkit-background-clip: initial;
   background-clip: initial;

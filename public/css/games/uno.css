@@ -1,5 +1,8 @@
 body {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .red, .yellow, .green, .blue, .any, .back {
