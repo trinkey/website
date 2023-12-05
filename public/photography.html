@@ -50,7 +50,7 @@
         dom("imageContainer").innerHTML += `<div class="image"><a target="_blank" href="/img/photography/img${String(i + 1).padStart(2, "0")}.png"><img src="/img/photography/small/img${String(i + 1).padStart(2, "0")}.png"></a></div>`;
       }
 
-      if (!enableBar) { dom("main").setAttribute("hidden", ""); }
+      if (!enableSelf) { dom("main").setAttribute("hidden", ""); }
       if (mobile) { dom("info").innerText = "This website not optimized for mobile. This is going to be an archive of my favorite photos I've taken." }
     </script>
   </body>

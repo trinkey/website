@@ -16,10 +16,6 @@
   margin-right: 0.1em;
 }
 
-.noUnderline {
-  text-decoration: none;
-}
-
 .title {
   transform: translateY(-50%);
   text-align: center;
@@ -39,3 +35,13 @@
 }
 
 .titleSpacing { height: 20vh; }
+
+svg {
+  stroke: none;
+  position: relative;
+  top: 3px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  fill: var(--primary);
+}

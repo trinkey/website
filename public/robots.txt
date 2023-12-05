@@ -1,2 +1,11 @@
+User-agent: *
+Allow: *
+Disallow: /directory/
+Disallow: /proxy/
+Disallow: /css/
+Disallow: /img/
+Disallow: /src/
+Allow: /img/photograhpy/
+
 User-agent: Baiduspider
-Disallow: /
+Disallow: *

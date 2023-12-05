@@ -31,5 +31,6 @@ firebase.json
 directory/
 sitemap.xml
 
-# Google ownership verification files
+# Google/Discord ownership verification files
 google*.html
+discord*.txt
