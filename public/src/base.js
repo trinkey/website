@@ -1,9 +1,11 @@
 // Parse URL parameters
 // titlebar - titlebar (0 - enable titlebar, anything else: disable titlebar)
 // self - references to myself (0 - enable references, anything else: disable references)
-// redir - redirects to exact page
-// Example: //trinkey.web.app/?titlebar=1&self=1&redir=%2Fgames%2Fconnect4
-// this would disable the titlebar, disable all references, to me, and redirect to the connect four page.
+// redir - redirects to a page. must start with a slash (%2F) and then a not slash or nothing else (aka on site url)
+// theme - "light" or "dark", sets theme
+// Example: //trinkey.web.app/?titlebar=1&self=1&redir=%2Fgames%2Fconnect4&theme=light
+// this would disable the titlebar, disable all references, to me, redirects to the
+// connect four page, and change the site theme to light mode.
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -13,7 +15,14 @@ enableSelf = (localStorage.getItem("trinkey-titlebar") || "0") === "0"
 if (urlParams.get("titlebar")) { localStorage.setItem("trinkey-bar", urlParams.get("titlebar")); }
 enableTitlebar = (localStorage.getItem("trinkey-bar") || "0") === "0"
 
-if (urlParams.get("redir")) { window.location.href = urlParams.get("redir"); }
+if (
+  urlParams.get("redir") && urlParams.get("redir")[0] == "/" &&
+  (urlParams.get("redir").length == 1 || "/:".indexOf(urlParams.get("redir")[1]) == -1)
+) { window.location.href = urlParams.get("redir"); }
+
+if (urlParams.get("theme") == "light" || urlParams.get("theme") == "dark") {
+  localStorage.setItem("trinkey-theme", urlParams.get("theme"));
+}
 
 // Set theme
 let updateTheme = () => { document.getElementsByTagName("body")[0].setAttribute("data-theme", localStorage.getItem("trinkey-theme") || "dark"); };

@@ -43,7 +43,6 @@ for i in [
   ["public/css/other/",             "/css/other/",             "public/directory/css_other.html"],
   ["public/css/games/",             "/css/games/",             "public/directory/css_games.html"],
   ["public/img/",                   "/img/",                   "public/directory/img.html"],
-  ["public/img/index/",             "/img/index/",             "public/directory/img_index.html"],
   ["public/img/about/",             "/img/about/",             "public/directory/img_about.html"],
   ["public/img/photography/",       "/img/photography/",       "public/directory/img_photography.html"],
   ["public/img/photography/small/", "/img/photography/small/", "public/directory/img_photography_small.html"],

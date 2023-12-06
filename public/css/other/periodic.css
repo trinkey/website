@@ -80,10 +80,19 @@ body::-webkit-scrollbar{ display: none; }
   font-size: 18px;
 }
 
+.key {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: calc(15 * var(--base-size));
+}
+
+.key > div { white-space: nowrap; }
+
 .keyVal {
   width: 1em;
   height: 1em;
   border-radius: 0.3em;
+  display: inline-block;
 }
 
 input {

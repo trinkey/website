@@ -22,7 +22,7 @@
   font-weight: 500;
   color: var(--text);
   font-size: 9vh;
-  width: 100vw;
+  width: 100%;
 }
 
 .note {
