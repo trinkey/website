@@ -35,11 +35,12 @@ if (enableTitlebar) {
   titleBar = `<nav style="position: relative; z-index: 1000;">
     <table class="menu" id="fullDisplay">
       <tr>
-        ${enableSelf ? `<td class="logo"><div class="logo"><a class="plainLink" href="/">Trinkey's Website</a></div></td>` : ""}
+        <td class="logo"><div class="logo"><a class="plainLink" href="/">${enableSelf ? `Trinkey's Website` : "\u200b"}</a></div></td>
         <td class="long"></td>
         ${enableSelf ? `<td class="only-large"><a href="/about-me/">About Me</a></td>
         <td class="only-large"><a href="/photography/">Photography</a></td>` : ""}
         <td class="only-large"><a href="/games/">Games</a></td>
+        <td class="only-large"><a href="/quizzes/">Quizzes</a></td>
         <td class="only-large"><a href="/other/">Other</a></td>
         ${enableSelf ? `<td class="only-large"><a href="/changelog/">Changelog</a></td>` : ""}
         <td class="only-large light-toggle" onclick='localStorage.setItem("trinkey-theme", "light"); updateTheme();'><div>Light Mode</div></td>

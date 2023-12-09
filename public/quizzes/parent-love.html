@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>This quiz will help you find out if your parents love you!</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="This quiz will help you find out if your parents love you!">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="This quiz will help you find out if your parents love you!">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/quiz.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <script src="/src/base.js"></script>
+
+    <div id="container2">
+      <script>
+        const title = "This quiz will help you find out if your parents love you!";
+        const questions = [
+          { question: "Question 1: How often do your parents say 'I love you'?", answers: ["Every day", "A few times a week", "Rarely", "Never heard it"] },
+          { question: "Question 2: How do your parents react when you achieve something?", answers: ["They celebrate and express pride", "They acknowledge it but don't make a big deal", "They seem indifferent", "They never notice or care"] },
+          { question: "Question 3: How often do your parents spend quality time with you?", answers: ["Frequently", "Sometimes", "Rarely", "Almost never"] },
+          { question: "Question 4: How do your parents handle your mistakes?", answers: ["They are understanding and supportive", "They get upset but forgive quickly", "They hold grudges", "They never forgive or forget"] },
+          { question: "Question 5: How well do your parents know your friends?", answers: ["Very well, they know them by name", "They know some of them", "They don't really know them", "They have no idea who my friends are"] },
+          { question: "Question 6: How do your parents show affection?", answers: ["Hugs and kisses", "Verbal expressions", "Acts of service", "They don't show affection"] },
+          { question: "Question 7: How do your parents handle your problems or concerns?", answers: ["They listen and offer solutions", "They listen but don't offer much help", "They dismiss my concerns", "They are never there for me"] },
+          { question: "Question 8: How supportive are your parents of your goals and aspirations?", answers: ["Very supportive", "Somewhat supportive", "Not very supportive", "They don't care about my goals"] },
+          { question: "Question 9: How do your parents react to your emotions?", answers: ["They are understanding and empathetic", "They are indifferent", "They get frustrated", "They never acknowledge my emotions"] },
+          { question: "Question 10: How would you describe the overall atmosphere at home?", answers: ["Loving and supportive", "Neutral", "Tense and hostile", "Cold and distant"] },
+        ];
+
+        function end() {
+          let score = answers.reduce((a, b) => a + b);
+
+          let result;
+          if (score > 23) {
+            result = "It seems like there might be room for improvement in the parent-child relationship. Consider having open communication with your parents.";
+          } else if (score > 15) {
+            result = "Your parents show some love and care, but there could be areas for growth in the relationship.";
+          } else if (score > 6) {
+            result = "Your parents love you and are generally supportive, but there's always room for strengthening your bond.";
+          } else {
+            result = "Congratulations! It's clear that your parents love you and have a strong connection with you.";
+          }
+
+          let x = document.getElementById("multiple-choice-engine-questions");
+          x.innerHTML = result;
+        }
+      </script>
+      <script src="/src/quiz.js"></script>
+    </div>
+  </body>
+</html>

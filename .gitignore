@@ -33,4 +33,4 @@ sitemap.xml
 
 # Google/Discord ownership verification files
 google*.html
-discord*.txt
+.well-known/

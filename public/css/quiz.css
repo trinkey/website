@@ -1,0 +1,27 @@
+.container {
+  display: block;
+  position: relative;
+  padding-left: 1.2em;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.container input {
+  position: absolute;
+  display: none;
+}
+
+.checkmark {
+  position: absolute;
+  top: .4em;
+  left: 0;
+  height: .8em;
+  width: .8em;
+  background-color: var(--secondary);
+  border-radius: 50%;
+  transition: 0.25s
+}
+
+.container input:checked~.checkmark {
+  background-color: var(--accent);
+}

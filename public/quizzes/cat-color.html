@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>What Color Cat Suits You the Best?</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="What Color Cat Suits You the Best?">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="What Color Cat Suits You the Best?">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/quiz.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <script src="/src/base.js"></script>
+
+    <div id="container2">
+      <script>
+        const title = "What Color Cat Suits You the Best?";
+        const questions = [
+          { question: "Question 1: What's your favorite season?", answers: ["Spring", "Summer", "Fall", "Winter"] },
+          { question: "Question 2: Pick a leisure activity:", answers: ["Reading", "Hiking", "Netflix binge", "Shopping"] },
+          { question: "Question 3: How would you describe your fashion style?", answers: ["Casual", "Chic", "Bohemian", "Sporty"] },
+          { question: "Question 4: What's your ideal vacation destination?", answers: ["Beach resort", "City exploration", "Mountain retreat", "Countryside"] },
+          { question: "Question 5: Choose a movie genre:", answers: ["Action", "Romance", "Comedy", "Drama"] },
+          { question: "Question 6: What's your go-to snack?", answers: ["Chocolate", "Popcorn", "Fruit", "Chips"] },
+          { question: "Question 7: Select a color that represents your personality:", answers: ["Blue", "Red", "Green", "Purple"] },
+          { question: "Question 8: What's your preferred mode of transportation?", answers: ["Car", "Bicycle", "Public transit", "Walking"] },
+          { question: "Question 9: Choose a music genre:", answers: ["Rock", "Pop", "Hip-hop", "Country"] },
+          { question: "Question 10: Pick an animal you relate to the most:", answers: ["Lion", "Dolphin", "Owl", "Elephant"] },
+        ];
+
+        function end() {
+          let catColors = ["Calico", "Siamese", "Tabby", "Black"];
+          let colorIndex = answers.reduce((acc, answer, index) => acc + index, 0) % catColors.length;
+          let result = catColors[colorIndex];
+
+          let x = document.getElementById("multiple-choice-engine-questions");
+          x.innerHTML = `You got a ${result} Cat!`;
+        }
+      </script>
+      <script src="/src/quiz.js"></script>
+    </div>
+  </body>
+</html>

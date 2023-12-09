@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Cats or Dogs Quiz</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Cats or Dogs Quiz">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="Cats or Dogs Quiz">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/quiz.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <script src="/src/base.js"></script>
+
+    <div id="container2">
+      <script>
+        const title = "Cats or Dogs Quiz";
+        const questions = [
+          { question: "Question 1: What size living space do you have?", answers: ["Small apartment or dorm room", "Spacious house with a backyard"] },
+          { question: "Question 2: How much time do you have for daily exercise?", answers: ["I prefer a low-maintenance exercise routine", "I love being active and can commit to regular walks or runs"] },
+          { question: "Question 3: What kind of temperament are you looking for in a pet?", answers: ["Independent and low-maintenance", "Loyal and always ready for playtime"] },
+          { question: "Question 4: How do you feel about grooming?", answers: ["Minimal grooming is ideal for me", "I don't mind regular grooming sessions"] },
+          { question: "Question 5: What's your preferred noise level at home?", answers: ["I enjoy a quiet and calm environment", "I don't mind a bit of noise and activity"] },
+          { question: "Question 6: How do you feel about sharing your space?", answers: ["I prefer a more independent pet that does its own thing", "I'm all about constant companionship and cuddles"] },
+          { question: "Question 7: What's your favorite way to spend quality time with a pet?", answers: ["Reading a book or watching TV with a furry friend by my side", "Going for outdoor adventures and activities"] },
+          { question: "Question 8: How do you feel about training and teaching commands?", answers: ["I prefer a pet that is low-maintenance and requires minimal training", "I enjoy the challenge of training and teaching tricks"] },
+          { question: "Question 9: What kind of socialization do you prefer for your pet?", answers: ["A more independent pet that is comfortable on its own", "A sociable pet that enjoys interacting with people and other animals"] },
+          { question: "Question 10: How do you feel about having a pet that may be more aloof at times?", answers: ["I'm okay with a pet that enjoys some alone time", "I prefer a pet that is always eager to be around me"] }
+        ];
+
+        function end() {
+          let x = dom("multiple-choice-engine-questions");
+          x.innerHTML = "You seem to be more inclined towards ";
+
+          if (answers.reduce((a, b) => a + b) <= 5) { x.innerHTML += "cats."; }
+          else { x.innerHTML += "dogs."; }
+        }
+      </script>
+      <script src="/src/quiz.js"></script>
+    </div>
+  </body>
+</html>

@@ -6,7 +6,7 @@ app = Flask(__name__)
 def index():
     return send_from_directory("public", "index.html")
 
-@app.route("/<path:filename>")
+@app.route("/<path:filename>/")
 def base(filename):
     return send_from_directory("public", filename + ".html")
 
@@ -46,9 +46,17 @@ def img_photography(filename):
 def img_photography_small(filename):
     return send_from_directory("public/img/photography/small", filename)
 
-@app.route("/other/<path:filename>")
+@app.route("/other/<path:filename>/")
 def other(filename):
-    return send_from_directory("public/other", filename + ".html")
+    return send_from_directory("public/other/", filename + ".html")
+
+@app.route("/games/<path:filename>/")
+def games(filename):
+    return send_from_directory("public/games/", filename + ".html")
+
+@app.route("/quizzes/<path:filename>/")
+def quizzes(filename):
+    return send_from_directory("public/quizzes/", filename + ".html")
 
 @app.route("/src/<path:filename>")
 def src(filename):

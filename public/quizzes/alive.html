@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>This quiz will help you figure out if you are alive!</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="This quiz will help you figure out if you are alive!">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="This quiz will help you figure out if you are alive!">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/quiz.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <script src="/src/base.js"></script>
+
+    <div id="container2">
+      <script>
+        const title = "This quiz will help you figure out if you are alive!";
+        const questions = [
+          { question: "Question 1: How do you feel in the morning?", answers: ["Energetic", "Tired", "Neutral"] },
+          { question: "Question 2: What's your favorite way to spend a day off?", answers: ["Reading a book", "Exploring outdoors", "Watching TV", "Sleeping"] },
+          { question: "Question 3: Choose a color that represents your mood.", answers: ["Blue", "Red", "Yellow", "Green"] },
+          { question: "Question 4: Pick a food item.", answers: ["Pizza", "Salad", "Chocolate", "Sushi"] },
+          { question: "Question 5: What's your preferred mode of transportation?", answers: ["Walking", "Cycling", "Driving", "Public transport"] },
+          { question: "Question 6: How do you handle stress?", answers: ["Take a deep breath", "Exercise", "Talk to someone", "Ignore it"] },
+          { question: "Question 7: Choose a season.", answers: ["Spring", "Summer", "Fall", "Winter"] },
+          { question: "Question 8: What's your spirit animal?", answers: ["Lion", "Owl", "Dolphin", "Butterfly"] },
+          { question: "Question 9: Pick a hobby.", answers: ["Painting", "Cooking", "Gardening", "Playing video games"] },
+          { question: "Question 10: What's your preferred way to socialize?", answers: ["Attend parties", "Have a quiet dinner with friends", "Online chatting", "I prefer to be alone"] },
+        ];
+
+        function end() {
+          let x = document.getElementById("multiple-choice-engine-questions");
+          let score = answers.reduce((a, b) => a + b);
+
+          let output;
+          if (score <= 10) {
+            output = "Congratulations! You are definitely alive and thriving!";
+          } else if (score <= 20) {
+            output = "You seem to be alive, but maybe a bit on the fence. Keep enjoying life!";
+          } else {
+            output = "Hmm, you might want to check your pulse. Just kidding! Life is full of surprises, go out and experience them!";
+          }
+
+          x.innerHTML = output;
+        }
+      </script>
+      <script src="/src/quiz.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>What Kind of Galactic Explorer Are You?</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="What Kind of Galactic Explorer Are You?">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="What Kind of Galactic Explorer Are You?">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/quiz.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <script src="/src/base.js"></script>
+
+    <div id="container2">
+      <script>
+        const title = "What Kind of Galactic Explorer Are You?";
+        const questions = [
+          { question: "Question 1: Choose a mode of interstellar transportation:", answers: ["Warp Speed Spaceship", "Teleportation Portal", "Hyperspace Cruiser", "Anti-Gravity Hovercraft"] },
+          { question: "Question 2: What's your preferred alien companion?", answers: ["Furry Tribble", "Wise Elder Yoda", "Playful Martian Porg", "Robotic Cyborg Sidekick"] },
+          { question: "Question 3: Pick a planet to establish your space base:", answers: ["Neon Nebula", "Crystal Moon", "Lush Jungle Planet", "Frozen Ice Asteroid"] },
+          { question: "Question 4: How do you communicate with extraterrestrial beings?", answers: ["Telepathy", "Universal Translator Device", "Musical Harmonies", "Emoji-Like Galactic Symbols"] },
+          { question: "Question 5: Select your preferred space cuisine:", answers: ["Quantum Quasar Quesadillas", "Cosmic Sushi Rolls", "Astro-burger with Nebula Fries", "Zero-Gravity Gelato"] },
+          { question: "Question 6: What's your intergalactic fashion statement?", answers: ["Luminous Spacesuit", "Intergalactic Robes", "Exoskeletal Armor", "Holographic Sneakers"] },
+          { question: "Question 7: Choose a space anthem to represent your travels:", answers: ["Stellar Symphony", "Cosmic Jazz Jam", "Electro Nebula Beats", "Alien Folk Ballad"] },
+          { question: "Question 8: How do you resolve conflicts in the cosmos?", answers: ["Intergalactic Diplomacy", "Epic Space Battles", "Time-Traveling Mediation", "Cosmic Dance-Off"] },
+          { question: "Question 9: What's your favorite celestial phenomenon?", answers: ["Supernova Explosion", "Black Hole Swirl", "Northern Lights Extravaganza", "Comet's Tail Whirl"] },
+          { question: "Question 10: In your free time, you enjoy:", answers: ["Stargazing and Nebula Paintings", "Exoplanet Hiking", "Intergalactic Cuisine Cooking Classes", "Interdimensional Video Gaming"] },
+        ];
+
+        function end() {
+          let x = document.getElementById("multiple-choice-engine-questions");
+
+          let modeCalc = {};
+          for (const num in answers) {
+            modeCalc[num] = (modeCalc[num] || 0) + 1;
+          }
+          let max = modeCalc[Object.keys(modeCalc)[0]];
+          for (const index in Object.keys(modeCalc)) {
+            if (modeCalc[max] < modeCalc[index]) { max = index; }
+          }
+
+          switch (max) {
+            case 0: x.innerHTML = "You are a Warp Speed Pioneer! Boldly exploring the cosmos at the speed of light."; break;
+            case 1: x.innerHTML = "You are the Zen Teleportation Master! Effortlessly traversing galaxies with a calm demeanor."; break;
+            case 2: x.innerHTML = "Hyperspace Trailblazer is your title! Navigating the vast unknown with speed and precision."; break;
+            case 3: x.innerHTML = "You are the Anti-Gravity Adventurer! Floating gracefully through the cosmic wonders."; break;
+          }
+        }
+      </script>
+      <script src="/src/quiz.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Which Fictional World Should You Live In?</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Which Fictional World Should You Live In?">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="Which Fictional World Should You Live In?">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/quiz.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <script src="/src/base.js"></script>
+
+    <div id="container2">
+      <script>
+        const title = "Which Fictional World Should You Live In?";
+        const questions = [
+          { question: "Question 1: If you could have any superpower, what would it be?", answers: ["Teleportation", "Invisibility", "Super Strength", "Mind Reading"] },
+          { question: "Question 2: What's your ideal vacation destination?", answers: ["Beach Resort", "Mountain Cabin", "City Adventure", "Tropical Island"] },
+          { question: "Question 3: Choose a mythical creature as your companion:", answers: ["Dragon", "Unicorn", "Phoenix", "Griffin"] },
+          { question: "Question 4: What type of book do you enjoy the most?", answers: ["Fantasy", "Mystery", "Science Fiction", "Romance"] },
+          { question: "Question 5: Pick a color that represents your personality:", answers: ["Blue", "Green", "Red", "Purple"] },
+        ];
+
+        function end() {
+          let x = document.getElementById("multiple-choice-engine-questions");
+
+          let modeCalc = {};
+          for (const num in answers) {
+            modeCalc[num] = (modeCalc[num] || 0) + 1;
+          }
+          let max = modeCalc[Object.keys(modeCalc)[0]];
+          for (const index in Object.keys(modeCalc)) {
+            if (modeCalc[max] < modeCalc[index]) { max = index; }
+          }
+
+          switch (max) {
+            case 0: x.innerHTML = "You are destined for a world of magic and wonder!"; break;
+            case 1: x.innerHTML = "Adventure awaits you in a mysterious and thrilling realm!"; break;
+            case 2: x.innerHTML = "You belong to a futuristic world filled with advanced technology!"; break;
+            case 3: x.innerHTML = "Love and romance will surround you in your ideal fantasy world!"; break;
+          }
+        }
+      </script>
+      <script src="/src/quiz.js"></script>
+    </div>
+  </body>
+</html>

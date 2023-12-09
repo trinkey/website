@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Which Dessert Are You?</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Which Dessert Are You?">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="Which Dessert Are You?">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/quiz.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <script src="/src/base.js"></script>
+
+    <div id="container2">
+      <script>
+        const title = "Which Dessert Are You?";
+        const questions = [
+          { question: "Question 1: What's your favorite flavor?", answers: ["Chocolate", "Vanilla", "Strawberry", "Caramel"] },
+          { question: "Question 2: How do you spend your ideal weekend?", answers: ["Binge-watching shows", "Outdoor adventure", "Reading a book", "Socializing with friends"] },
+          { question: "Question 3: Choose a dessert activity:", answers: ["Baking cookies", "Decorating cupcakes", "Trying exotic pastries", "Making your own ice cream"] },
+          { question: "Question 4: What's your go-to comfort food?", answers: ["Warm brownies", "Classic apple pie", "Smooth cheesecake", "Fluffy doughnuts"] },
+          { question: "Question 5: Pick a color that makes your mouth water:", answers: ["Rich brown", "Creamy white", "Rosy pink", "Golden caramel"] },
+        ];
+
+        function end() {
+          let x = document.getElementById("multiple-choice-engine-questions");
+
+          let modeCalc = {};
+          for (const num in answers) {
+            modeCalc[num] = (modeCalc[num] || 0) + 1;
+          }
+          let max = modeCalc[Object.keys(modeCalc)[0]];
+          for (const index in Object.keys(modeCalc)) {
+            if (modeCalc[max] < modeCalc[index]) { max = index; }
+          }
+
+          switch (max) {
+            case 0: x.innerHTML = "You are a decadent Chocolate Cake! Indulge in your rich and delightful personality."; break;
+            case 1: x.innerHTML = "Adventure awaits you in the world of Vanilla Ice Cream! A classic with a twist."; break;
+            case 2: x.innerHTML = "You are the sweet and refreshing Strawberry Sorbet! A burst of fruity joy."; break;
+            case 3: x.innerHTML = "Caramel Pudding is your dessert soulmate! Enjoy the creamy and luscious sweetness."; break;
+          }
+        }
+      </script>
+      <script src="/src/quiz.js"></script>
+    </div>
+  </body>
+</html>
