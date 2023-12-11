@@ -53,6 +53,7 @@ if (enableTitlebar) {
     ${enableSelf ? `<li><a href="/about-me/">About Me</a></td>
       <li><a href="/photography/">Photography</a></td>` : ""}
       <li><a href="/games/">Games</a></td>
+      <li><a href="/quizzes/">Quizzes</a></td>
       <li><a href="/other/">Other</a></td>
       ${enableSelf ? `<li><a href="/changelog/">Changelog</a></td>` : ""}
       <li class="light-toggle" onclick='localStorage.setItem("trinkey-theme", "light"); updateTheme();'><div>Light Mode</div></td>
