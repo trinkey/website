@@ -39,7 +39,7 @@
 
       <div id="game" hidden>
         <pre class="mono" id="hang"></pre>
-        <pre id="word"></pre>
+        <div id="word" class="mono"></div>
         <h1 id="status"></h1>
         <strong>Unused:</strong>
         <div id="remaining"></div>
@@ -90,7 +90,7 @@
 
         if (obfuWord.split("_").length == 1) { win(); }
 
-        dom("word").innerHTML = obfuWord.toUpperCase().split("").join(" ");
+        dom("word").innerHTML = obfuWord.toUpperCase().split("").join("&shy;");
 
         dom("wrong").innerHTML = wrong.toUpperCase().split("").sort().join(" ") || "<i>None</i>";
         dom("remaining").innerHTML = remaining.toUpperCase().split("").sort().join(" ") || "<i>None</i>";
@@ -101,7 +101,7 @@
         pauseKeystrokes = true;
         dom("status").innerHTML = "You lost :(";
         dom("reset").removeAttribute("hidden");
-        dom("word").innerHTML = word.toUpperCase().split("").join(" ");
+        dom("word").innerHTML = word.toUpperCase().split("").join("&shy;");
       }
 
       function win() {
@@ -147,7 +147,7 @@
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get("word")) {
         try {
-          word = atob(urlParams.get("word"));
+          word = atob(urlParams.get("word")).toLowerCase();
           started = true;
 
           dom("setup").setAttribute("hidden", "");

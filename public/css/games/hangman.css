@@ -5,7 +5,9 @@
           user-select: none;
 }
 
-pre { font-size: 16px; }
+#word {
+  font-size: 16px;
+}
 
 #challengeLink {
   -webkit-user-select: text;
