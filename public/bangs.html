@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Bangs v2</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="It's really cool">
+    <meta name="author" content="trinkey">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bangs">
+    <meta property="og:description" content="It's really cool (trust me)">
+    <meta property="og:url" content="https://trinkey.web.app/">
+    <meta property="og:site_name" content="trinkey.web.app">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@trinkey_2">
+    <meta name="twitter:title" content="Bangs">
+    <meta name="twitter:description" content="It's really cool (trust me)">
+
+    <script src="/src/bangs.js"></script>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+    <script src="/src/base.js"></script>
+
+    <div id="container2">
+      <h1>Bangs</h1>
+      This is like duckduckgo's bang system, however using this place instead of ddg.<br>
+      This will fallback onto duckduckgo if either the bang isn't recognized or there is no bang.<br><br>
+      How to use:
+      <ul>
+        <li>General use: Go to <code>https://trinkey.web.app/bangs/?q=</code> with the q parameter set to this format: "<code>!{{BANG}} {{SEARCH_QUERY}}</code>" (with all spaces either URL encoded or replaced with a plus)</li>
+        <li>Easy use on chrome/chrome based browsers: go to <code>chrome://settings/searchEngine</code>s (or <code>opera://</code>, <code>about://</code>, etc.), click on the "Add" button in the "Site search" section, set the name and shortcut to anything, and then in the "URL" section, put "https://trinkey.web.app/bangs/?q=%s"</li>
+        <li>On firefox: right click here: <form action="/bangs" style="display: inline-block"><input name="q" type="search" disabled></form> then click the <code>Add a <u>K</u>eyword for this Search...</code> button. Name it anything, put it anywhere on the bookmarks bar, and then put something in the keyword section which will be used to easily access it from the search bar. This can be changed later by editing the bookmark.</li>
+        <li>On mobile: idfk look it up</li>
+      </ul>
+
+      <details>
+        <summary>List of current bangs...</summary>
+        <ul>
+          <li>!g // google</li>
+          <li>!gi // google images</li>
+          <li>!gf // google fonts</li>
+          <li>!ddg // duckduckgo</li>
+          <li>!ddgi // duckduckgo images</li>
+          <li>!ffa // firefox addon store</li>
+          <li>!cws // chrome webstore</li>
+          <li>!a // amazon</li>
+          <li>!t // twitter</li>
+          <li>!yt // youtube</li>
+          <li>!wiki // wikipedia</li>
+          <li>!gh // github</li>
+        </ul>
+      </details><br>
+      <a href="mailto:asdfjkltrinketio@gmail.com">email me</a> to suggest something
+    </div>
+  </body>
+</html>

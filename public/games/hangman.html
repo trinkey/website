@@ -144,7 +144,6 @@
         }
       };
 
-      const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get("word")) {
         try {
           word = atob(urlParams.get("word")).toLowerCase();

@@ -7,21 +7,21 @@
 // this would disable the titlebar, disable all references, to me, redirects to the
 // connect four page, and change the site theme to light mode.
 
-const urlParamsADFJAHFJKHFKH = new URLSearchParams(window.location.search);
+const urlParams = new URLSearchParams(window.location.search);
 
-if (urlParamsADFJAHFJKHFKH.get("self")) { localStorage.setItem("trinkey-titlebar", urlParamsADFJAHFJKHFKH.get("self")); }
+if (urlParams.get("self")) { localStorage.setItem("trinkey-titlebar", urlParams.get("self")); }
 enableSelf = (localStorage.getItem("trinkey-titlebar") || "0") === "0"
 
-if (urlParamsADFJAHFJKHFKH.get("titlebar")) { localStorage.setItem("trinkey-bar", urlParamsADFJAHFJKHFKH.get("titlebar")); }
+if (urlParams.get("titlebar")) { localStorage.setItem("trinkey-bar", urlParams.get("titlebar")); }
 enableTitlebar = (localStorage.getItem("trinkey-bar") || "0") === "0"
 
 if (
-  urlParamsADFJAHFJKHFKH.get("redir") && urlParamsADFJAHFJKHFKH.get("redir")[0] == "/" &&
-  (urlParamsADFJAHFJKHFKH.get("redir").length == 1 || "/:".indexOf(urlParamsADFJAHFJKHFKH.get("redir")[1]) == -1)
-) { window.location.href = urlParamsADFJAHFJKHFKH.get("redir"); }
+  urlParams.get("redir") && urlParams.get("redir")[0] == "/" &&
+  (urlParams.get("redir").length == 1 || "/:".indexOf(urlParams.get("redir")[1]) == -1)
+) { window.location.href = urlParams.get("redir"); }
 
-if (urlParamsADFJAHFJKHFKH.get("theme") == "light" || urlParamsADFJAHFJKHFKH.get("theme") == "dark") {
-  localStorage.setItem("trinkey-theme", urlParamsADFJAHFJKHFKH.get("theme"));
+if (urlParams.get("theme") == "light" || urlParams.get("theme") == "dark") {
+  localStorage.setItem("trinkey-theme", urlParams.get("theme"));
 }
 
 // Set theme

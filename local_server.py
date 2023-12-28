@@ -62,4 +62,8 @@ def quizzes(filename):
 def src(filename):
     return send_from_directory("public/src", filename)
 
-app.run(port=80)
+@app.route("/bangs")
+def bangs():
+    return send_from_directory("public", "bangs.html")
+
+app.run(port=80, debug=True)
