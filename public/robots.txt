@@ -6,6 +6,7 @@ Disallow: /css/
 Disallow: /img/
 Disallow: /src/
 Allow: /img/photograhpy/
+Disallow: /img/photography/small/
 Allow: /proxy/bangs/
 
 User-agent: Baiduspider

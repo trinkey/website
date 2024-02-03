@@ -1,2 +1,3 @@
-details { margin-bottom: 5px; }
+details { margin-bottom: 3px; }
+details[open] { margin-bottom: 10px; }
 .date { color: var(--accent); opacity: 60%; }

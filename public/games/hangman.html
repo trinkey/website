@@ -33,7 +33,7 @@
 
       <div id="setup">
         <input id="words" placeholder="Enter the word(s)...">
-        <button id="start">Start</button> <button id="challenge">Challenge a friend</button>
+        <button id="start">Start</button> <span id="challenge-container"><button id="challenge">Challenge a friend</button></span>
         <div id="challengeLink"></div>
       </div>
 
@@ -52,6 +52,9 @@
     </div>
 
     <script>
+      if (!enableSelf) {
+        dom("challenge-container").setAttribute("hidden", "");
+      }
       const hangStates = [
         "    _________\n    |/      |\n" + "    |\n".repeat(7) + "____|____",
         "    _________\n    |/      |\n    |       O\n" + "    |\n".repeat(6) + "____|____",
